@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="18f6bd57-61fd-4f1a-b5b7-1b34f3ff59ef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="algorithms-data-structures.iws" />
@@ -25,7 +24,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="0" selection-end="468" vertical-scroll-proportion="0.032986112">
+            <state line="6" column="66" selection-start="438" selection-end="438" vertical-scroll-proportion="0.19791667">
               <folding />
             </state>
           </provider>
@@ -286,7 +285,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="0" selection-end="468" vertical-scroll-proportion="0.032986112">
+        <state line="6" column="66" selection-start="438" selection-end="438" vertical-scroll-proportion="0.19791667">
           <folding />
         </state>
       </provider>
