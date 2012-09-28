@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
-group :tools do
-  gem 'test-unit'
-  gem 'guard'
-  gem 'guard-test'
-end
+gem 'spork'
+gem 'guard-spork'
+gem 'test-unit'
+gem 'guard'
+gem 'guard-test'
+gem 'listen', '0.5.2'
+gem 'rb-inotify', '~> 0.8.8'
