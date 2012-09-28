@@ -1,2 +1,6 @@
 source "http://rubygems.org"
-gem "test-unit", "2.5.2"
+
+group :tools do
+  gem 'test-unit'
+  gem 'guard-test'
+end
