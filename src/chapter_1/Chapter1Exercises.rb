@@ -1,5 +1,5 @@
 class Chapter1Exercises
-  attr :exercise_1121_trace
+  attr :exercise_1122_trace
 
 
   # To change this template use File | Settings | File Templates.
@@ -151,16 +151,16 @@ class Chapter1Exercises
     sum_result.truncate
   end
 
-  def exercise_1121 (key = 0, arr = [])
-    @exercise_1121_trace = ""
+  def exercise_1122 (key = 0, arr = [])
+    @exercise_1122_trace = ""
     rank(key, arr, 0, arr.length - 1, 0)
-    @exercise_1121_trace
+    @exercise_1122_trace
   end
 
   def rank (key, arr, lo, hi, depth)
     return - 1 if lo > hi
     mid = lo + (hi - lo) / 2
-    @exercise_1121_trace += ("\t"*depth) + "lo: #{lo}, hi: #{hi}\n"
+    @exercise_1122_trace += ("\t"*depth) + "lo: #{lo}, hi: #{hi}\n"
     return rank(key, arr, lo, mid - 1, depth+1) if key < arr[mid]
     return rank(key, arr, mid + 1, hi, depth+1) if key > arr[mid]
 
