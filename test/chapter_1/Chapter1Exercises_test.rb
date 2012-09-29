@@ -157,8 +157,9 @@ class Chapter1Exercises_test < TestHelper
 
   def test_exercise_1122
     verify_method :exercise_1122,
-    :with => [{params: [0, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 0, hi: 1\n"},
-              {params: [5, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 3, hi: 5\n\t\tlo: 5, hi: 5\n"}]
+                  :with => [{params: [0, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 0, hi: 1\n"},
+                            {params: [5, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 3, hi: 5\n\t\tlo: 5, hi: 5\n"}]
   end
+
 
 end
