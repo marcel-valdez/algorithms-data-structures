@@ -1,9 +1,9 @@
 class Chapter1Exercises
-  attr :exercise_1_1_21_trace
+  attr :exercise_1121_trace
 
 
   # To change this template use File | Settings | File Templates.
-  def exercise_1_1_3 numbers
+  def exercise_113 numbers
     integers = numbers.split(' ').each { |number| number.to_i }
 
     result = true
@@ -12,30 +12,32 @@ class Chapter1Exercises
     result
   end
 
-  def exercise_1_1_5 numbers
+  def exercise_115 numbers
     numbers.reduce do |number|
       number > 0 and number < 1
     end
   end
 
-  def exercise_1_1_6
+  def exercise_116
+    result = ""
     f = 0
     g = 1
     for i in 0..15
-      print "#{f}, "
+      result += "#{f}, "
       f += g
       g = f - g
     end
-    puts
+
+    result
   end
 
-  def exercise_1_1_7
+  def exercise_117
     t = 9.0
     while (t - 9.0/t).abs > 0.0001
       t = (9.0/t + t) / 2.0
     end
 
-    puts "a) Square root: #{t}"
+    result = "a) Square root: #{t}\n"
 
     sum = 0
     for i in 1...6
@@ -44,7 +46,7 @@ class Chapter1Exercises
       end
     end
 
-    puts "b) Sumatoria de secuencias del 1 al 5: #{sum}"
+    result += "b) Sumatoria de secuencias del 1 al 5: #{sum}\n"
 
     sum = 0
     i = 1
@@ -59,11 +61,13 @@ class Chapter1Exercises
     end
 
     # resultado: 1000 * log2 de 1000
-    puts "c) Misterios #{sum} debe ser igual a #{1000*Math.log2(1000).ceil}"
+    result += "c) Misterios #{sum} debe ser igual a #{1000*Math.log2(1000).ceil}"
+
+    result
   end
 
   # returns the binary representation of number into a string
-  def exercise_1_1_9 number
+  def exercise_119 number
     # if the number is 0, set the result to '0'
     result = number == 0 ? "0" : ""
     # until we're done looping the number by dividing it by two
@@ -77,9 +81,9 @@ class Chapter1Exercises
     result
   end
 
-  #Write a code fragment that prints the contents of a two-dimensional boolean array,
-  #using * to represent true and a space to represent false. Include row and column numbers.
-  def exercise_1_1_11 bool_values
+  # Write a code fragment that prints the contents of a two-dimensional boolean array,
+  # using * to represent true and a space to represent false. Include row and column numbers.
+  def exercise_1111 bool_values
 
     # Poner los headers de cada columna
     result = " #{(1..bool_values[0].length).inject("") { |str, i| str + i.to_s }}\n"
@@ -100,7 +104,7 @@ class Chapter1Exercises
 
   #Write a code fragment to print the transposition (rows and columns changed) of
   #a two-dimensional array with M rows and N columns.
-  def exercise_1_1_13 matrix
+  def exercise_1113 matrix
     m = matrix.length
     n = matrix[0].length
 
@@ -114,7 +118,7 @@ class Chapter1Exercises
     result
   end
 
-  def exercise_1_1_14 number
+  def exercise_1114 number
     result = 0
     while number > 1
       result+=1
@@ -124,14 +128,14 @@ class Chapter1Exercises
     result
   end
 
-  def exercise_1_1_15 numbers = [], size = 0
+  def exercise_1115 numbers = [], size = 0
     result = Array.new(size) { 0 }
     numbers.each { |number| result[number] += 1 unless number >= size }
 
     result
   end
 
-  def exercise_1_1_19 n
+  def exercise_1119 n
     result = Array.new(n + 1) { 0 }
     first = 0
     second = 1
@@ -148,7 +152,7 @@ class Chapter1Exercises
 
   BASE_E = 2.71828182845904523536028747135266249775724709369995
 
-  def exercise_1_1_20 number
+  def exercise_1120 number
     result = 0
     sum_result = 0
     while number > 1
@@ -160,16 +164,16 @@ class Chapter1Exercises
     number < BASE_E ? nil : result
   end
 
-  def exercise_1_1_21 key = 0, arr = []
-    @exercise_1_1_21_trace = ""
+  def exercise_1121 key = 0, arr = []
+    @exercise_1121_trace = ""
     rank(key, arr, 0, arr.length - 1, 0)
-    @exercise_1_1_21_trace
+    @exercise_1121_trace
   end
 
   def rank key, arr, lo, hi, depth
     return - 1 if lo > hi
     mid = lo + (hi - lo) / 2
-    @exercise_1_1_21_trace += ("\t"*depth) + "lo: #{lo}, hi: #{hi}\n"
+    @exercise_1121_trace += ("\t"*depth) + "lo: #{lo}, hi: #{hi}\n"
     return rank(key, arr, lo, mid - 1, depth+1) if key < arr[mid]
     return rank(key, arr, mid + 1, hi, depth+1) if key > arr[mid]
 

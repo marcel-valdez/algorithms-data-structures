@@ -1,38 +1,44 @@
+class Hash
+  # @param [Array] keys to look for
+  # @return [Object, Object] The found object and the key found, nil otherwise
+  def find_any keys
+    for key in keys
+      unless self[key].nil?
+        return self[key], key
+      end
+    end
+
+    nil
+  end
+end
+
 class TestHelper < Test::Unit::TestCase
   attr :target
+
+
 # @param [Symbol] test_method
 # @param [Enumerable] data
 # Example:
-# verify_method sum, with: [params: [2, 2], expected: 4]
+# verify_cases sum, with: [params: [2, 2], expected: 4]
 #   will call:
 #   actual = @target.sum(2, 2)
 #   assert_equals(2, expected)
-# verify_method average, with: [param: [2, 2], expected: 2]
+# verify_cases average, with: [param: [2, 2], expected: 2]
 #   actual = @target.average([2, 2])
 #   assert_equals(2, expected)
   def verify_method test_method, data
     test_cases = data[:with]
     test_cases.each do |test_case|
-
       # Arrange
-      expected = test_case[:expected]
+      input, expands = get_input(test_case)
 
-      # Act
-      if not test_case[:param].nil?
-        input = test_case[:param]
-        actual = @target.send(test_method, input)
-      elsif not test_case[:params].nil?
-        input = test_case[:params]
-        actual = @target.send(test_method, *input)
-      end
-
-      # Assert
-      if test_case[:precision].nil?
-        assert_equal(expected, actual, "Call to #{test_method.to_s} with parameters #{input.to_s}, failed:")
+      # Act & Assert
+      if is_predicate? test_case
+        predicate = test_case[:predicate]
+        do_predicate_case(test_method, input, expands, &predicate)
       else
-        assert_in_delta(expected, actual, test_case[:precision], "Call to #{test_method.to_s} with parameters "+
-                                                                 "#{input.to_s} and precision #{test_case[:precision]}"+
-                                                                 ", failed:")
+        expected = test_case[:expected]
+        do_test_case(test_method, input, expected, expands)
       end
     end
   end
@@ -43,5 +49,61 @@ class TestHelper < Test::Unit::TestCase
     finish = Time.now
 
     finish - start
+  end
+
+  private
+
+  def assert_expectation(actual, expected, input = nil, test_method = nil)
+    assert_equal(expected, actual, get_error_msg(input, test_method))
+  end
+
+  def do_predicate_case(test_method, input, expand, &predicate)
+    actual = call_target(expand, input, test_method)
+    assert_true predicate.call(actual), get_error_msg(input, test_method)
+  end
+
+  def do_test_case(test_method, input, expected, expand)
+    actual = call_target(expand, input, test_method)
+    assert_expectation(actual, expected, input, test_method)
+  end
+
+  def call_target(expand, input, test_method)
+
+    if input.nil?
+      actual = @target.send(test_method)
+    else
+      if expand
+        actual = @target.send(test_method, *input)
+      else
+        actual = @target.send(test_method, input)
+      end
+    end
+
+    actual
+  end
+
+  def get_error_msg(input, test_method)
+    "Call to #{test_method.to_s} with parameters #{input.to_s}, failed:" unless input.nil? or test_method.nil?
+    ""
+  end
+
+  def get_input test_case = []
+    keys = [:params, :param]
+
+    found, key = test_case.find_any keys
+    return found, key_expands?(key) unless found.nil?
+
+    nil
+  end
+
+  def key_expands? key
+    expanded_params = [:params]
+    expanded_params.any? { |a_key| a_key.eql? key }
+  end
+
+  def is_predicate? test_case
+    keys = [:predicate]
+    found = test_case.find_any keys
+    not found.nil?
   end
 end
