@@ -1,6 +1,5 @@
 class Chapter1Exercises
-  attr :exercise_1122_trace
-
+  attr :exercise_1122_trace, :exercise_1127_sum
 
   # To change this template use File | Settings | File Templates.
   def exercise_113 (numbers)
@@ -165,5 +164,57 @@ class Chapter1Exercises
     return rank(key, arr, mid + 1, hi, depth+1) if key > arr[mid]
 
     mid
+  end
+
+  # Mathematical proof by induction:
+  # For { p, q | p is Real Integer > 0 Y q is Real Integer > 0  }
+  # gcd(p, q)
+  # {
+  #   q == 0 then p,
+  #   q <> 0 then gcd(q, p modulo q)
+  # }
+  # p=32, q=24 | p=24, q=32%24 (8)|p=8, q=24%8 (0)
+  # gcd[1] = p[1]=p[0], q[1]=q[0],
+  # gcd[2] = p[2]=q[1], q[2]=p[1] mod p[2] expansion: p[2]=q[0], q[2]=p[0] mod p[2]
+  # gcd[3] = p[3]=q[2], q[3]=p[2] mod p[3] expansion: p[3]=p[0] mod q[0], q[3]=p[0] mod(p[3])
+  # gcd[4] = p[4]=q[3], q[4]=p[3] mod p[4] expansion: p[4]=p[0] mod(p[0] mod q[0]), q[4]=(p[0] mod q[0]) mod(p[4])
+  # couldn't :(
+  def exercise_1124 (p, q)
+    return p if q == 0
+    exercise_1124(q, p % q)
+  end
+
+  def exercise_1127 (n, k)
+    return n if k == 0
+    2 * (2 ** n)
+  end
+
+  def exercise_1127_b (n, k, p)
+    @exercise_1127_sum = 0
+
+    return 0 if k > n
+
+    return (1 - p) ** n if k == 0
+
+    n * (p - 1).abs * (p ** k)
+  end
+
+  def exercise_1128 numbers
+    # maintain a count array
+    count_array = Array.new { 0 }
+    # maintain added numbers
+    result = []
+    # loop number in numbers
+    numbers.each { |number|
+      #   if element is already counted do not add
+      if count_array[number].nil?
+        result.insert(result.length, number)
+        count_array[number] = true
+      end
+      #   else add number to added numbers
+    }
+    # give result
+
+    result
   end
 end

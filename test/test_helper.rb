@@ -88,7 +88,7 @@ class TestHelper < Test::Unit::TestCase
     "Call to #{test_method.to_s} with parameters #{input.to_s}, failed:" unless input.nil? or test_method.nil?
   end
 
-  def get_input (test_case = [])
+  def get_input (test_case = {})
     keys = [:params, :param]
 
     found, key = test_case.find_any keys

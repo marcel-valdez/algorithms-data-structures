@@ -4,6 +4,7 @@ require_relative "../test_helper"
 
 class Chapter1Exercises_test < TestHelper
 
+  attr :rec_calls
 
   # Called before every test method runs. Can be used
   # to set up fixture information.
@@ -161,5 +162,64 @@ class Chapter1Exercises_test < TestHelper
                             {params: [5, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 3, hi: 5\n\t\tlo: 5, hi: 5\n"}]
   end
 
+  # Write a method that calculates the greatest common divisor, using Euclid's algorithm and
+  # use it to calculate the greatest common divisor for 1111111 and 1234567
+  def test_exercise_1124
+    verify_method :exercise_1124,
+                  :with => [{params: [1111111, 1234567], expected: 1},
+                            {params: [33 * 7, 33 * 23], expected: 33},
+                            {params: [41 * 13, 41 * 29], expected: 41}]
 
+  end
+
+  def binomial(n, k, p)
+    @rec_calls += 1
+
+    if n == 0 and k == 0
+      #print "1.0"
+      return 1.0
+    end
+
+    if n < 0 or k < 0
+      #print "0.0"
+      return 0.0
+    end
+    #print "(((1 - #{p}) * "
+    left = ((1 - p) * binomial(n-1, k, p))
+    #print ") +\n (#{p} * "
+    right = (p * binomial(n-1, k-1, p))
+    #print "))"
+
+    left + right
+  end
+
+  # Create a function that estimates the number of recursive calls of binomial
+  def test_exercise_1127
+    @rec_calls = 0
+    puts ""
+    binomial(10, 4, 0.25)
+    predicate = Proc.new { |actual|
+      Math.log10(actual).truncate == Math.log10(@rec_calls).truncate
+    }
+
+    params = [10, 4]
+    verify_method :exercise_1127,
+                  :with => [{
+                                params: params,
+                                predicate: predicate
+                            }]
+
+    #verify_method :exercise_1127_b,
+    #              :with => [{ params: params, expected: expected}]
+
+  end
+
+  # write a function that removes duplicates from an array
+  def test_exercise_1128
+    verify_method :exercise_1128,
+                  :with => [{param: [0, 0, 1, 2, 3, 3], expected: [0, 1, 2, 3]},
+                            {param: [0, 1, 2, 3], expected: [0, 1, 2, 3]},
+                            {param: [0, 0], expected: [0]},
+                            {param: [0], expected: [0]}]
+  end
 end
