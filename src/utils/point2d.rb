@@ -1,5 +1,10 @@
 class Point2D
-  attr :x, :y
+  attr_accessor :x, :y
+
+  def initialize(x, y)
+    @x = x
+    @y = y
+  end
 
   # @param [Point2D] point at a distance
   # @return [Numeric] the distance to such a point

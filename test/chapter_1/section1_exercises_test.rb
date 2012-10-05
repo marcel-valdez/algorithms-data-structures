@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class Section1Exercises_test < TestHelper
 
-  attr :rec_calls
+  attr_accessor :rec_calls
 
   # Called before every test method runs. Can be used
   # to set up fixture information.
