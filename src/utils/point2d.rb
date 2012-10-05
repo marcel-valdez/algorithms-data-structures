@@ -9,6 +9,6 @@ class Point2D
   # @param [Point2D] point at a distance
   # @return [Numeric] the distance to such a point
   def distance_to(point)
-    Math.sqrt(Math.sqr(@x - point.x) + Math.sqr(@y - point.y))
+    Math.sqrt((@x - point.x)**2 + (@y - point.y)**2)
   end
 end

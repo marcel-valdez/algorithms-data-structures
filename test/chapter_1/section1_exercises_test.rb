@@ -8,7 +8,8 @@ class Section1Exercises_test < TestHelper
 
   # Called before every test method runs. Can be used
   # to set up fixture information.
-  def setup
+  def initialize(args)
+    super(args)
     @target = Section1Exercises.new
   end
 
