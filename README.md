@@ -18,13 +18,14 @@ Folder organization:
 
 In order to add exercises for a section you have to add a new SectionYExercises_test.rb file and a new SectionYExercises.rb implementation.  
 
-How to setup the project to contribute on Linux:
+How to setup the project on Linux:
 
 ````bash
 cd $HOME
 mkdir algorithms_data_structures
 cd algorithms_data_structures
 git init .
+# Or you can fork the repository and send a pull request through gitub to contribute.
 git remote add origin git://github.com/marcel-valdez/algorithms-data-structures.git
 git pull origin master
 ````
