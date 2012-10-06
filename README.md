@@ -28,6 +28,7 @@ git init .
 # Or you can fork the repository and send a pull request through gitub to contribute.
 git remote add origin git://github.com/marcel-valdez/algorithms-data-structures.git
 git pull origin master
+bundle install
 ````
 
 You can run continuous testing using Guard, by running:
