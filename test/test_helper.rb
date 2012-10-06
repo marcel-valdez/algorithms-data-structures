@@ -16,8 +16,7 @@ end
 
 #noinspection RubyResolve
 class TestHelper < Test::Unit::TestCase
-  attr :target
-
+  attr_accessor :target
 
 # @param [Symbol] test_method
 # @param [Enumerable] test_data
