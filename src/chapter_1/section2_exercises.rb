@@ -1,5 +1,6 @@
 require_relative "../utils/point2d"
 require_relative "../utils/number_utils"
+
 module Chapter1
   class Section2Exercises
     def point_distance_e121 n

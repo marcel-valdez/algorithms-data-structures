@@ -1,5 +1,5 @@
 require_relative "../test_helper"
-require_relative "../../src/chapter_1/stack"
+require_relative "../../src/utils/stack"
 class StackTest < TestHelper
   def setup
     @target= Stack.new
