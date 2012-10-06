@@ -1,15 +1,14 @@
-require "test/unit"
-require_relative "../../src/chapter_1/Chapter1Exercises"
 require_relative "../test_helper"
+require_relative "../../src/chapter_1/section1_exercises"
 
-class Chapter1Exercises_test < TestHelper
+class Section1Exercises_test < TestHelper
 
   attr :rec_calls
 
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
-    @target = Chapter1Exercises.new
+    @target = Section1Exercises.new
   end
 
   # Called after every test method runs. Can be used to tear

@@ -1,4 +1,4 @@
-class Chapter1Exercises
+class Section1Exercises
   attr :exercise_1122_trace, :exercise_1127_sum
 
   # To change this template use File | Settings | File Templates.
@@ -189,15 +189,15 @@ class Chapter1Exercises
     2 * (2 ** n)
   end
 
-  def exercise_1127_b (n, k, p)
-    @exercise_1127_sum = 0
-
-    return 0 if k > n
-
-    return (1 - p) ** n if k == 0
-
-    n * (p - 1).abs * (p ** k)
-  end
+  #def exercise_1127_b (n, k, p)
+  #  @exercise_1127_sum = 0
+  #
+  #  return 0 if k > n
+  #
+  #  return (1 - p) ** n if k == 0
+  #
+  #  n * (p - 1).abs * (p ** k)
+  #end
 
   def exercise_1128 numbers
     # maintain a count array

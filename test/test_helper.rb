@@ -1,3 +1,5 @@
+require "test/unit"
+
 class Hash
   # @param [Array] keys to look for
   # @return [Object, Object] The found object and the key found, nil otherwise
@@ -50,6 +52,24 @@ class TestHelper < Test::Unit::TestCase
     finish = Time.now
 
     finish - start
+  end
+
+  def sub_case (test_name = "")
+    begin
+      yield
+    rescue Test::Unit::AssertionFailedError => error
+      new_msg = "sub test: #{test_name}: \n#{error.message}"
+      new_error = Test::Unit::AssertionFailedError.new(new_msg,
+                                                   {user_message: error.user_message,
+                                                    inspected_actual: error.inspected_actual,
+                                                    actual: error.actual,
+                                                    inspected_expected: error.inspected_expected,
+                                                    expected: error.expected})
+
+      new_error.set_backtrace error.backtrace
+
+      raise new_error
+    end
   end
 
   private
