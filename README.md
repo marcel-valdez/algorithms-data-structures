@@ -1,5 +1,5 @@
-This project will contain the topics of algorithms and data structures found in the book:
-             Algorithms 4th Ed by Robert Sedgewick and Kevin Wayne
+This project will contain the topics of algorithms and data structures found in the book:  
+Algorithms 4th Ed by Robert Sedgewick and Kevin Wayne, focusing on the book and the exercises at http://algs4.cs.princeton.edu/home/
 
 The folders doc, src and test will have the same structure:
 * src/ contains the Ruby code for the algorithm
@@ -25,7 +25,7 @@ cd $HOME
 mkdir algorithms_data_structures
 cd algorithms_data_structures
 git init .
-# Or you can fork the repository and send a pull request through gitub to contribute.
+# Or you can fork the repository and send a pull request through github to contribute.
 git remote add origin git://github.com/marcel-valdez/algorithms-data-structures.git
 git pull origin master
 bundle install
