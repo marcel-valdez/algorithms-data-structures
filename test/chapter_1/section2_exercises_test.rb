@@ -14,7 +14,7 @@ module Chapter1
     # Called after every test method runs. Can be used to tear
     # down fixture information.
     def teardown
-      # Do nothing
+      # Empty
     end
 
     def check_points(n = 0, generated_points = [], shortest = 0)
@@ -65,12 +65,12 @@ module Chapter1
       verify_method :range_intersect_e122,
                     :with =>
                         [
-                            {param: [0..1, 0..1], expected: [[0..1, 0..1]]},
-                            {param: [0..1, 2..3], expected: []},
-                            {param: [0..3, 1..2], expected: [[0..3, 1..2]]},
-                            {param: [1..2, 0..3], expected: [[1..2, 0..3]]},
-                            {param: [0..1, 1..2], expected: [[0..1, 1..2]]},
-                            {param: [0..1, 0..1, 0..1], expected: [[0..1, 0..1], [0..1, 0..1], [0..1, 0..1]]},
+                            {param: [0..1, 0..1], expect: [[0..1, 0..1]]},
+                            {param: [0..1, 2..3], expect: []},
+                            {param: [0..3, 1..2], expect: [[0..3, 1..2]]},
+                            {param: [1..2, 0..3], expect: [[1..2, 0..3]]},
+                            {param: [0..1, 1..2], expect: [[0..1, 1..2]]},
+                            {param: [0..1, 0..1, 0..1], expect: [[0..1, 0..1], [0..1, 0..1], [0..1, 0..1]]},
                             {
                                 param: [0..1, 1..2, 2..3],
                                 predicate: Proc.new { |result|

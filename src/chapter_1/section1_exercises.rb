@@ -200,7 +200,7 @@ module Chapter1
     #  n * (p - 1).abs * (p ** k)
     #end
 
-    def exercise_1128 numbers
+    def exercise_1128 (numbers)
       # maintain a count array
       count_array = Array.new { 0 }
       # maintain added numbers

@@ -24,17 +24,17 @@ module Chapter1
 
     def test_exercise_113
       verify_method :exercise_113,
-                    :with => [{param: "1 2 3", expected: false},
-                              {param: "1 1 1", expected: true}]
+                    :with => [{param: "1 2 3", expect: false},
+                              {param: "1 1 1", expect: true}]
     end
 
     def test_exercise_115
       verify_method :exercise_115,
-                    :with => [{param: [0.8, 0.8], expected: true},
-                              {param: [0.1, 0.1], expected: true},
-                              {param: [0.9, 0.9], expected: true},
-                              {param: [1, 1], expected: false},
-                              {param: [0, 0], expected: false}]
+                    :with => [{param: [0.8, 0.8], expect: true},
+                              {param: [0.1, 0.1], expect: true},
+                              {param: [0.9, 0.9], expect: true},
+                              {param: [1, 1], expect: false},
+                              {param: [0, 0], expect: false}]
     end
 
 
@@ -57,11 +57,11 @@ module Chapter1
     # Write a method that returns a string with the binary representation of N
     def test_exercise_119
       verify_method :exercise_119,
-                    :with => [{param: 1, expected: "1"},
-                              {param: 2, expected: "10"},
-                              {param: 3, expected: "11"},
-                              {param: 8, expected: "1000"},
-                              {param: 11, expected: "1011"}]
+                    :with => [{param: 1, expect: "1"},
+                              {param: 2, expect: "10"},
+                              {param: 3, expect: "11"},
+                              {param: 8, expect: "1000"},
+                              {param: 11, expect: "1011"}]
     end
 
     # Write a program that prints a Matrix with a header with the index of the columns
@@ -71,43 +71,43 @@ module Chapter1
     #                        "256\n"
     def test_exercise_1111
       verify_method :exercise_1111,
-                    :with => [{param: [[true]], expected: " 1\n1*\n"},
-                              {param: [[false]], expected: " 1\n1 \n"},
-                              {param: [[true, false]], expected: " 12\n1* \n"},
-                              {param: [[true, false], [true, false]], expected: " 12\n1* \n2* \n"}]
+                    :with => [{param: [[true]], expect: " 1\n1*\n"},
+                              {param: [[false]], expect: " 1\n1 \n"},
+                              {param: [[true, false]], expect: " 12\n1* \n"},
+                              {param: [[true, false], [true, false]], expect: " 12\n1* \n2* \n"}]
     end
 
     # Write a method that receives a matrix NxM and transposes rows into columns MxN
     def test_exercise_1113
       verify_method :exercise_1113,
-                    :with => [{param: [[0]], expected: [[0]]},
+                    :with => [{param: [[0]], expect: [[0]]},
                               {param: [[0, 1]],
-                               expected: [[0],
-                                          [1]]},
+                               expect: [[0],
+                                        [1]]},
                               {param: [[0, 1],
                                        [2, 3]],
-                               expected: [[0, 2],
-                                          [1, 3]]}]
+                               expect: [[0, 2],
+                                        [1, 3]]}]
 
     end
 
     # Write a method that calculates log2 of N, without using Math.log2
     def test_exercise_1114
       verify_method :exercise_1114,
-                    :with => [{param: 2, expected: Math.log2(2).truncate},
-                              {param: 3, expected: Math.log2(3).truncate},
-                              {param: 9, expected: Math.log2(9).truncate},
-                              {param: 90, expected: Math.log2(90).truncate}]
+                    :with => [{param: 2, expect: Math.log2(2).truncate},
+                              {param: 3, expect: Math.log2(3).truncate},
+                              {param: 9, expect: Math.log2(9).truncate},
+                              {param: 90, expect: Math.log2(90).truncate}]
     end
 
     # Write a method that count the times a number appears in an array and
     # stores this count in another array, example: [0, 1, 1] result: [1, 2]
     def test_exercise_1115
       verify_method :exercise_1115,
-                    :with => [{params: [[0], 1], expected: [1]},
-                              {params: [[0], 2], expected: [1, 0]},
-                              {params: [[1, 1], 2], expected: [0, 2]},
-                              {params: [[1, 2, 3, 3, 3, 4], 5], expected: [0, 1, 1, 3, 1]}]
+                    :with => [{params: [[0], 1], expect: [1]},
+                              {params: [[0], 2], expect: [1, 0]},
+                              {params: [[1, 1], 2], expect: [0, 2]},
+                              {params: [[1, 2, 3, 3, 3, 4], 5], expect: [0, 1, 1, 3, 1]}]
     end
 
 
@@ -131,7 +131,7 @@ module Chapter1
       expected_result = nil
       time_span = time_block { expected_result = calc_all_fibonacci 20 }
       verify_method :exercise_1119,
-                    :with => [{param: 20, expected: expected_result}]
+                    :with => {param: 20, expect: expected_result}
 
       actual_time_span = time_block { @target.exercise_1119 20 }
 
@@ -141,10 +141,10 @@ module Chapter1
     # Write a program that calculates the value ln(N!)
     def test_exercise_1120
       verify_method :exercise_1120,
-                    :with => [{param: 1, expected: Math.log(1).truncate},
-                              {param: 2, expected: Math.log(2).truncate},
-                              {param: 4, expected: Math.log(4 * 3 * 2).truncate},
-                              {param: 3, expected: Math.log(3 * 2).truncate}]
+                    :with => [{param: 1, expect: Math.log(1).truncate},
+                              {param: 2, expect: Math.log(2).truncate},
+                              {param: 4, expect: Math.log(4 * 3 * 2).truncate},
+                              {param: 3, expect: Math.log(3 * 2).truncate}]
     end
 
     # Write a program that reads in lines from standard input with each line
@@ -158,17 +158,17 @@ module Chapter1
 
     def test_exercise_1122
       verify_method :exercise_1122,
-                    :with => [{params: [0, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 0, hi: 1\n"},
-                              {params: [5, [0, 1, 2, 3, 4, 5]], expected: "lo: 0, hi: 5\n\tlo: 3, hi: 5\n\t\tlo: 5, hi: 5\n"}]
+                    :with => [{params: [0, [0, 1, 2, 3, 4, 5]], expect: "lo: 0, hi: 5\n\tlo: 0, hi: 1\n"},
+                              {params: [5, [0, 1, 2, 3, 4, 5]], expect: "lo: 0, hi: 5\n\tlo: 3, hi: 5\n\t\tlo: 5, hi: 5\n"}]
     end
 
     # Write a method that calculates the greatest common divisor, using Euclid's algorithm and
     # use it to calculate the greatest common divisor for 1111111 and 1234567
     def test_exercise_1124
       verify_method :exercise_1124,
-                    :with => [{params: [1111111, 1234567], expected: 1},
-                              {params: [33 * 7, 33 * 23], expected: 33},
-                              {params: [41 * 13, 41 * 29], expected: 41}]
+                    :with => [{params: [1111111, 1234567], expect: 1},
+                              {params: [33 * 7, 33 * 23], expect: 33},
+                              {params: [41 * 13, 41 * 29], expect: 41}]
 
     end
 
@@ -210,17 +210,17 @@ module Chapter1
                               }]
 
       #verify_method :exercise_1127_b,
-      #              :with => [{ params: params, expected: expected}]
+      #              :with => [{ params: params, expect: expected}]
 
     end
 
     # write a function that removes duplicates from an array
     def test_exercise_1128
       verify_method :exercise_1128,
-                    :with => [{param: [0, 0, 1, 2, 3, 3], expected: [0, 1, 2, 3]},
-                              {param: [0, 1, 2, 3], expected: [0, 1, 2, 3]},
-                              {param: [0, 0], expected: [0]},
-                              {param: [0], expected: [0]}]
+                    :with => [{param: [0, 0, 1, 2, 3, 3], expect: [0, 1, 2, 3]},
+                              {param: [0, 1, 2, 3], expect: [0, 1, 2, 3]},
+                              {param: [0, 0], expect: [0]},
+                              {param: [0], expect: [0]}]
     end
   end
 end

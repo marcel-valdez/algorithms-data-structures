@@ -21,15 +21,18 @@ class TestHelper < Test::Unit::TestCase
 # @param [Symbol] test_method
 # @param [Enumerable] test_data
 # Example:
-# verify_cases sum, with: [params: [2, 2], expected: 4]
+# verify_cases sum, with: [params: [2, 2], expect: 4]
 #   will call:
 #   actual = @target.sum(2, 2)
 #   assert_equals(2, expected)
-# verify_cases average, with: [param: [2, 2], expected: 2]
+# verify_cases average, with: [param: [2, 2], expect: 2]
 #   actual = @target.average([2, 2])
 #   assert_equals(2, expected)
   def verify_method (test_method, test_data)
     test_cases = test_data[:with]
+    # If we received with: { param: x, expect: y }, turn it into a single element array
+    test_cases = [test_cases] if test_cases.is_a? Hash
+
     test_cases.each do |test_case|
       # Arrange
       input, expands = get_input(test_case)
@@ -39,12 +42,13 @@ class TestHelper < Test::Unit::TestCase
         predicate = test_case[:predicate]
         do_predicate_case(test_method, input, expands, &predicate)
       else
-        expected = test_case[:expected]
+        expected = test_case[:expect]
         do_test_case(test_method, input, expected, expands)
       end
     end
   end
 
+  # @return [Object]
   def time_block
     start = Time.now
     yield
@@ -59,11 +63,11 @@ class TestHelper < Test::Unit::TestCase
     rescue Test::Unit::AssertionFailedError => error
       new_msg = "sub test: #{test_name}: \n#{error.message}"
       new_error = Test::Unit::AssertionFailedError.new(new_msg,
-                                                   {user_message: error.user_message,
-                                                    inspected_actual: error.inspected_actual,
-                                                    actual: error.actual,
-                                                    inspected_expected: error.inspected_expected,
-                                                    expected: error.expected})
+                                                       {user_message: error.user_message,
+                                                        inspected_actual: error.inspected_actual,
+                                                        actual: error.actual,
+                                                        inspected_expected: error.inspected_expected,
+                                                        expect: error.expected})
 
       new_error.set_backtrace error.backtrace
 
@@ -125,5 +129,20 @@ class TestHelper < Test::Unit::TestCase
     keys = [:predicate]
     found = test_case.find_any keys
     not found.nil?
+  end
+
+  # Example usage: simulate_complexity(str.length) { |n| n**2}
+  # simulates time for an algorithm with n^2 complexity
+  # @return [Float] time in seconds of simulation
+  # @param [Numeric] n size of data
+  def simulate_complexity (n)
+    loops = yield n
+    time_block {
+      i = 0
+      for x in (1..loops)
+        # Perform a 'real' operation, not just a sum or concatenation
+        i += Float(i)/x
+      end
+    }
   end
 end
