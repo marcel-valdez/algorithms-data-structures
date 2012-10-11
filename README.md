@@ -1,6 +1,6 @@
 This project was motivated by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
-This project will allow the user to learn algorithms and data structures by providing tests that specify the
-behavior of many fundamental algorithms and data structures of Computer Science.  
+This project will help the user to learn algorithms and data structures by asking of him to code methods that
+must pass tests that specify the behavior of many fundamental algorithms and data structures of Computer Science.  
   
 This project will contain the topics of algorithms and data structures found in the book:  
 Algorithms 4th Ed by Robert Sedgewick and Kevin Wayne, focusing on the book and the exercises at http://algs4.cs.princeton.edu/home/
