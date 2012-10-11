@@ -93,7 +93,7 @@ module Chapter1
         return false
       end
 
-      invalid = all_ranges.select { |range| range.first >= range.last or range.first < min or range.last > max }
+      invalid = all_ranges.select { |range| range.first > range.last or range.first < min or range.last > max }
       if invalid.length != 0
         invalid.each { |invalid_range| puts "Range: #{invalid_range.inspect} is outside of min:#{min} max:#{max} limits." }
         return false
@@ -107,7 +107,7 @@ module Chapter1
       }
 
       included_pairs.each_with_index { |pair, index|
-        unless pair[0].includes? pair[1] or pair[0].is_included_by? pair[1]
+        unless pair[0].contains? pair[1] or pair[0].is_contained_by? pair[1]
           puts "pair #{pair.inspect} at index #{index}, are not inclusive."
           return false
         end
@@ -119,7 +119,7 @@ module Chapter1
     # Write a program that receives N, min, and max, and generates N ranges with a start between min..max and
     # end between min..max, then calculates all pairs of ranges that intersect and all pairs of ranges contained
     # one inside the other. The method should return all generated ranges, intersecting ranges and ranges contained
-    # For example: 3, 1, 4 *could* return [[1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
+    # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
     # Assume N > 1 and min < max and min >= 0
     def test_include_intersect_e123
       verify_method :include_intersect_e123,
@@ -135,5 +135,7 @@ module Chapter1
                             }
                         ]
     end
+
+    # TODO: Add the rest of exercises for Chapter 1 Section 2
   end
 end

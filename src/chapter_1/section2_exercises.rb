@@ -75,8 +75,45 @@ module Chapter1
       intersected_pairs
     end
 
-    def include_intersect_e123 n, min, max
+    # Write a program that receives N, min, and max, and generates N ranges with a start between min..max and
+    # end between min..max, then calculates all pairs of ranges that intersect and all pairs of ranges contained
+    # one inside the other. The method should return all generated ranges, intersecting ranges and ranges contained
+    # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
+    # Assume N > 1 and min < max and min >= 0
+    def include_intersect_e123 (n, min, max)
       # TODO: Implement this
+      min_max = min..max
+      ranges = []
+      # loop i=1 a N
+      (1..n).each { |i|
+        # generate Ri with start = rand(min, max), end = (start, max) -> Note if start == max, then Range.length = 1
+        start = rand(min_max)
+        min_max_i = start..max
+        finish = rand(min_max_i)
+        range = start..finish
+        ranges.push(range)
+      }
+
+      intersected = []
+      contained = []
+      # loop Ri to Rn, i=1 to N
+      ranges.each_with_index { |range_i, i|
+        # loop Rj to Rn, j=i+1 to N
+        ranges.drop(i+1).each { |range_j|
+          # Ri intersects Rj?
+          if range_i.intersects? range_j
+            # push [Ri,Rj] to I
+            intersected.push([range_i, range_j])
+            # Ri contains? Rj or Rj contains? Ri
+            if range_i.contains? range_j or range_i.is_contained_by? range_j
+              # push [Ri, Rj] to C
+              contained.push([range_i, range_j])
+            end
+          end
+        }
+      }
+
+      return ranges, intersected, contained
     end
 
   end
