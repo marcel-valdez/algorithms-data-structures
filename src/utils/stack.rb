@@ -25,12 +25,20 @@ module Utils
     end
 
     def pop
+      return nil if @first.nil?
+
       result = @first
       @first = @first.next
 
       @size -= 1
 
       result.value
+    end
+
+    def peek
+      return nil if @first.nil?
+
+      @first.value
     end
 
     def each

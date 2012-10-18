@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require "test/unit"
 require_relative "../../src/chapter_1/section2_exercises"
 require_relative "../test_helper"
@@ -132,6 +134,80 @@ module Chapter1
                             {
                                 params: [5, 1, 10],
                                 predicate: Proc.new { |all, intersect, include| check_included_intersected(5, 1, 10, all, intersect, include) }
+                            }
+                        ]
+
+    end
+
+    # Write a stack method that receives a string
+    # uses a stack to determine whether its parentheses
+    # are properly.
+    # For example, your program should print true for [()]{}{[()()]()}
+    # and false for [(]).
+    # This exercise is exercise 4 of: http://algs4.cs.princeton.edu/13stacks/
+    def test_stack_checker_e124
+      verify_method :stack_checker_e124,
+                    :with =>
+                        [
+                            {param: "()", expect: true},
+                            {param: "[]", expect: true},
+                            {param: "{}", expect: true},
+                            {param: "[()]", expect: true},
+                            {param: "[", expect: false},
+                            {param: "]", expect: false},
+                            {param: "{", expect: false},
+                            {param: "}", expect: false},
+                            {param: "(", expect: false},
+                            {param: ")", expect: false},
+                            {param: "(]", expect: false},
+                            {param: "{)", expect: false},
+                            {param: "[(])", expect: false},
+                            {param: "({)}", expect: false},
+                            {param: "[()]{", expect: false},
+                            {param: "[()]}", expect: false},
+                            {param: "[()]]", expect: false},
+                            {
+                                param: "[()]{}{[()()]()}",
+                                expect: true
+                            }
+                        ]
+    end
+
+    # Write a filter that converts an arithmetic expression from infix to postfix.
+    # Assume input is always in correct infix format
+    # Examples:
+    #   input: '2+2' output:  '2 2 +'
+    #   input: '2+2+2' output:  '2 2 2 +'
+    #   input: '3-4+5' output:  '3 4 - 5 +'
+    #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
+    # Postfix documentation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
+    def test_infix_to_postfix_e125
+      verify_method :infix_to_postfix_e125,
+                    :with =>
+                        [
+                            {
+                                param: '1+2',
+                                expect: '1 2 +'
+                            },
+                            {
+                                param: '1+2+3',
+                                expect: '1 2 3 +'
+                            },
+                            {
+                                param: '3−4+5',
+                                expect: '3 4 − 5 +'
+                            },
+                            {
+                                param: '(3−4)*5',
+                                expect: '3 4 - 5 *'
+                            },
+                            {
+                                param: '(1+2)*3',
+                                expect: '1 2 + 3 *'
+                            },
+                            {
+                                param: '(2+((3+4)*(5*6)))',
+                                expect: '3 4 + 5 6 * * 2 +'
                             }
                         ]
     end
