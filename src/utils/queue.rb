@@ -1,10 +1,9 @@
 module Utils
-  class Stack
+  class Queue
     include Enumerable
 
     attr_reader :size
-
-    def initialize
+        def initialize
       @size= 0
       @first= nil
       @last= nil
@@ -14,21 +13,21 @@ module Utils
       @size == 0
     end
 
-    def push (value)
+    def queue (value)
       new_node = Node.new value
-      new_node.next = @first
-      @first = new_node
-
-      @last = @first if @size == 0
+      @last.next = new_node unless @last.nil?
+      @last = new_node
+      @first = @last if @size == 0
 
       @size += 1
     end
 
-    def pop
+    def dequeue
       result = @first
       @first = @first.next
-
       @size -= 1
+
+      @last = @first if @size == 0
 
       result.value
     end
@@ -54,5 +53,4 @@ module Utils
       end
     end
   end
-
 end

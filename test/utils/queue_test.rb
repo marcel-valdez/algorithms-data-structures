@@ -1,19 +1,21 @@
 require_relative "../test_helper"
-require_relative "../../src/utils/stack"
+require_relative "../../src/utils/queue"
+
 module Utils
-  class StackTest < TestHelper
+  class QueueTest < TestHelper
     def initialize *arg
       super(*arg)
-      @target= Stack.new
+      @target= Queue.new
     end
+
 
     test "It has API definition" do
       # Arrange
-      api = [:is_empty?, :size, :push, :pop]
+      api = [:is_empty?, :size, :queue, :dequeue]
       non_api = [:size=, :first=, :last=, :first, :last]
 
       # Act
-      target = Stack.new
+      target = Queue.new
 
       # Assert
 
@@ -30,7 +32,7 @@ module Utils
       # Arrange
 
       # Act
-      target = Stack.new
+      target = Queue.new
 
       # Assert
       assert_true target.is_empty?
@@ -38,10 +40,10 @@ module Utils
 
     test "Test if it can add first node" do
       # Arrange
-      target = Stack.new
+      target = Queue.new
 
       # Act
-      target.push 1
+      target.queue 1
 
       # Assert
       assert_false target.is_empty?
@@ -52,11 +54,10 @@ module Utils
 
       sub_case "Test if it can add a second node" do
         # Act (2nd)
-        target.push 2
+        target.queue 2
 
         # Assert
         assert_equal 2, target.size
-        assert_false target.is_empty?
         #assert_equal 2, target.first.value
         #assert_not_equal target.first, target.last
         #assert_equal target.first.next, target.last
@@ -64,25 +65,28 @@ module Utils
 
         sub_case "Test if it can pop a node" do
           # Act (3rd)
-          actual = target.pop
+          actual = target.dequeue
 
           # Assert
           assert_equal 1, target.size
+          assert_false target.is_empty?
           #assert_equal target.first, target.last
           #assert_nil target.first.next
           assert_not_nil actual
-          assert_equal 2, actual
+          assert_equal 1, actual
 
           sub_case "Test if can pop the last node" do
             # Act (4th)
-            actual = target.pop
-            assert_true target.is_empty?
+            actual = target.dequeue
+
             assert_equal 0, target.size
+            assert_true target.is_empty?
             assert_not_nil actual
-            assert_equal 1, actual
+            assert_equal 2, actual
           end
         end
       end
     end
+
   end
 end

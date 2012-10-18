@@ -9,7 +9,7 @@ class InterviewExercises
       left_edge += 1
       right_edge -= 1
     end
-
+    
     input
   end
 end

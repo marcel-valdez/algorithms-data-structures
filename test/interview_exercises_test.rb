@@ -19,7 +19,7 @@ class InterviewExercises_test < TestHelper
     verify_str_reverse_behavior(even_input)
     verify_str_reverse_behavior(odd_input)
 
-    expected_time = simulate_complexity(input_big.length) { |n| (n * 3) / 4 }
+    expected_time = simulate_complexity(input_big.length) { |n| n }
     actual_time = time_block { @target.fast_reverse(input_big) }
 
     # Assert

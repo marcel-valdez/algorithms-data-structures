@@ -81,7 +81,6 @@ module Chapter1
     # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
     # Assume N > 1 and min < max and min >= 0
     def include_intersect_e123 (n, min, max)
-      # TODO: Implement this
       min_max = min..max
       ranges = []
       # loop i=1 a N
