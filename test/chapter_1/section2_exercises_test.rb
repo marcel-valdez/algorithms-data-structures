@@ -142,7 +142,7 @@ module Chapter1
     # Write a stack method that receives a string
     # uses a stack to determine whether its parentheses
     # are properly.
-    # For example, your program should print true for [()]{}{[()()]()}
+    # For example, your program should return true for [()]{}{[()()]()}
     # and false for [(]).
     # This exercise is exercise 4 of: http://algs4.cs.princeton.edu/13stacks/
     def test_stack_checker_e124
