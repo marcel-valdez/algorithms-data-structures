@@ -6,10 +6,10 @@ require_relative "../../utils/stack"
 
 module Chapter1
   module Section3
-    class Exercises
+    class StackExercises
 
       def initialize
-        @is_oper = /\+\*\-\\/
+        @is_oper = /(\+|\*|-|\\)/
         @is_paren = /\(\)/
       end
 
@@ -72,6 +72,8 @@ module Chapter1
             # We need to pull the operation
             # Problem: We cannot pull out just like tha
             # Idea: Stacks of Stacks
+            # ) implies that I have to extract an operation until the
+            # last )
             result += extract_operation(token)
           end
         }
@@ -82,25 +84,33 @@ module Chapter1
       end
 
       # Extracts an operations left operand, right operand and operator
-      # NOTE: Currently I'm trying to make it pass 1+2 and 1+2+3 input
+      # NOTE: Currently I'm trying to make it
+      # pass: 1+2, 1+2+3, 1+2+3+4
+      # current: 3-4+5
       def extract_operation(tokens)
         operation = ""
-
-        right_operand = tokens.pop
-        operator = tokens.pop
-        left_operand = tokens.pop
-
-        operation = "#{left_operand} #{right_operand} #{operator}"
-        last_oper = ""
-        until tokens.size == 0 #or token.peek.match is_paren
+        # recurse(left) recurse(right) operator ?
+        #operation = "#{left_operand} #{right_operand} #{operator}"
+        operator_stack = Utils::Stack.new
+        #puts "operator regex: #{@is_oper}"
+        until tokens.size == 0#or token.peek.match is_paren
           token = tokens.pop
           # If the token is the operator
           if token.match @is_oper
-            operation += "#{token}" unless token.eql? last_oper
-            last_oper = token
+            puts "operator found: #{token}"
+            operator_stack.push token
           else
+            puts "number found: #{token}"
             operation = "#{token} #{operation}"
           end
+        end
+
+        last_oper = ""
+        until operator_stack.is_empty?
+          oper = operator_stack.pop
+          puts "last_oper #{last_oper } and oper: #{oper}"
+          operation += "#{oper}" unless last_oper == oper
+          last_oper = oper
         end
 
         operation

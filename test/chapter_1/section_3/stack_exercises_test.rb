@@ -7,7 +7,7 @@ require_relative "../../../src/utils/number_utils"
 
 module Chapter1
   module Section3
-    class Exercises_test < TestHelper
+    class StackExercises_test < TestHelper
 
       def initialize(args)
         super(args)
@@ -62,6 +62,7 @@ module Chapter1
       #   input: '3-4+5' output:  '3 4 - 5 +'
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
       # Postfix documentation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
+      # TODO: Add a Postfix Evaluator
       def test_infix_to_postfix_e135
         verify_method :infix_to_postfix_e135,
                       :with =>
@@ -76,7 +77,7 @@ module Chapter1
                               },
                               {
                                   param: '1+2+3+4',
-                                  expect: '1 2 3 4+'
+                                  expect: '1 2 3 4 +'
                               },
                               {
                                   param: '3−4+5',
