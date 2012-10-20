@@ -29,6 +29,7 @@ module Utils
     end
 
     test "Test it starts empty" do
+
       # Arrange
 
       # Act
@@ -36,6 +37,22 @@ module Utils
 
       # Assert
       assert_true target.is_empty?
+    end
+
+
+    test "Test each to find node " do
+
+      target = Queue.new
+
+     target.queue 1
+     target.queue 2
+     i=1
+     target.each { | node|
+      	assert_equal i, node
+	i+=1
+      }
+
+
     end
 
     test "Test if it can add first node" do
@@ -87,6 +104,9 @@ module Utils
         end
       end
     end
+
+
+	
 
   end
 end
