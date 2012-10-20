@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require "test/unit"
-require_relative "../../../src/chapter_1/section_3/exercises"
+require_relative "../../../src/chapter_1/section_3/stack_exercises"
 require_relative "../../test_helper"
 require_relative "../../../src/utils/number_utils"
 
@@ -11,7 +11,7 @@ module Chapter1
 
       def initialize(args)
         super(args)
-        @target = Exercises.new
+        @target = StackExercises.new
       end
 
       # Called after every test method runs. Can be used to tear
@@ -73,6 +73,10 @@ module Chapter1
                               {
                                   param: '1+2+3',
                                   expect: '1 2 3 +'
+                              },
+                              {
+                                  param: '1+2+3+4',
+                                  expect: '1 2 3 4+'
                               },
                               {
                                   param: '3−4+5',

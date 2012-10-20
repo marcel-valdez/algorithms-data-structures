@@ -55,17 +55,20 @@ module Chapter1
         # TODO: Infix to Postfix
         tokens = infix.split('')
         # inner inner outer outer-outer
-        # reduce 2 + 2 + 2 to 2 2 +
+        # reduce 2 + 2 + 2 to 2 2
         result = ''
 
         stack = Utils::Stack.new
         tokens.each { |token|
+          # If its NOT a parenthesis
           unless token.eql? ')' or token.eql? '('
-
+            # then push it on to the stack
             stack.push token
           end
 
+          # If its the end of a operation
           if token.eql? ')'
+            # Append the operation to the resulting postfix format:
             # We need to pull the operation
             # Problem: We cannot pull out just like tha
             # Idea: Stacks of Stacks
@@ -78,12 +81,20 @@ module Chapter1
         result
       end
 
+      # Extracts an operations left operand, right operand and operator
+      # NOTE: Currently I'm trying to make it pass 1+2 and 1+2+3 input
       def extract_operation(tokens)
         operation = ""
-        last_oper = ''
+
+        right_operand = tokens.pop
+        operator = tokens.pop
+        left_operand = tokens.pop
+
+        operation = "#{left_operand} #{right_operand} #{operator}"
+        last_oper = ""
         until tokens.size == 0 #or token.peek.match is_paren
           token = tokens.pop
-          # NOTE: I'm trying to make it pass 2+2 and 2+2+2
+          # If the token is the operator
           if token.match @is_oper
             operation += "#{token}" unless token.eql? last_oper
             last_oper = token
