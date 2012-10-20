@@ -13,14 +13,16 @@ The folders doc, src and test will have the same structure:
 Folder organization:
 * src/  
     * chapterX/  
-        * SectionYExercises.rb  
-    * utils/  
+        * sectionY/
+          * ZzzExercises.rb  
+    * utils/
   
 * test/ 
     * chapterX/  
-        * SectionYExercises_test.rb  
+      * sectionY/
+          * ZzzExercises_test.rb  
 
-In order to add exercises for a section you have to add a new test/chapterX/SectionYExercises_test.rb file and a new src/chapterX/SectionYExercises.rb implementation.  
+In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.  
 
 How to setup the project on Linux:
 
