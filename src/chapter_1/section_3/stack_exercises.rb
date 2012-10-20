@@ -9,7 +9,7 @@ module Chapter1
     class StackExercises
 
       def initialize
-        @is_oper = /(\+|\*|-|\\)/
+        @is_oper = /\W/
         @is_paren = /\(\)/
       end
 
@@ -51,7 +51,7 @@ module Chapter1
       #   input: '2+2+2' output:  '2 2 2 +'
       #   input: '3-4+5' output:  '3 4 - 5 +'
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
-      def infix_to_postfix_e135(infix)
+      def infix_to_postfix_e1310(infix)
         # TODO: Infix to Postfix
         tokens = infix.split('')
         # inner inner outer outer-outer
@@ -93,27 +93,78 @@ module Chapter1
         #operation = "#{left_operand} #{right_operand} #{operator}"
         operator_stack = Utils::Stack.new
         #puts "operator regex: #{@is_oper}"
-        until tokens.size == 0#or token.peek.match is_paren
+        until tokens.size == 0 #or token.peek.match is_paren
           token = tokens.pop
           # If the token is the operator
           if token.match @is_oper
-            puts "operator found: #{token}"
+            #puts "operator found: #{token}"
             operator_stack.push token
           else
-            puts "number found: #{token}"
+            #puts "number found: #{token}"
             operation = "#{token} #{operation}"
           end
         end
 
         last_oper = ""
+        operation.rstrip!
         until operator_stack.is_empty?
           oper = operator_stack.pop
           puts "last_oper #{last_oper } and oper: #{oper}"
-          operation += "#{oper}" unless last_oper == oper
+          operation += " #{oper}" unless last_oper == oper
           last_oper = oper
         end
 
         operation
+      end
+
+      # Write a method postfix_evaluator_e1311 that takes a postfix expression
+      # as a string parameter, evaluates it, and returns the value of the arithmetic operation.
+      # Assume input is always in correct postfix format, you only need to
+      # consider +, -, /, * operations.
+      # Example:
+      # input: 1 2 + output: 3
+      # input: 1 2 3 + output: 6
+      # input: 3 4 - 5 + output: 4
+      # input: 3 4 - 5 * output: -5
+      # input: 5 3 4 - * output: -5
+      # input 3 4 5 - * output: -3
+      # input: 3 4 + 5 6 * * 2 + output: 212
+      # Working on: 1 2 +
+      def postfix_evaluator_e1311(postfix_input)
+        stack = Utils::Stack.new
+        # Strategy: First build the operation, then evaluate it?
+        # Iterate every token
+        postfix_input.split(' ').each { |token|
+          # Encounter operator
+          if token.match @is_oper
+            # Set right operand
+            right_operand = stack.pop
+            # Set left operand
+            left_operand = stack.pop
+            oper_result = execute_operation(left_operand, right_operand, token)
+            # Append operation
+            stack.push oper_result
+            until stack.is_empty?
+              right_operand = stack.pop
+              left_operand = stack.pop
+              oper_result = execute_operation(left_operand, right_operand, token)
+            end
+
+            stack.push oper_result
+          else
+            stack.push token
+          end
+
+        }
+
+        stack.pop
+      end
+
+
+      def execute_operation(left_operand, right_operand, operator)
+        oper_result = 0
+        eval "oper_result = #{left_operand} #{operator} #{right_operand}"
+        oper_result
       end
     end
   end

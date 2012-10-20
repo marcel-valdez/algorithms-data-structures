@@ -32,6 +32,7 @@ module Utils
       result.value
     end
 
+    # TODO: Needs tests
     def each
       current = @first
       unless current.nil?

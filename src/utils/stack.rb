@@ -41,6 +41,7 @@ module Utils
       @first.value
     end
 
+    # TODO: needs tests
     def each
       current = @first
       unless current.nil?
