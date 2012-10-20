@@ -1,5 +1,5 @@
-require_relative "../test_helper"
-require_relative "../../src/chapter_1/section1_exercises"
+require_relative "../../test_helper"
+require_relative "../../../src/chapter_1/section_1/exercises"
 
 module Chapter1
   module Section1
@@ -11,7 +11,7 @@ module Chapter1
       # to set up fixture information.
       def initialize(*args)
         super(*args)
-        @target = Section1Exercises.new
+        @target = Exercises.new
       end
 
       # Called after every test method runs. Can be used to tear

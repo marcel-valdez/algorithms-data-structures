@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative "../utils/point2d"
-require_relative "../utils/number_utils"
-require_relative "../utils/stack"
+require_relative "../../utils/point2d"
+require_relative "../../utils/number_utils"
+require_relative "../../utils/stack"
 
 module Chapter1
   module Section2
@@ -10,15 +10,6 @@ module Chapter1
 
       def initialize
       end
-
-      #def is_oper
-      #  /\+\*\-\\/
-      #end
-      #
-      #def is_paren
-      #  /\(\)/
-      #end
-
 
       def point_distance_e121 n
         # All numbers will be within a range 0,0 to n.n

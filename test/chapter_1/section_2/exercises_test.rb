@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 require "test/unit"
-require_relative "../../src/chapter_1/section2_exercises"
-require_relative "../test_helper"
-require_relative "../../src/utils/number_utils"
+require_relative "../../../src/chapter_1/section_2/exercises"
+require_relative "../../test_helper"
+require_relative "../../../src/utils/number_utils"
 
 module Chapter1
   module Section2
@@ -11,7 +11,7 @@ module Chapter1
 
       def initialize(args)
         super(args)
-        @target = Section2Exercises.new
+        @target = Exercises.new
       end
 
       # Called after every test method runs. Can be used to tear

@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative "../utils/point2d"
-require_relative "../utils/number_utils"
-require_relative "../utils/stack"
+require_relative "../../utils/point2d"
+require_relative "../../utils/number_utils"
+require_relative "../../utils/stack"
 
 module Chapter1
   class Section3Exercises
