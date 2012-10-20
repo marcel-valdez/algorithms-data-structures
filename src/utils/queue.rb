@@ -34,7 +34,7 @@ module Utils
 
     def each
       current = @first
-      unless current.nil?
+      until current.nil?
         yield current.value
         current = current.next
       end

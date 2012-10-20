@@ -36,6 +36,22 @@ module Utils
       assert_true target.is_empty?
     end
 
+
+    test "Test each to find node " do
+
+      target = Stack.new
+
+     target.push 1
+     target.push 2
+     i=2
+     target.each { | node|
+      	assert_equal i, node
+	i-=1
+      }
+
+
+    end
+
     test "Test if it can add first node" do
       # Arrange
       target = Stack.new
