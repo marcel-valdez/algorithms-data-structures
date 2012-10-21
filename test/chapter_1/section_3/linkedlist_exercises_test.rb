@@ -37,6 +37,18 @@ module Chapter1
 
 	end
 
+	def check_list(root, arr)
+		i=0
+ 		while root.next != nil
+			if arr[i] != root.value
+				return false
+			end
+			root = root.next
+			i+=1
+        end
+		return true
+	end
+
     # Write a method delete() that takes an int argument k and deletes 
     #the kth element in a linked list, if it exists.
     def test_delete_e31
@@ -85,6 +97,49 @@ module Chapter1
 		                       
 		                      ]     
       end
+
+
+	#Write a function that takes the first Node in a linked list as 
+	#argument and (destructively) reverses the list, returning the first Node in the result.
+	def test_reverse_list_recur
+		root = Utils::Node.new("1")
+		list = Utils::List.new(root)
+		create_list(list,"2","3","4")
+		nums = Array["4","3","2","1"]
+		root2 = Utils::Node.new("1")
+		list2 = Utils::List.new(root2)
+		create_list(list2,"1","3","5")
+		nums2 = Array["5","3","1","1"]
+		#list.print() 
+		verify_method :reverse_recur_e33,
+		                  :with =>
+		                      [
+		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, nums)}},
+		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, nums2)}},
+		                       
+		                      ] 
+	#list.print()
+	end
+
+	def test_reverse_list_iter
+		root = Utils::Node.new("1")
+		list = Utils::List.new(root)
+		create_list(list,"2","3","4")
+		nums = Array["4","3","2","1"]
+		root2 = Utils::Node.new("1")
+		list2 = Utils::List.new(root2)
+		create_list(list2,"2","3","5")
+		nums2 = Array["5","3","2","1"]
+		#list.print() 
+		verify_method :reverse_iter_e33,
+		                  :with =>
+		                      [
+		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, nums)}},
+		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, nums2)}},
+		                       
+		                      ] 
+	#list.print()
+	end
 
     end
   end
