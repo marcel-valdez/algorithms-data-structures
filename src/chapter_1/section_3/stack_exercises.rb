@@ -85,7 +85,7 @@ module Chapter1
           end
         }
 
-        result = extract_operation(tokens) if result.empty?
+        result = extract_operation(infix) if result.empty?
 
         result
       end
