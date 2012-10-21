@@ -9,8 +9,8 @@ guard :test do
   watch(%r{^src/(.+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
 
   # Watch all tests
-  # watch(test/[chapter]/*_test.rb)
-  watch(%r{^test/(.+)/(.+)/.+_test\.rb$})
+  # watch(test/[chapter]/[section]/*_test.rb)
+  watch(%r{^test/(.+)/(.+)/(.+)/.+_test\.rb$})
   # watch(test/*_test.rb) and if modified re-rerun it
   watch(%r{^test/.+_test\.rb$})
 

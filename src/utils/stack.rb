@@ -7,7 +7,6 @@ module Utils
     def initialize
       @size= 0
       @first= nil
-      @last= nil
     end
 
     def is_empty?
@@ -18,8 +17,6 @@ module Utils
       new_node = Node.new value
       new_node.next = @first
       @first = new_node
-
-      @last = @first if @size == 0
 
       @size += 1
     end
@@ -37,7 +34,6 @@ module Utils
 
     def peek
       return nil if @first.nil?
-
       @first.value
     end
 
@@ -50,7 +46,7 @@ module Utils
     end
 
     private
-    attr_accessor :first, :last
+    attr_accessor :first
     attr_writer :size
 
     class Node

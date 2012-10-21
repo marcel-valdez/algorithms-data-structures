@@ -32,10 +32,11 @@ module Utils
       result.value
     end
 
+    # TODO: Needs tests
     def each
       current = @first
-      unless current.nil?
-        yield current
+      until current.nil?
+        yield current.value
         current = current.next
       end
     end
