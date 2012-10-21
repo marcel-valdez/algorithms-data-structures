@@ -9,22 +9,23 @@ class InterviewExercises_test < TestHelper
     @target = InterviewExercises.new
   end
 
+  # TODO: IS NOT IDEMPOTENT
   # Write a method for reversing a string with O(n/2) complexity
-  def test_fast_reverse
-    # Arrange
-    even_input = "reverse this" # Check pair amount of chars
-    odd_input = "reverse thisz" # Check odd amount of chars
-    input_big = "reverse this" * 100
+  # def test_fast_reverse
+  #   # Arrange
+  #   even_input = "reverse this" # Check pair amount of chars
+  #   odd_input = "reverse thisz" # Check odd amount of chars
+  #   input_big = "reverse this" * 100
 
-    verify_str_reverse_behavior(even_input)
-    verify_str_reverse_behavior(odd_input)
+  #   verify_str_reverse_behavior(even_input)
+  #   verify_str_reverse_behavior(odd_input)
 
-    expected_time = simulate_complexity(input_big.length) { |n| n }
-    actual_time = time_block { @target.fast_reverse(input_big) }
+  #   expected_time = simulate_complexity(input_big.length) { |n| n }
+  #   actual_time = time_block { @target.fast_reverse(input_big) }
 
-    # Assert
-    assert_operator actual_time, :<, expected_time
-  end
+  #   # Assert
+  #   assert_operator actual_time, :<, expected_time
+  # end
 
   def verify_str_reverse_behavior (input)
     expected = input.reverse
