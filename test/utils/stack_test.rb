@@ -9,7 +9,7 @@ module Utils
 
     test "It has API definition" do
       # Arrange
-      api = [:is_empty?, :size, :push, :pop]
+      api = [:is_empty?, :size, :push, :pop, :peek]
       non_api = [:size=, :first=, :last=, :first, :last]
 
       # Act
@@ -38,18 +38,19 @@ module Utils
 
 
     test "Test each to find node " do
-
+      # Arrange
       target = Stack.new
+      i=2
 
-     target.push 1
-     target.push 2
-     i=2
-     target.each { | node|
-      	assert_equal i, node
-	i-=1
+      # Act
+      target.push 1
+      target.push 2
+
+      # Assert
+      target.each { |node_value|
+        assert_equal i, node_value
+        i-=1
       }
-
-
     end
 
     test "Test if it can add first node" do
@@ -62,9 +63,7 @@ module Utils
       # Assert
       assert_false target.is_empty?
       assert_equal 1, target.size
-      #assert_not_nil target.first
-      #assert_equal target.first, target.last
-      #assert_nil target.first.next
+      assert_equal 1, target.peek
 
       sub_case "Test if it can add a second node" do
         # Act (2nd)
@@ -73,10 +72,7 @@ module Utils
         # Assert
         assert_equal 2, target.size
         assert_false target.is_empty?
-        #assert_equal 2, target.first.value
-        #assert_not_equal target.first, target.last
-        #assert_equal target.first.next, target.last
-        #assert_nil target.last.next
+        assert_equal 2, target.peek
 
         sub_case "Test if it can pop a node" do
           # Act (3rd)
@@ -84,17 +80,16 @@ module Utils
 
           # Assert
           assert_equal 1, target.size
-          #assert_equal target.first, target.last
-          #assert_nil target.first.next
-          assert_not_nil actual
           assert_equal 2, actual
+          assert_equal 1, target.peek
 
           sub_case "Test if can pop the last node" do
             # Act (4th)
             actual = target.pop
+
+            # Assert
             assert_true target.is_empty?
             assert_equal 0, target.size
-            assert_not_nil actual
             assert_equal 1, actual
           end
         end

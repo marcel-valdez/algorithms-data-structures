@@ -20,7 +20,11 @@ module Chapter1
       # and false for [(]).
       # This exercise is exercise 4 of: http://algs4.cs.princeton.edu/13stacks/
       def stack_checker_e134(input)
+        # All left parens
         is_left = /[\(\{\[]/
+
+        # Hash for right parens
+        # Example: left_for[')'] == '('
         left_for = {
             ')' => '(',
             '}' => '{',
@@ -33,6 +37,7 @@ module Chapter1
             # puts "stack.push #{symbol}\n"
             stack.push symbol
             # Needs LIFO access, stack is LIFO?
+          # if this is a right symbol, then the last pushed element must be its left complement
           elsif left_for[symbol] != stack.pop
             # puts "left_for[#{symbol}]: #{left_for[symbol]}\n"
             return false
@@ -129,32 +134,30 @@ module Chapter1
       # input: 5 3 4 - * output: -5
       # input 3 4 5 - * output: -3
       # input: 3 4 + 5 6 * * 2 + output: 212
-      # Working on: 1 2 +
+      # Passes: All
+      # Strategy: Build operands until an operator is found, then append the result, and repeat.
       def postfix_evaluator_e1311(postfix_input)
+        #puts "Starting new postfix evaluation: #{postfix_input}"
         stack = Utils::Stack.new
-        # Strategy: First build the operation, then evaluate it?
         # Iterate every token
-        postfix_input.split(' ').each { |token|
+        tokens = postfix_input.split(' ')
+        tokens.each_with_index { |token, index|
           # Encounter operator
           if token.match @is_oper
-            # Set right operand
-            right_operand = stack.pop
-            # Set left operand
-            left_operand = stack.pop
-            oper_result = execute_operation(left_operand, right_operand, token)
-            # Append operation
-            stack.push oper_result
-            until stack.is_empty?
+            begin
+              #puts "    Items on stack: #{stack.size}"
+              # Set right operand
               right_operand = stack.pop
+              # Set left operand
               left_operand = stack.pop
+              # Append operation
               oper_result = execute_operation(left_operand, right_operand, token)
-            end
-
-            stack.push oper_result
-          else
+              stack.push oper_result
+              # loop until all operands are consumed or stop if this is not the last operator
+            end until stack.size < 2 || index < tokens.size - 1
+          else # If token is number
             stack.push token
           end
-
         }
 
         stack.pop
@@ -163,6 +166,7 @@ module Chapter1
 
       def execute_operation(left_operand, right_operand, operator)
         oper_result = 0
+        #puts "\t executing: oper_result = #{left_operand} #{operator} #{right_operand}"
         eval "oper_result = #{left_operand} #{operator} #{right_operand}"
         oper_result
       end
