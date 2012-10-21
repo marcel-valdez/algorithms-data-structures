@@ -16,14 +16,34 @@ module Chapter1
       # Write a method random_bag_e1334 that returns the items 
       # of a bag in a random order
       def test_random_bag_e1334
-        values = [5, 6, 8, 12, 3, 4]
-        verify_method :random_bag_e1334,
-                      :with => [{
-                        param: values, 
-                        predicate: Proc.new { |result| 
-                          check_random_result(values.reverse, result)
-                          }
-                        }]
+        failure_count = 0
+        previous_random = (0...100).to_a
+        repetition_error = nil
+        (0...100).each {
+          begin
+          values = (0...100).to_a
+          verify_method :random_bag_e1334,
+                        :with => [{
+                                      param: values,
+                                      predicate: Proc.new { |result|
+                                        is_random = check_random_result(previous_random, result)
+                                        previous_random = result
+                                        is_random
+                                      }
+                                  }]
+          rescue Test::Unit::AssertionFailedError => e
+            repetition_error = e
+            failure_count += 1
+          end
+        }
+
+        if failure_count > 5
+          msg = "More than 5 out of 100 permutations did not shuffle\n"
+          msg += "there's an extremely high chance that your shuffle method\n"
+          msg += "isn't truly random."
+
+          raise Test::Unit::AssertionFailedError.new msg, repetition_error
+        end
       end
 
       # Called for check result of test_random_bag_e1334
@@ -44,14 +64,16 @@ module Chapter1
           end
         end
 
-        for i in 0 .. result.length-1
+        for i in 0...result.length
           if values[i] != result[i]
             return true
           end
         end
-        
-        puts "The result is not shuffled"
-        return false
+
+        puts "The result and values are in exactly the same order"
+
+        puts "Offending result: #{result.inspect}"
+        false
       end
     end
   end

@@ -7,9 +7,22 @@ module Chapter1
 				@bag = Utils::Bag.new
 			end
 
+      def random_bag_e1334 (values)
+        length = values.length
+
+        for i in 0...length
+          random_index = Random.rand(length)
+          value_at_random_index = values[random_index]
+          values[random_index] = values[i]
+          values[i] = value_at_random_index
+        end
+
+        values
+      end
+
 			#Exercise 1.3.34
 			# Write a method that returns the items of a bag in a random order
-			def random_bag_e1334 (values)
+			def random_bag_e1334_v1 (values)
 				length = values.length
 				random_length = length
 
