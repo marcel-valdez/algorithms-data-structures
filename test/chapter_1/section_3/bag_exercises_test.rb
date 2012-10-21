@@ -28,9 +28,9 @@ module Chapter1
 
       # Called for check result of test_random_bag_e1334
       def check_random_result (values, result)
-        values.each { |item| puts(item)}
-        result.each { |item| puts(item)}
-        puts result.inspect
+        #values.each { |item| puts(item)}
+        #result.each { |item| puts(item)}
+        #puts result.inspect
 
         if values.length != result.length
           puts "The number of result values is different than the number of param values"
