@@ -37,7 +37,7 @@ module Chapter1
             # puts "stack.push #{symbol}\n"
             stack.push symbol
             # Needs LIFO access, stack is LIFO?
-          # if this is a right symbol, then the last pushed element must be its left complement
+            # if this is a right symbol, then the last pushed element must be its left complement
           elsif left_for[symbol] != stack.pop
             # puts "left_for[#{symbol}]: #{left_for[symbol]}\n"
             return false
@@ -62,13 +62,14 @@ module Chapter1
         # inner inner outer outer-outer
         # reduce 2 + 2 + 2 to 2 2
         result = ''
-
-        stack = Utils::Stack.new
+        temp_expr = ''
+        # stack = Utils::Stack.new
         tokens.each { |token|
           # If its NOT a parenthesis
           if not token.eql? ')' and not token.eql? '('
             # puts "Number or Operand: #{token} found"
-            stack.push token
+            # stack.push token
+            temp_expr += " #{token}"
           end
 
           # If its the end of a operation
@@ -80,6 +81,7 @@ module Chapter1
             # ) implies that I have to extract an operation until the
             # last )
             result += extract_operation(token)
+            temp_expr = ''
           end
         }
 
@@ -92,28 +94,30 @@ module Chapter1
       # NOTE: Currently I'm trying to make it
       # pass: 1+2, 1+2+3, 1+2+3+4
       # current: 3-4+5
-      def extract_operation(infix_tokens)
+      def extract_operation(infix_expr)
         operation = ""
         # recurse(left) recurse(right) operator ?
         #operation = "#{left_operand} #{right_operand} #{operator}"
-        operator_stack = Utils::Stack.new
+        postfix_tokens = Utils::Stack.new
         #puts "operator regex: #{@is_oper}"
-        until infix_tokens.size == 0 #or token.peek.match is_paren
-          token = infix_tokens.pop
+        infix_tokens = infix_expr.strip.split(' ')
+        for i in 0...infix_tokens.length
+          token = infix_tokens[i]
           # If the token is the operator
           if token.match @is_oper
             # puts "operator found: #{token}"
-            operator_stack.push token
+            partial = postfix_tokens.pop
+            postfix_tokens.push "#{partial}"
           else
             # puts "number found: #{token}"
-            operation = "#{token} #{operation}"
+            postfix_tokens.push token
           end
         end
 
         last_oper = ""
         operation.rstrip!
-        until operator_stack.is_empty?
-          oper = operator_stack.pop
+        until postfix_tokens.is_empty?
+          oper = postfix_tokens.pop
           puts "last_oper #{last_oper } and oper: #{oper}"
           operation += " #{oper}" unless last_oper == oper
           last_oper = oper
