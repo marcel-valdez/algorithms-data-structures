@@ -44,26 +44,24 @@ module Chapter1
     # Write a method delete() that takes an int argument k and deletes 
     #the kth element in a linked list, if it exists.
 		def reverse_iter_e33(root)
-			new_root = nil
-			first = root
-			while first != nil
-				next_node = first.next
-				first.next = new_root
-				new_root = first
-				first = next_node
+			previous_node = nil
+			current = root
+			while current != nil
+				next_node = current.next
+				current.next = previous_node
+				previous_node = current
+				current = next_node
 			end
-			return new_root
+			return previous_node
 		end
 
     # Write a method delete() that takes an int argument k and deletes 
     #the kth element in a linked list, if it exists.
 		def reverse_recur_e33(root)
-			if root == nil
-				return nil
-			end
-			if root.next == nil
-				return root
-			end
+			return nil if root.nil?
+
+			return root if root.next.nil?
+
 			second = root.next
 			rest = reverse_recur_e33(second)
 			second.next = root

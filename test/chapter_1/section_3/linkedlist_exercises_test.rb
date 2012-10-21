@@ -46,7 +46,7 @@ module Chapter1
 			root = root.next
 			i+=1
         end
-		return true
+		return i == arr.length - 1
 	end
 
     # Write a method delete() that takes an int argument k and deletes 
@@ -105,17 +105,17 @@ module Chapter1
 		root = Utils::Node.new("1")
 		list = Utils::List.new(root)
 		create_list(list,"2","3","4")
-		nums = Array["4","3","2","1"]
+		reversed_list = Array["4","3","2","1"]
 		root2 = Utils::Node.new("1")
 		list2 = Utils::List.new(root2)
 		create_list(list2,"1","3","5")
-		nums2 = Array["5","3","1","1"]
+		reversed_list2 = Array["5","3","1","1"]
 		#list.print() 
 		verify_method :reverse_recur_e33,
 		                  :with =>
 		                      [
-		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, nums)}},
-		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, nums2)}},
+		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, reversed_list)}},
+		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, reversed_list2)}},
 		                       
 		                      ] 
 	#list.print()
@@ -125,17 +125,17 @@ module Chapter1
 		root = Utils::Node.new("1")
 		list = Utils::List.new(root)
 		create_list(list,"2","3","4")
-		nums = Array["4","3","2","1"]
+		reversed_list = Array["4","3","2","1"]
 		root2 = Utils::Node.new("1")
 		list2 = Utils::List.new(root2)
 		create_list(list2,"2","3","5")
-		nums2 = Array["5","3","2","1"]
+		reversed_list2 = Array["5","3","2","1"]
 		#list.print() 
 		verify_method :reverse_iter_e33,
 		                  :with =>
 		                      [
-		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, nums)}},
-		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, nums2)}},
+		                          {params: [root], predicate: Proc.new { |new_root| check_list(new_root, reversed_list)}},
+		                          {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, reversed_list2)}},
 		                       
 		                      ] 
 	#list.print()
