@@ -57,74 +57,75 @@ module Chapter1
       #   input: '3-4+5' output:  '3 4 - 5 +'
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
       def infix_to_postfix_e1310(infix)
-        # TODO: Infix to Postfix
+        # puts "Evaluating: #{infix}"
         tokens = infix.split('')
-        # inner inner outer outer-outer
-        # reduce 2 + 2 + 2 to 2 2
         result = ''
-        temp_expr = ''
-        # stack = Utils::Stack.new
+
+        # this is the stack of partial evaluations
+        local_expr_stack = Utils::Stack.new
+        global_expr_stack = Utils::Stack.new
+
         tokens.each { |token|
           # If its NOT a parenthesis
           if not token.eql? ')' and not token.eql? '('
             # puts "Number or Operand: #{token} found"
-            # stack.push token
-            temp_expr += " #{token}"
+            # build current local paren expression
+            local_expr_stack.push token
           end
 
           # If its the end of a operation
           if token.eql? ')'
-            # Append the operation to the resulting postfix format:
-            # We need to pull the operation
-            # Problem: We cannot pull out just like tha
-            # Idea: Stacks of Stacks
-            # ) implies that I have to extract an operation until the
-            # last )
-            result += extract_operation(token)
-            temp_expr = ''
+            # We need to pull the operation and append
+            # the operation to the resulting postfix format
+            result += convert_infix_to_postfix(local_expr_stack)
+            local_expr_stack = global_expr_stack.pop
+          elsif token.eql? '('
+            # Save current expression into stack
+            global_expr_stack.push local_expr_stack
+            # Start new local expression
+            local_expr_stack = Utils::Stack.new
           end
         }
 
-        result = extract_operation(infix) if result.empty?
-
-        result
+        result + convert_infix_to_postfix(local_expr_stack)
       end
 
       # Extracts an operations left operand, right operand and operator
       # NOTE: Currently I'm trying to make it
-      # pass: 1+2, 1+2+3, 1+2+3+4
-      # current: 3-4+5
-      def extract_operation(infix_expr)
+      # pass: 1+2, 1+2+3, 1+2+3+4, 3-4+5
+      # Can extract all simple operations (no parens)
+      def convert_infix_to_postfix(infix_tokens)
         operation = ""
-        # recurse(left) recurse(right) operator ?
-        #operation = "#{left_operand} #{right_operand} #{operator}"
+
         postfix_tokens = Utils::Stack.new
-        #puts "operator regex: #{@is_oper}"
-        infix_tokens = infix_expr.strip.split(' ')
-        for i in 0...infix_tokens.length
-          token = infix_tokens[i]
+        until infix_tokens.is_empty?
+          # Since this is Last In - First Out
+          # The first token is the right operand (not the left operand)
+          token = infix_tokens.pop
+          # puts "\t\tevaluating: #{token}"
           # If the token is the operator
           if token.match @is_oper
             # puts "operator found: #{token}"
-            partial = postfix_tokens.pop
-            postfix_tokens.push "#{partial}"
-          else
+            # get partial result accumulated
+            partial_acum = postfix_tokens.pop
+            # puts "\t\t pushing: #{partial} #{token}"
+            # add operator to the end (postfix)
+            postfix_tokens.push " #{partial_acum} #{token}"
+          else # if token is number
             # puts "number found: #{token}"
+            # push the number to the postfix_tokens
             postfix_tokens.push token
           end
         end
 
-        last_oper = ""
-        operation.rstrip!
         until postfix_tokens.is_empty?
-          oper = postfix_tokens.pop
-          puts "last_oper #{last_oper } and oper: #{oper}"
-          operation += " #{oper}" unless last_oper == oper
-          last_oper = oper
+          operation += " #{postfix_tokens.pop}"
         end
 
+        # puts "\t Subexpression: #{operation}"
         operation
       end
+
 
       # Write a method postfix_evaluator_e1311 that takes a postfix expression
       # as a string parameter, evaluates it, and returns the value of the arithmetic operation.
