@@ -21,16 +21,16 @@ module Chapter1
         repetition_error = nil
         (0...100).each {
           begin
-          values = (0...100).to_a
-          verify_method :random_bag_e1334,
-                        :with => [{
-                                      param: values,
-                                      predicate: Proc.new { |result|
-                                        is_random = check_random_result(previous_random, result)
-                                        previous_random = result
-                                        is_random
-                                      }
-                                  }]
+            values = (0...100).to_a
+            verify_method :random_bag_e1334,
+                          :with => [{
+                                        param: values,
+                                        predicate: Proc.new { |result|
+                                          is_random = check_random_result(previous_random, result)
+                                          previous_random = result
+                                          is_random
+                                        }
+                                    }]
           rescue Test::Unit::AssertionFailedError => e
             repetition_error = e
             failure_count += 1
