@@ -66,8 +66,8 @@ module Chapter1
         stack = Utils::Stack.new
         tokens.each { |token|
           # If its NOT a parenthesis
-          unless token.eql? ')' or token.eql? '('
-            # then push it on to the stack
+          if not token.eql? ')' and not token.eql? '('
+            # puts "Number or Operand: #{token} found"
             stack.push token
           end
 
@@ -92,20 +92,20 @@ module Chapter1
       # NOTE: Currently I'm trying to make it
       # pass: 1+2, 1+2+3, 1+2+3+4
       # current: 3-4+5
-      def extract_operation(tokens)
+      def extract_operation(infix_tokens)
         operation = ""
         # recurse(left) recurse(right) operator ?
         #operation = "#{left_operand} #{right_operand} #{operator}"
         operator_stack = Utils::Stack.new
         #puts "operator regex: #{@is_oper}"
-        until tokens.size == 0 #or token.peek.match is_paren
-          token = tokens.pop
+        until infix_tokens.size == 0 #or token.peek.match is_paren
+          token = infix_tokens.pop
           # If the token is the operator
           if token.match @is_oper
-            #puts "operator found: #{token}"
+            # puts "operator found: #{token}"
             operator_stack.push token
           else
-            #puts "number found: #{token}"
+            # puts "number found: #{token}"
             operation = "#{token} #{operation}"
           end
         end

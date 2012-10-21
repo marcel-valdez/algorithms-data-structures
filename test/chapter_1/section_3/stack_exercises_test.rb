@@ -64,38 +64,38 @@ module Chapter1
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
       # Postfix documentation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
       def test_infix_to_postfix_e1310
-        #verify_method :infix_to_postfix_e1310,
-        #              :with =>
-        #                  [
-        #                      {
-        #                          param: '1+2',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, 1+2) }
-        #                      },
-        #                      {
-        #                          param: '1+2+3',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, 1+2+3) }
-        #                      },
-        #                      {
-        #                          param: '1+2+3+4',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, 1+2+3+4) }
-        #                      },
-        #                      {
-        #                          param: '3-4+5',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, 3-4+5) }
-        #                      },
-        #                      {
-        #                          param: '(3-4)*5',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, (3 - 4)*5) }
-        #                      },
-        #                      {
-        #                          param: '(1+2)*3',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, (1+2)*3) }
-        #                      },
-        #                      {
-        #                          param: '(2+((3+4)*(5*6)))',
-        #                          predicate: Proc.new { |expr| check_expression_result(expr, (2+((3+4)*(5*6)))) }
-        #                      }
-        #                  ]
+        verify_method :infix_to_postfix_e1310,
+                      :with =>
+                          [
+                              {
+                                  param: '1+2',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, 1+2) }
+                              },
+                              {
+                                  param: '1+2+3',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, 1+2+3) }
+                              },
+                              {
+                                  param: '1+2+3+4',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, 1+2+3+4) }
+                              },
+                              {
+                                  param: '3-4+5',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, 3-4+5) }
+                              },
+                              {
+                                  param: '(3-4)*5',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, (3 - 4)*5) }
+                              },
+                              {
+                                  param: '(1+2)*3',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, (1+2)*3) }
+                              },
+                              {
+                                  param: '(2+((3+4)*(5*6)))',
+                                  predicate: Proc.new { |expr| check_expression_result(expr, (2+((3+4)*(5*6)))) }
+                              }
+                          ]
       end
 
       # Write a method postfix_evaluator_e1311 that takes a postfix expression
@@ -130,7 +130,7 @@ module Chapter1
       # @param [Numeric] expected_result
       def check_expression_result(expression, expected_result)
         actual_result = evaluate_postfix_expression expression
-        puts "Expected: #{expected_result} but received: #{actual_result}" if actual_result != expected_result
+        puts "Expected: #{expected_result} but received: #{actual_result}, with expression: #{expression}" if actual_result != expected_result
         actual_result == expected_result
       end
 
