@@ -49,7 +49,8 @@ module Chapter1
       end
 
 
-      # Write a filter that converts an arithmetic expression from infix to postfix.
+      # Write a filter that converts an arithmetic expression from infix to postfix,
+      # using stacks to process the infix and postfix expressions.
       # Assume input is always in correct infix format
       # Examples:
       #   input: '2+2' output:  '2 2 +'
@@ -95,7 +96,7 @@ module Chapter1
       # pass: 1+2, 1+2+3, 1+2+3+4, 3-4+5
       # Can extract all simple operations (no parens)
       def convert_infix_to_postfix(infix_tokens)
-        operation = ""
+        postfix_result = ""
 
         postfix_tokens = Utils::Stack.new
         until infix_tokens.is_empty?
@@ -107,23 +108,25 @@ module Chapter1
           if token.match @is_oper
             # puts "operator found: #{token}"
             # get partial result accumulated
-            partial_acum = postfix_tokens.pop
+            last_number = postfix_tokens.pop
             # puts "\t\t pushing: #{partial} #{token}"
             # add operator to the end (postfix)
-            postfix_tokens.push " #{partial_acum} #{token}"
+            postfix_tokens.push token
+            postfix_tokens.push last_number
           else # if token is number
             # puts "number found: #{token}"
             # push the number to the postfix_tokens
-            postfix_tokens.push token
+             postfix_tokens.push token
           end
         end
 
+        #puts "postfix_tokens size: #{postfix_tokens.size}"
         until postfix_tokens.is_empty?
-          operation += " #{postfix_tokens.pop}"
+          postfix_result += " #{postfix_tokens.pop}"
         end
 
         # puts "\t Subexpression: #{operation}"
-        operation
+        postfix_result
       end
 
 

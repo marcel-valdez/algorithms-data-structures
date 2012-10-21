@@ -55,7 +55,8 @@ module Chapter1
                           ]
       end
 
-      # Write a filter that converts an arithmetic expression from infix to postfix.
+      # Write a method that converts an arithmetic expression from infix to postfix.
+      # Using stacks to process the infix and postfix expressions
       # Assume input is always in correct infix format
       # Examples:
       #   input: '2+2' output:  '2 2 +'
