@@ -45,14 +45,14 @@ module Chapter1
         verify_method :exercise_116,
                       :with => [{predicate: method(:check_string_result)}]
 
-        puts @target.exercise_116
+        #puts @target.exercise_116
       end
 
       # Give the values printed by the functions described in exercise 1.1.7
       def test_exercise_117
         verify_method :exercise_117, :with => [{predicate: method(:check_string_result)}]
 
-        puts @target.exercise_117
+        #puts @target.exercise_117
 
       end
 
@@ -199,7 +199,7 @@ module Chapter1
       # Create a function that estimates the number of recursive calls of binomial
       def test_exercise_1127
         @rec_calls = 0
-        puts ""
+        #puts ""
         binomial(10, 4, 0.25)
         predicate = Proc.new { |actual|
           Math.log10(actual).truncate == Math.log10(@rec_calls).truncate
