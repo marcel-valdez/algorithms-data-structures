@@ -22,6 +22,10 @@ Folder organization:
       * sectionY/
           * ZzzExercises_test.rb  
 
+**All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
+book: Algorithms 4th Ed by Robert Sedgewick  
+webpage: http://algs4.cs.princeton.edu/home/  
+
 In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.  
 
 How to setup the project on Linux:
@@ -41,3 +45,12 @@ You can run continuous testing using Guard, by running:
 ```` bash
 bundle exec guard
 ````
+
+Rules for contributing to hte project:
+* Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, mentioning 
+  along with your github username (and be known for you mad algorithmic skillz).
+* All exercises must have a test and solution
+* All pull requests are reviewed by the reviewing team
+* Please use good coding style (https://github.com/styleguide/ruby)
+* Your answers to any exercise must be in optimal big-O time complexity, unless the exercise requires a specific structure or
+algorithm.
