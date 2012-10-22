@@ -37,7 +37,7 @@ module Chapter1
         numbers = (0...65535).to_a.shuffle
         my_numbers = (0...65535).to_a.shuffle
         nlogn_time = time_block {
-          qsort numbers
+          quick_sort numbers
         }
 
         sublinear_time = time_block {
@@ -48,11 +48,11 @@ module Chapter1
 
       end
 
-      def qsort(list)
+      def quick_sort(list)
         return [] if list.size == 0
         x, *xs = *list
         less, more = xs.partition{|y| y < x}
-        qsort(less) + [x] + qsort(more)
+        quick_sort(less) + [x] + quick_sort(more)
       end
 
     end
