@@ -39,7 +39,7 @@ module Utils
 			end
 
 			mid = lo + (hi - lo) / 2
-			return find_bounds array, hi, lo, mid, value, type
+      find_bounds array, hi, lo, mid, value, type
 
 		end
 
