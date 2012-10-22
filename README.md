@@ -46,7 +46,7 @@ You can run continuous testing using Guard, by running:
 bundle exec guard
 ````
 
-Rules for contributing to hte project:
+Rules for contributing to the project:
 * Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, appending 
   your github username (and be known for you mad algorithmic skillz).
 * All exercises must have a test and solution
