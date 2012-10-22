@@ -3,7 +3,9 @@ module Chapter1
     class LSDExercises
 
       def initialize
-        @r = 0b100000000
+        @alphabet_size = 0b100000000
+        @letter_and = 0b11111111
+        @letter_bits = 8
       end
 
       # 5.1.15 Sublinear sort. Develop a sort implementation for int values
@@ -17,63 +19,52 @@ module Chapter1
       # The first on the 0-7 bits of the number
       # Then on the 8-15 bits of the number
       def sublinear_sort_e5115 values
-        # puts "values: #{values.inspect}"
         size = values.length
         aux = Array.new(size, 0)
-        letter_bits = 8
-        letter_count = 2
-        letter_position =  letter_count - 1
-        letter_and = 0b11111111
-        while letter_position >= 0
-          count = Array.new(@r+1, 0)
-          bit_shift = letter_bits * (letter_count - letter_position - 1)
+        total_lsd_passes = 2
+        current_lsd_pass =  total_lsd_passes - 1
+        while current_lsd_pass >= 0
+          count = Array.new(@alphabet_size+1, 0)
+          bit_shift = @letter_bits * (total_lsd_passes - current_lsd_pass - 1)
           i = 0
           while i < size
-            # Obains the key of the 8-bit number after shifting 'bit_shift' bits
-            idx = ((values[i] >> bit_shift) & letter_and) + 1
-            # puts "accessing index: #{idx}, bit_position: #{letter_position}, values[#{i}]: #{values[i]}"
+            # Obtains the key of the 8-bit number after shifting 'bit_shift' bits
+            idx = ((values[i] >> bit_shift) & @letter_and) + 1
             count[idx]+=1
             i+=1
           end
 
-          # puts "bit: #{bit_shift} occurrences: #{count.inspect}"
+          # Set key occurrence-based indexing, for ordering on next loop
           r = 0
-          while r < @r
+          while r < @alphabet_size
             count[r+1] += count[r]
             r+=1
           end
 
           i = 0
-          # puts "bit_position: #{bit_shift}"
+
+          # Order numbers based on the occurrence count of their key
           while i < size
             # Obains the key of the 8-bit number after shifting 'bit_shift' bits
-            idx = (values[i] >> bit_shift) & letter_and
-
-            # puts "\tidx: #{idx}"
-            # puts "\tcount[#{idx}]: #{count[idx]}"
-            # puts "\tvalues[#{i}]: #{values[i]}"
-            # puts "\tprevious: aux[#{count[idx]}]: #{aux[count[idx]]}"
-            # puts "\tvalues[#{idx}]: #{values[idx]}"
+            idx = (values[i] >> bit_shift) & @letter_and
 
             aux[count[idx]] = values[i]
-
-            # puts "\taux[#{count[idx]}]: #{values[i]}"
-            # puts ""
             count[idx]+=1
 
             i+= 1
           end
 
+          # Copy back values
           i = 0
           while i < size
             values[i] = aux[i]
             i+= 1
           end
 
-          # puts "aux@bit: #{bit_shift}: #{aux.inspect}"
-          letter_position-=1
+          current_lsd_pass-=1
         end
 
+        # Insertion sort will be extremely fast because the numbers are partially ordered
         insertion_sort values
 
         values
