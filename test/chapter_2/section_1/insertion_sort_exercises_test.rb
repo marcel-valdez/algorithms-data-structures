@@ -60,12 +60,17 @@ module Chapter2
       end
 
       def insertion_sort(values)
-        for i in 0...values.length
+        # while is used instead of .each to improve
+        # efficiency
+        i = 0
+        while i < values.length
           j = i
           while j > 0 and values[j] < values[j-1]
             exchange(values, j, j-1)
             j-=1
           end
+
+          i+=1
         end
 
         values
