@@ -16,7 +16,8 @@ The Basics:
 			1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo/marcel-valdez)
 	Chapter 2: Sorting
 		2.1 Elementary Sorts
-			2.1.15 Optimize insertion sort. (mrcel-valdez)
+			2.1.3 Maximize min index modifications in selection sort (marcel-valdez)
+			2.1.15 Optimize insertion sort. (marcel-valdez)
 			2.1.16 Certification.
 	Chapter 3: Searching
 		3.1 Elementary Symbol Tables
