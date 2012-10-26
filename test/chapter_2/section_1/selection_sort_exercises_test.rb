@@ -25,9 +25,12 @@ module Chapter2
 
       def check_min_pass_count(n, array)
         count = count_min_passes array
+        if n & 1 == 1
+          expected_count = ((n-1)/2)**2 + (n-1)/2
+        else
+          expected_count = (n/2)**2
+        end
 
-
-        expected_count = (((n+4)/2) * (((n+4)/2)+1))/2
         passed = expected_count == count
         unless passed
           puts "Expected the min pass count to be #{expected_count} but #{count} was found"
