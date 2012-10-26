@@ -1,4 +1,4 @@
-This project was motivated by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
+This project is inspired by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
 This project will help the user learn algorithms and data structures by asking of him to code methods that
 must pass tests that specify the behavior of many fundamental algorithms and data structures of Computer Science.  
   
