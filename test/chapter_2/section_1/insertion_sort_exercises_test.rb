@@ -14,15 +14,15 @@ module Chapter2
       # sort that moves larger elements to the right one position with one array access per
       # entry, rather than exchanging.
       # Note: Your code must run faster than the implementation without this optimization.
-      # 			and also provde a correct sort.
-      def test_insertion_sort_without_exchanges_e2125
+      # 			and also provide a correct sort.
+      def test_insertion_sort_no_exchanges_e2125
       	# puts "*** Executing insertion_sort_without_exchanges_e2125_test ***"
         # Arrange
         expected = (0..4).to_a
         values = (0..4).to_a.shuffle
 
         # Act
-        verify_method :insertion_sort_without_exchanges_e2125,
+        verify_method :insertion_sort_no_exchanges_e2125,
         :with => [
           {
             param: values,
@@ -33,7 +33,7 @@ module Chapter2
 
         parameter = (0..100).to_a.shuffle
         optimized_time = time_block {
-          @target.insertion_sort_without_exchanges_e2125(parameter)
+          @target.insertion_sort_no_exchanges_e2125(parameter)
         }
 
         parameter = (0..100).to_a.shuffle
