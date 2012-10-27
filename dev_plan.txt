@@ -34,7 +34,7 @@ The Opening:
 		    2.2.11 Implement 3 improvements to mergesort. Note: Implies 2.2.10. (marcel-valdez)
 		    2.2.14 Merging sorted queues.
 		    2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14
-		    2.2.17 Linked-list sort.
+		    2.2.17 Linked-list mergesort.
 		2.3 Quicksort
 	Chapter 3: Searching. 
 		3.2 Binary Search Trees
