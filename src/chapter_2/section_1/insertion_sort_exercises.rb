@@ -4,7 +4,7 @@ module Chapter2
   module Section1
     class InsertionSortExercises
       def insertion_sort_no_exchanges_e2125(values)
-        # puts "Running insertion sort optimziation with: #{values.inspect}"
+        # puts "Running insertion sort optimization with: #{values.inspect}"
         for i in 1...values.length
           # store the values[i] value
           current = values[i]          

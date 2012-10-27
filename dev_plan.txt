@@ -30,8 +30,8 @@ The Basics:
 The Opening:
 	Chapter 2: Sorting.
 		2.2 Mergesort
-		    2.2.10 Faster merge.
-		    2.2.11 Implement 3 improvements to mergesort. Note: Implies 2.2.10.
+		    2.2.10 Faster merge. (marcel-valdez)
+		    2.2.11 Implement 3 improvements to mergesort. Note: Implies 2.2.10. (marcel-valdez)
 		    2.2.14 Merging sorted queues.
 		    2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14
 		    2.2.17 Linked-list sort.
