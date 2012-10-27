@@ -39,7 +39,7 @@ module Chapter2
         passed
       end
 
-      def count_min_passes values
+      def count_min_passes(values)
         min_passes = 0
         for i in 0...(values.length-1) # 1 to N-1 (N-1 times)
           min_index = i
@@ -50,9 +50,7 @@ module Chapter2
             end
           end
 
-          temp = values[i]
-          values[i] = values[min_index]
-          values[min_index] = temp
+          values[i], values[min_index] = values[min_index], values[i]
         end
 
         min_passes

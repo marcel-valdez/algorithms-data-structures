@@ -24,7 +24,9 @@ module Chapter2
       end
 
       def faster_merge(input, lower_bound, mid, upper_bound)
-        i = lower_bound
+        low_idx, hi_idx = lower_bound, upper_bound
+
+        i = low_idx
         # copy normally from lower_bound to mid
         until i == mid+1
           @aux[i] = input[i]
@@ -32,16 +34,14 @@ module Chapter2
         end
         # copy backwards from mid+1 to upper_bound
         aux_i = mid+1
-        i = upper_bound
+        i = hi_idx
         until i == mid
           @aux[aux_i] = input[i]
           aux_i += 1
           i -= 1
         end
 
-        low_idx = lower_bound
-        hi_idx = upper_bound
-        i = lower_bound
+        i = low_idx
         while i <= upper_bound
           # when low_idx is mid+1 then it will always enter here
           if @aux[hi_idx] < @aux[low_idx] # if right half element is lower
@@ -49,7 +49,7 @@ module Chapter2
             hi_idx -=1 # hi_idx is transversed backwards
           else # if left half element is lower
             input[i] = @aux[low_idx]
-            low_idx+=1 # lo_idx is transversed normal
+            low_idx+=1 # lo_idx is transversed forwards
           end
 
           i+=1
@@ -74,11 +74,7 @@ module Chapter2
       end
 
       def improved_merge_sort(input, lo, hi)
-        if hi <= lo
-          return false
-        end
-
-        if hi - lo <= 15 # is array is small, use insertion sort
+        if hi - lo <= 15 # if array is small, use insertion sort
           insertion_sort(input, lo, hi)
           return false
         end

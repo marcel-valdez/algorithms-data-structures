@@ -11,7 +11,6 @@ module Chapter2
           result << h
         end
 
-        # puts "Sequence #{result.inspect} for size: #{size}"
         result
       end
     end

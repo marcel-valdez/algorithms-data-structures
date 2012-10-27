@@ -15,14 +15,14 @@ module Chapter2
       # entry, rather than exchanging.
       # Note: Your code must run faster than the implementation without this optimization.
       # 			and also provide a correct sort.
-      def test_insertion_sort_no_exchanges_e2125
+      def test_insertion_sort_no_swap_e2125
       	# puts "*** Executing insertion_sort_without_exchanges_e2125_test ***"
         # Arrange
         expected = (0..4).to_a
         values = (0..4).to_a.shuffle
 
         # Act
-        verify_method :insertion_sort_no_exchanges_e2125,
+        verify_method :insertion_sort_no_swap_e2125,
         :with => [
           {
             param: values,
@@ -31,14 +31,15 @@ module Chapter2
           }
         ]
 
-        parameter = (0..100).to_a.shuffle
+        hundred_elements = (0..100).to_a
+        parameter = hundred_elements.shuffle
         optimized_time = time_block {
-          @target.insertion_sort_no_exchanges_e2125(parameter)
+          @target.insertion_sort_no_swap_e2125(parameter)
         }
 
-        parameter = (0..100).to_a.shuffle
+        parameter = hundred_elements.shuffle
         suboptimal_time = time_block {
-          insertion_sort(parameter)
+          standard_insertion_sort(parameter)
         }
 
         # Compare to suboptimal implementation
@@ -49,24 +50,24 @@ module Chapter2
       def test_insertion_sort_helper
       	# puts "Executing insertion_sort_helper_test"
         # Arrange
-        values = (0..5).to_a.shuffle
         expected = (0..5).to_a
+        values = expected.shuffle
 
         # Act
-        actual = insertion_sort(values)
+        actual = standard_insertion_sort(values)
 
         # Assert
         assert_equal(expected, actual)
       end
 
-      def insertion_sort(values)
+      def standard_insertion_sort(values)
         # while is used instead of .each to improve
-        # efficiency
+        # efficiency (and make the exercise harder, lol)
         i = 0
         while i < values.length
           j = i
           while j > 0 and values[j] < values[j-1]
-            exchange(values, j, j-1)
+            swap(values, j, j-1)
             j-=1
           end
 
@@ -76,10 +77,8 @@ module Chapter2
         values
       end
 
-      def exchange(values, a, b)
-        temp = values[a]
-        values[a] = values[b]
-        values[b] = temp
+      def swap(values, a, b)
+        values[a], values[b] = values[b], values[a]
       end
     end
   end
