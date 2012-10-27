@@ -166,7 +166,7 @@ module Chapter2
       end
 
       def check_faster_for_sorted_array
-        thousand_elements = (0..1000).to_a
+        thousand_elements = (0..100).to_a
         standard_time = time_block {
           @aux = Array.new(thousand_elements.length)
           standard_merge_sort thousand_elements, 0, thousand_elements.length - 1
