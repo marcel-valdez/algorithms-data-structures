@@ -84,20 +84,20 @@ module Chapter2
         end
 
         mid = lo + (hi-lo)/2
-        aux_as_input = improved_merge_sort(input, lo, mid)
-        aux_as_input &= improved_merge_sort(input, mid+1, hi)
-        if aux_as_input
+        aux_as_input = improved_merge_sort(input, lo, mid) # sort left half
+        aux_as_input &= improved_merge_sort(input, mid+1, hi) # sort right half
+        if aux_as_input # if aux is the source for merging
           if @aux[mid] <= @aux[mid+1] # if already sorted
             copy @aux, input, lo, hi-lo+1 # do straight copy
           else # if not already sorted
-            improved_merge(@aux, input, lo, mid, hi) # trick: use aux as input
+            improved_merge(@aux, input, lo, mid, hi) # merge from @aux to input
           end
           false
-        else
+        else # if input is the source for merging
           if input[mid] <= input[mid+1] # if already sorted
             copy input, @aux, lo, hi-lo+1 # do straight copy
           else # if not already sorted
-            improved_merge(input, @aux, lo, mid, hi) # removed time to copy to aux
+            improved_merge(input, @aux, lo, mid, hi) # merge from input to @aux
           end
           true
         end
