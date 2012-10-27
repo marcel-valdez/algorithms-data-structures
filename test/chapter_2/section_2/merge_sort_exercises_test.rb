@@ -179,9 +179,10 @@ module Chapter2
         assert_operator((standard_time/2), :>, faster_time)
       end
 
-      # This is not an exercise, it helps test the execution time of exercise 2.2.10
+      # This is not an exercise, it helps test the execution time of faster than
+      # standard mergesort algorithms
       def check_faster_than_standard(method_sym)
-        thousand_elements = (0..1000).to_a
+        thousand_elements = (0..100).to_a
         big_input = thousand_elements.shuffle
         standard_time = time_block {
           @aux = Array.new(big_input.length)
@@ -190,7 +191,7 @@ module Chapter2
 
         big_input = thousand_elements.shuffle
         faster_time = exec_time_of(method_sym, for: big_input)
-
+        # puts "assert_operator #{standard_time} > #{faster_time}. Improvement: #{(((standard_time/faster_time)-1)*100).ceil}%"
         assert_operator standard_time, :>, faster_time
       end
 
