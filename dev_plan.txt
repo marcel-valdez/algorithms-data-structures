@@ -43,34 +43,38 @@ The Opening:
 	Chapter 5: Strings. 
 		5.2 Tries
 		5.3 Substring Search
+    Chapter 6: Context.
+        6.2 B-Trees
 
 The Middlegame:
-	Chapter 2: Sorting. 
-		2.4 Elementary Sort
 	Chapter 3: Searching. 
 		3.4 Hash Tables
 	Chapter 4: Graphs. 
 		4.1 Unidirected Graph
 		4.2 Directed Graphs
-	Chapter 6: Context. 
-		6.2 Event-Drive Simulation 
+		4.4 Shortest Paths
+	Chapter 6: Context.
 		6.6 Intractability
 
 The Endgame:
-	Chapter 1: Fundamentals. 
-		1.5 Case Study: Union-Find
-	Chapter 2: Sorting. 
-		2.5 Applications of Sorting
-	Chapter 3: Searching. 
-		3.5 Applications
+	Chapter 2: Sorting.
+        2.4 Priority Queues
 	Chapter 4: Graphs. 
 		4.3 Minimum Spanning Trees
-		4.4 Shortest Paths
+    Chapter 5: Strings.
+        5.4 Regular Expressions
+        5.5 Data Compression
+	Chapter 6: Context.
+        6.3 Suffix Arrays
+        6.5 Reductions
 
 The Aftermath:
-	Chapter 5: Strings. 
-		5.4 Regular Expressions 
-		5.5 Data Compression
-	Chapter 6: Context. 
-		6.3 Suffix Arrays
-		6.5 Reductions
+	Chapter 1: Fundamentals.
+		1.5 Case Study: Union-Find
+    Chapter 2: Sorting.
+    	2.5 Applications of Sorting
+    Chapter 3: Searching.
+        3.5 Applications
+	Chapter 6: Context.
+	    6.1 Event-Driven Simulation
+	    6.4 Network Flow
