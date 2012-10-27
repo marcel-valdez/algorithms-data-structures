@@ -6,6 +6,7 @@ class InterviewExercises
       initial_left = input[left_edge]
       input[left_edge] = input[right_edge]
       input[right_edge] = initial_left
+
       left_edge += 1
       right_edge -= 1
     end
