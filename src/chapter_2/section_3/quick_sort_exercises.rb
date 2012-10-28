@@ -4,7 +4,6 @@ module Chapter2
   module Section3
     class QuickSortExercises
       def median3_quicksort_e2318(input)
-        puts "@"*20 + "\nmedian3_quicksort_e2318(#{input})"
         quicksort_e2318(input, 0, input.length - 1)
         input
       end
@@ -19,54 +18,60 @@ module Chapter2
       end
 
       def partition(input, lo, hi)
-        puts "-"*10 +"\npartition(#{input}, #{lo}, #{hi})"
-        # handle the cases in which the partition is empty, size 1 or size 2
+        #puts "-"*10 +"\npartition(#{input}, #{lo}, #{hi})"
+        # handle the cases in which the partition is size 2
         if hi - lo == 1
-          if input[lo] > input[hi]
-            puts "partition.swapping: input[#{lo}]:#{input[lo]}, input[#{hi}]:#{input[hi]}"
-            input[hi], input[lo] = input[lo], input[hi]
+          if input[lo] > input[hi] # items are order inverted
+            input[hi], input[lo] = input[lo], input[hi] # swap them
           end
 
-          puts "\tpartition.result: #{input}"
           return hi
         end
 
-        # find 3 sample median
-        mid = lo + (hi-lo)/2
-        median = input[mid]
+        # find 3-sample median
         forwards, backwards = lo, hi+1
-        median_idx = lo
-        if input[lo] < input[hi]
-          if median < input[lo] #  mid < lo < hi
-            median = input[lo]
-          end
-        elsif median < input[hi] # mid < hi < lo
-          median = input[hi]
-          median_idx = hi
-        else # lo < mid < hi
+        median = find_median3(hi, input, lo)
 
-        end
-
-        puts "\tpartition.median:#{median}, median_idx:#{median_idx}"
+        #puts "\tpartition.median:#{median}, input:#{input}"
         while true
           forwards+=1
-          until input[forwards] >= median or forwards == hi
-            forwards+=1
-          end # until an item not belonging in left side is found
+          until input[forwards] >= median or forwards == hi # until item belonging to right side found
+            forwards+=1 # keep looking forwards
+          end
 
           backwards-=1
-          until input[backwards] <= median or backwards == lo
-            backwards-=1
-          end # until an item not belonging in right side is found
+          until input[backwards] <= median # until item belonging to left side found
+            backwards-=1 # keep looking backwards
+          end
 
           break if forwards >= backwards # stop if indexes collide
 
           input[backwards], input[forwards] = input[forwards], input[backwards] # swap items
         end
 
-        input[median_idx], input[backwards] = input[backwards], input[median_idx]
-        puts "\tpartition.result: #{input}"
+        #puts "\tswap lo:input[#{lo}]=#{input[lo]} and backwards:input[#{backwards}]=#{input[backwards]}"
+        input[lo], input[backwards] = input[backwards], input[lo]
+        #puts "\tpartition.result: #{input}"
         backwards
+      end
+
+      def find_median3(hi, input, lo)
+        mid = lo + (hi-lo) >> 1 # middle
+        median = input[mid]
+        if input[lo] < input[hi]
+          if median < input[lo] #  mid < lo < hi
+            median = input[lo] # make lo our median
+          else # lo < mid < hi
+            input[mid], input[lo] = input[lo], input[mid] # make lo our median
+          end
+        elsif median < input[hi] # mid < hi < lo
+          median = input[hi]
+          input[hi], input[lo] = input[lo], input[hi] # make lo our median
+        else # lo < mid < hi
+          input[mid], input[lo] = input[lo], input[mid] # make lo our median
+        end
+
+        median
       end
     end
   end
