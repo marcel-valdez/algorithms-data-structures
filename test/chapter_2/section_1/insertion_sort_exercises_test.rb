@@ -1,9 +1,12 @@
 require_relative "../../test_helper"
 require_relative "../../../src/chapter_2/section_1/insertion_sort_exercises"
+require_relative "../test_sort_helper"
 
 module Chapter2
   module Section1
     class InsertionSortExercises_test < TestHelper
+
+      include Chapter2::TestSortHelper
 
       def initialize(*args)
         super(*args)
@@ -17,38 +20,21 @@ module Chapter2
       # 			and also provide a correct sort.
       def test_insertion_sort_no_swap_e2125
       	# puts "*** Executing insertion_sort_without_exchanges_e2125_test ***"
-        # Arrange
-        expected = (0..4).to_a
-        values = (0..4).to_a.shuffle
-
-        # Act
-        verify_method :insertion_sort_no_swap_e2125,
-        :with => [
-          {
-            param: values,
-            # Assert
-            expect: expected
-          }
-        ]
+        check_sort_correctness :insertion_sort_no_swap_e2125
 
         hundred_elements = (0..100).to_a
-        parameter = hundred_elements.shuffle
-        optimized_time = time_block {
-          @target.insertion_sort_no_swap_e2125(parameter)
+        faster = Proc.new {
+            @target.insertion_sort_no_swap_e2125(hundred_elements.shuffle)
         }
 
-        parameter = hundred_elements.shuffle
-        suboptimal_time = time_block {
-          standard_insertion_sort(parameter)
+        slower = Proc.new {
+          standard_insertion_sort(hundred_elements.shuffle)
         }
 
-        # Compare to suboptimal implementation
-        assert_operator optimized_time, :<, suboptimal_time
-
+        assert_faster_proc faster, slower
       end
 
       def test_insertion_sort_helper
-      	# puts "Executing insertion_sort_helper_test"
         # Arrange
         expected = (0..5).to_a
         values = expected.shuffle

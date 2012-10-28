@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require "test/unit"
-require_relative "../../../src/chapter_1/section_5/lsd_exercises"
+require_relative "../../../src/chapter_5/section_1/lsd_exercises"
 require_relative "../../test_helper"
 
 module Chapter1
@@ -36,7 +36,7 @@ module Chapter1
 
         numbers = (0...65535).to_a.shuffle
         my_numbers = (0...65535).to_a.shuffle
-        nlogn_time = time_block {
+        linearithmic_time = time_block {
           quick_sort numbers
         }
 
@@ -44,17 +44,17 @@ module Chapter1
           @target.sublinear_sort_e5115(my_numbers)
         }
 
-        assert_operator sublinear_time, :<, nlogn_time
+        assert_operator sublinear_time, :<, linearithmic_time
 
       end
 
-      def quick_sort(list)
-        return [] if list.size == 0
-        x, *xs = *list
-        less, more = xs.partition{|y| y < x}
-        quick_sort(less) + [x] + quick_sort(more)
+      def quick_sort(values)
+        return [] if values.size == 0
+        # note that it is a good idea to use ruby's built-in features because they are implemented in C
+        first, *work = *values # gets the value at values[0] and separates it from the input array
+        less, more = work.partition { |y| y < first } # partitions by the first value
+        quick_sort(less) + [first] + quick_sort(more) # sorts each side separately and concatenates
       end
-
     end
   end
 end

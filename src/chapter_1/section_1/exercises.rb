@@ -14,9 +14,7 @@ module Chapter1
       end
 
       def exercise_115 (numbers)
-        numbers.reduce do |number|
-          number > 0 and number < 1
-        end
+        numbers.reduce { |number| number > 0 and number < 1 }
       end
 
       def exercise_116
