@@ -1,4 +1,4 @@
-#encoding: utf-8
+# encoding: utf-8
 
 module Chapter2
   module Section3
