@@ -12,37 +12,47 @@ class InterviewExercises
       left_edge += 1
       right_edge -= 1
     end
-    
+
     input
   end
 
-  # Memory complexity: O(N*50) # worst-case if all are unique and start with a different letter each
+  # Memory complexity: O(N) # worst-case if all are unique and start with a different letter each
   # Time complexity: O(N*50) # worst-case if all are unique
   def remove_duplicate_lines(lines)
-    #puts "processing lines: #{lines}"
-    results = [] # buffer de líneas resultante.
-    root = NAryNode.new(50) # crea un árbol n-ario
-    lines.each { |line| process_line(line, root, results) } # procesa cada línea.
+    results = [] # resulting buffer.
+    root = NAryNode.new("", 50) # root node of an n-ary tree
+    lines.each { |line| results << line if distinct_line?(line, root) } # process each line separately
 
     results
   end
 
-  def process_line(line, current_node, distinct_lines)
-    (0...line.length).each { |i| # recorre todos los caracteres de la línea
-      key = key(line[i])
-      # nótese que aquí se podría YA determinar si el nodo existe en el árbol, evitando así
-      # subsecuentes iteraciones del for, el problema es que si se hace así, entonces ocupas
-      # balancear el árbol, por simplicidad, se agrega el nodo sin la bandera 'inserted'.
-      current_node.add_child(key) unless current_node.has_child?(key)
 
-      # encuentra el nodo que le corresponde a la llave del caracter en la posición i
-      current_node = current_node.children[key]
+  def distinct_line?(line, current_node)
+    previous_node = current_node
+    (0...line.length).each { |i| # transverse all characters
+      key = key(line[i])
+
+      if current_node.has_child?(key) # child node corresponding to the key
+        previous_node = current_node
+        current_node = current_node.children[key]
+      else # At a leaf node
+        return distinct_node?(current_node, previous_node, i, line)
+      end
     }
 
-    unless current_node.inserted? # si su aún no ha sido 'insertado'
-      current_node.inserted = true # encender bandera de inserción
-      distinct_lines << line # agregar línea al buffer resultante
+    distinct_node?(current_node, previous_node, line.length - 1, line)
+  end
+
+  def distinct_node?(current_node, previous_node, tree_depth, line)
+    key = key(line[tree_depth])
+    comparison = line <=> current_node.value
+    if comparison > 0 # if the new value should be stored as a child of the node
+      current_node.add(key, line)
+    elsif comparison < 0 # if the new value should be stored as the parent of the current node
+      previous_node.insert_at(key(line[tree_depth- 1]), line, key)
     end
+
+    comparison != 0
   end
 
   def key(char)
@@ -53,28 +63,33 @@ class InterviewExercises
   end
 
   class NAryNode
-    attr_accessor :children
+    attr_accessor :children, :value
 
-    def initialize(n)
+    def initialize(value, n)
       @children = Array.new(n)
       @inserted = false
+      @value = value
     end
 
-
-    def add_child(value)
-      @children[value] = NAryNode.new(@children.length)
+    # @param [Object] key The key at which to insert a new node
+    # @param [Object] value The value of the node to be inserted at the key
+    # @param [Object] replace_key They key for the old node as a child of the new node.
+    def insert_at(key, value, replace_key)
+      new_node = NAryNode.new(value, @children.length)
+      old_node = @children[key]
+      new_node.children[replace_key] = old_node
+      @children[key] = new_node
     end
 
-    def has_child?(value)
-      !@children[value].nil?
+    def add(key, value)
+      new_node = NAryNode.new(value, @children.length)
+      @children[key] = new_node
     end
 
-    def inserted?
-      @inserted
-    end
-
-    def inserted=(value)
-      @inserted=value
+    # @param [Object] key of a child
+    # @return [Boolean] true if this node has a child at the given key index
+    def has_child?(key)
+      !@children[key].nil?
     end
   end
 end

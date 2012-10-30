@@ -70,23 +70,25 @@ class InterviewExercises_test < TestHelper
                           expect: %w(a b)
                       },
                       {
-                          param: %w(a aa aaa aaaa aa aab aaa),
-                          expect: %w(a aa aaa aaaa aab)
+                          param: %w(a aa aaa aaaa aa aab aaa aabcc aabc),
+                          expect: %w(a aa aaa aaaa aab aabcc aabc)
                       },
                   ]
 
     random_lines = generate_random_lines(1000)
     naive_time = time_block { naive_remove_duplicate_lines(random_lines) }
-    actual_time = time_block { @target.remove_duplicate_lines(random_lines)  }
+    actual_time = time_block { @target.remove_duplicate_lines(random_lines) }
 
-    assert_operator(naive_time * 2, :<, actual_time)
+    #puts "naive time: #{naive_time}"
+    #puts "actual time: #{actual_time}"
+    assert_operator(actual_time * 2, :<, naive_time)
   end
 
   def generate_random_lines(line_count)
     lines = Array.new(line_count)
-    alphabet =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    alphabet = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     (0..line_count).each { |i|
-      lines[i] = "" + (0...rand(50)).map{ alphabet[rand(alphabet.length)] }.join
+      lines[i] = "" + (0...(rand(50)+1)).map { alphabet[rand(alphabet.length)] }.join
     }
 
     lines
@@ -94,8 +96,7 @@ class InterviewExercises_test < TestHelper
 
   def naive_remove_duplicate_lines(lines)
     distinct_lines = []
-    lines.each {|line| distinct_lines << line unless distinct_lines.include? line}
-
+    lines.each { |line| distinct_lines << line if not distinct_lines.include? line }
     distinct_lines
   end
 end

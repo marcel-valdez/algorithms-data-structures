@@ -13,10 +13,10 @@ module Utils
 		end
 
 		def insert (value)
-			oldFirst = @first
-			newNode = NodeOfBag.new(value, oldFirst)
+			old_first = @first
+			new_node = NodeOfBag.new(value, old_first)
 			@size += 1
-			@first = newNode
+			@first = new_node
 		end
 
 		def each
