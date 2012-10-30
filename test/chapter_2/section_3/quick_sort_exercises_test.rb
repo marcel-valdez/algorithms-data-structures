@@ -37,7 +37,7 @@ module Chapter2
         assert_faster_proc(median3_sort_proc, merge_sort_proc)
       end
 
-
+      # TODO: Exercise 2.3.22
       # 2.3.22 Fast 3-way partitioning (J. Bentley and D. McIlroy) Implement an entropy-optimal
       #        sort based on keeping item's with equal keys at both the left and right ends of
       #        the subarray.
@@ -60,6 +60,7 @@ module Chapter2
       #              item's key
       # Assumptions: Assume the input array is shuffled
 
+      # TODO: Exercise 2.3.23
       # 2.3.23 Super quick sort. Add to your implementation from exercise 2.3.22 code to use the
       #        Tukey ninther to compute the partitioning item: choose three sets of three items,
       #        take the median of each, then use the median of the three medians as the partitioning
