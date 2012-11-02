@@ -1,19 +1,23 @@
+# encoding: utf-8
+
 require_relative "../test_helper"
-require_relative "../../src/utils/stack"
+require_relative "../../src/utils/binary_search_tree"
+
 module Utils
-  class StackTest < TestHelper
+  class BinarySearchTreeTest < TestHelper
+
     def initialize(*arg)
       super(*arg)
-      @target= Stack.new
+      @target= BinarySearchTree.new
     end
 
-    test "It has API definition" do
+    test "It has correct API definition" do
       # Arrange
-      api = [:is_empty?, :size, :push, :pop, :peek]
-      non_api = [:size=, :first=, :last=, :first, :last]
+      api = [:put, :get, :delete, :contains, :is_empty?, :size, :keys]
+      non_api = [:size=, :is_empty=, :keys=, :root, :root=]
 
       # Act
-      target = Stack.new
+      target = BinarySearchTree.new
 
       # Assert
 
@@ -26,11 +30,12 @@ module Utils
       }
     end
 
+
     test "Test it starts empty" do
       # Arrange
 
       # Act
-      target = Stack.new
+      target = BinarySearchTree.new
 
       # Assert
       assert_true target.is_empty?
@@ -39,58 +44,53 @@ module Utils
 
     test "Test each to find node " do
       # Arrange
-      target = Stack.new
+      target = BinarySearchTree.new
       i=2
 
       # Act
-      target.push 1
-      target.push 2
+      target.put 1, "1"
+      target.put 2, "2"
 
       # Assert
-      target.each { |node_value|
-        assert_equal i, node_value
-        i-=1
+      target.keys.each { |node_value|
+        assert_equal i.to_s, node_value
+        i+=1
       }
     end
 
     test "Test if it can add first node" do
       # Arrange
-      target = Stack.new
+      target = BinarySearchTree.new
 
       # Act
-      target.push 1
+      target.put 1, "1"
 
       # Assert
       assert_false target.is_empty?
       assert_equal 1, target.size
-      assert_equal 1, target.peek
 
       sub_case "Test if it can add a second node" do
         # Act (2nd)
-        target.push 2
+        target.put 2, "2"
 
         # Assert
         assert_equal 2, target.size
         assert_false target.is_empty?
-        assert_equal 2, target.peek
 
-        sub_case "Test if it can pop a node" do
+        sub_case "Test if it can get a node" do
           # Act (3rd)
-          actual = target.pop
+          actual = target.get 2
 
           # Assert
-          assert_equal 1, target.size
-          assert_equal 2, actual
-          assert_equal 1, target.peek
+          assert_equal 2, target.size
+          assert_equal "2", actual
 
-          sub_case "Test if can pop the last node" do
+          sub_case "Test if can delete a node" do
             # Act (4th)
-            actual = target.pop
+            target.delete 2
 
             # Assert
-            assert_true target.is_empty?
-            assert_equal 0, target.size
-            assert_equal 1, actual
+            assert_equal 1, target.size
           end
         end
       end
