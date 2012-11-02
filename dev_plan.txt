@@ -42,6 +42,7 @@ The Opening:
 	Chapter 3: Searching. 
 		3.2 Binary Search Trees
 			Reverse a BST and Tree API (magg)
+			3.2.6 Height alternatives for BST
 		3.3 Balanced Search Trees
 	Chapter 5: Strings. 
 		5.2 Tries
