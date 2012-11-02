@@ -29,11 +29,15 @@ class InterviewExercises_test < TestHelper
                   with: {param: input, expect: expected}
   end
 
-  # true random shuffle cards with N complexity
+  # write true random shuffle of N numbers, with O(N) complexity
 
-  # function that balances a tree with an unknown amount of input: it receives a stream of numbers
+  # write a function that balances a tree with an unknown amount of input: it receives a stream of numbers
   # with n log2(n) complexity
 
+  # write a function that for an array of N numbers, determines if there is
+  # a pair i,j that satisfies the condition: array[i] + array[j] == m
+  # Test: That the function is correct
+  #       That it is faster than the naive implementation.
 
   # function that removes duplicate strings in an array of strings (where each string can be very long)
   # and there could be millions of strings.
