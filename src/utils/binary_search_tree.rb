@@ -48,12 +48,12 @@ module Utils
     # @return [Object] The largest key less than or equal to the key
     # @param [Object] key
     def floor(key)
-
+      node_floor(@root, key)
     end
 
     # Gets the smallest key greater than or equal to key
     def ceiling(key)
-
+      node_ceiling(@root, key)
     end
 
     # Gets the key of the given rank
@@ -108,18 +108,10 @@ module Utils
     def keys(*args)
       return range_keys(args[0], args[1]) unless args.nil? or args.empty?
 
-      result = ::Utils::Queue.new
+      result = Utils::Queue.new
       node_keys(@root, result)
 
       result
-    end
-
-    def node_keys(node, queue)
-      return if node.nil?
-
-      node_keys(node.left, queue)
-      queue.queue(node.key)
-      node_keys(node.right, queue)
     end
 
     def each(&block)
@@ -130,6 +122,45 @@ module Utils
     end
 
     private
+
+    def node_ceiling(node, key)
+      return nil if node.nil? # no key less than or equal was found
+
+      comparison = node.key <=> key
+      puts "#{comparison} = #{node.key} <=> #{key}"
+
+      if comparison < 0 # if current key is less
+        return node_ceiling(node.right, key) # keep looking for larger key
+      elsif comparison > 0 # if current key is greater
+        tmp = node_ceiling(node.left, key) # look for a closer key
+        return tmp if not tmp.nil? # return result if a closer key was found
+      end
+
+      node.key
+    end
+
+    def node_floor(node, key)
+      return nil if node.nil? # no key less than or equal was found
+
+      comparison = node.key <=> key
+
+      if comparison > 0 # if current key is greater
+        return node_floor(node.left, key) # keep looking for a smaller key
+      elsif comparison < 0 # if current key is less
+        tmp = node_floor(node.right, key) # look for a bigger key
+        return tmp if not tmp.nil? # return result if a closer key was found
+      end # if the node's key is equal to the given key
+
+      node.key # return the key
+    end
+
+    def node_keys(node, queue)
+      return if node.nil?
+
+      node_keys(node.left, queue)
+      queue.queue(node.key)
+      node_keys(node.right, queue)
+    end
 
     def delete_node(node, key)
       return nil if node.nil?

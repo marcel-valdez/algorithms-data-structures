@@ -8,7 +8,7 @@ module Utils
 
     def initialize(*arg)
       super(*arg)
-      @target= BinarySearchTree.new
+      @target= nil
     end
 
     test "It has correct API definition" do
@@ -75,41 +75,44 @@ module Utils
       assert_equal(expected_max, max)
     end
 
-    def floor_test_helper(expected_floor, param, target)
-      floor = target.floor(param)
 
-      # Assert
-      assert_equal(expected_floor, floor)
-    end
-
-    #
-    #
     test "Test it can get floor" do
       # Arrange
-      target = BinarySearchTree.new
-      insert_values(target, [1, 2, 3, 5, 7, 8])
-      params = [{param: 6, expect: 5},
-                {param: 5, expect: 5},
-                {param: 0, expect: 1},
-                {param: 9, expect: 8}]
+      @target = BinarySearchTree.new
+      insert_values(target, [3, 2, 1, 8, 7, 5])
 
-      params.each { |pair|
-        param = pair[:param]
-        expected_floor = pair[:expect]
+      # Act
+      verify_method :floor,
+      # Assert
+                    with: [{param: 6, expect: 5},
+                           {param: 5, expect: 5},
+                           {param: 0, expect: nil},
+                           {param: 9, expect: 8}]
 
-        # Act
-        floor_test_helper(expected_floor, param, target)
-      }
-
+      # Clean
+      @target = nil
     end
-    #
-    #test "Test it can get ceiling" do
-    #  assert_fail_assertion()
-    #end
-    #
-    #test "Test it can select keys" do
-    #  assert_fail_assertion()
-    #end
+
+    test "Test it can get ceiling" do
+      # Arrange
+      @target = BinarySearchTree.new
+      insert_values(target, [3, 2, 1, 8, 7, 5])
+
+      # Act
+      verify_method :ceiling,
+                    # Assert
+                    with: [{param: 6, expect: 7},
+                           {param: 5, expect: 5},
+                           {param: 0, expect: 1},
+                           {param: 9, expect: nil}]
+
+      # Clean
+      @target = nil
+    end
+
+    test "Test it can select keys" do
+      assert_fail_assertion()
+    end
     #
     #test "Test it can get the rank" do
     #  assert_fail_assertion()

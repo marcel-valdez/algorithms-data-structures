@@ -1,7 +1,7 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard :test, :cli => '--use-color --runner=c' do
+guard :test, :cli => '--use-color --runner=c --verbose=important-only' do
   # Watch all exercise files and run their respective test
   # watch(src/[chapter]/[section]/[exercise]) { run test/[chapter]/[section]/[exercise]_test.rb}
   watch(%r{^src/(.+)/(.+)/(.+)\.rb$}) { |m| "test/#{m[1]}/#{m[2]}/#{m[3]}_test.rb" }
