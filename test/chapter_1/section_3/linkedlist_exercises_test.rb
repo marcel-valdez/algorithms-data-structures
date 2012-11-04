@@ -53,15 +53,15 @@ module Chapter1
     #the kth element in a linked list, if it exists.
     def test_delete_e31
 		root = Utils::Node.new("1")
-		list = Utils::List.new(root)
+		list = Utils::LinkedList.new(root)
 		create_list(list,"2","3","4","5","6")
 
 		root2 = Utils::Node.new("1")
-		list2 = Utils::List.new(root2)
+		list2 = Utils::LinkedList.new(root2)
 		create_list(list2,"2","3","4","5","6")
 		
 		root3 = Utils::Node.new("1")
-		list3 = Utils::List.new(root3)
+		list3 = Utils::LinkedList.new(root3)
 		create_list(list3,"2","3","4","5","6")
 		
 		verify_method :delete_e31,
@@ -80,7 +80,7 @@ module Chapter1
     def test_find_e32
 
 		root = Utils::Node.new("1")
-		list = Utils::List.new(root)
+		list = Utils::LinkedList.new(root)
 		create_list(list,"2","3","4","5","6")
 			
 			#end
@@ -103,11 +103,11 @@ module Chapter1
 	#argument and (destructively) reverses the list, returning the first Node in the result.
 	def test_reverse_list_recur
 		root = Utils::Node.new("1")
-		list = Utils::List.new(root)
+		list = Utils::LinkedList.new(root)
 		create_list(list,"2","3","4")
 		reversed_list = Array["4","3","2","1"]
 		root2 = Utils::Node.new("1")
-		list2 = Utils::List.new(root2)
+		list2 = Utils::LinkedList.new(root2)
 		create_list(list2,"1","3","5")
 		reversed_list2 = Array["5","3","1","1"]
 		#list.print() 
@@ -123,11 +123,11 @@ module Chapter1
 
 	def test_reverse_list_iter
 		root = Utils::Node.new("1")
-		list = Utils::List.new(root)
+		list = Utils::LinkedList.new(root)
 		create_list(list,"2","3","4")
 		reversed_list = Array["4","3","2","1"]
 		root2 = Utils::Node.new("1")
-		list2 = Utils::List.new(root2)
+		list2 = Utils::LinkedList.new(root2)
 		create_list(list2,"2","3","5")
 		reversed_list2 = Array["5","3","2","1"]
 		#list.print() 

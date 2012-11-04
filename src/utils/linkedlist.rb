@@ -1,50 +1,66 @@
-module Utils	
-	class Node
-	 	attr_accessor :value, :next
+module Utils
+  class Node
+    attr_accessor :value, :next
 
-	 	def initialize(value)
-	 		@value = value
-	 		@next = nil
-		end
-	 
-	end
+    def initialize(value)
+      @value = value
+      @next = nil
+    end
 
-	class List
+  end
 
-		def initialize(node)
-	 		@count = 1
-	 		@fptr = node
-	 		@cur_ptr = @fptr
+  class LinkedList
+    include Enumerable
 
-		end #constructor ends
+    def initialize(node)
+      @count = 1
+      @first = @last = node
+    end
 
-	 	def add(node)
-	 		@count += 1
-	 		@cur_ptr.next=node
-	 		@cur_ptr = node
-	 	end #add() ends
+    def add(node)
+      @count += 1
+      @last.next = node
+      @last = node
+    end
 
-	 	def remove()
+    # TODO: add test for this
+    def remove(node)
+      previous = current = @first
 
-	 	end #remove ends
+      until current.nil? or current.eql? node
+        previous = current
+        current = current.next
+      end
 
-	 	def print()
-		 	if defined?(@fptr)
-		 		puts "Found #{@count} items..."
-		 		@traverser = @fptr
+      unless current.nil?
+        previous.next = current.next
+      end
+    end
 
-		 		while @traverser.next != nil
-		 			puts @traverser.value
-		 			@traverser = @traverser.next
+    # TODO: add test for this
+    def each
+      current = @first
+      until current.nil?
+        yield current.value
+        current = current.next
+      end
+    end
 
-		 		end #while ends
+    # TODO: add test for this
+    def print
+      if @last.nil?
+        puts("Empty list")
+      else
+        puts "Found #@count items..."
+        slider = @last
 
-		 		puts @traverser.value
+        while slider.next != nil
+          puts slider.value
+          slider = slider.next
+        end #while ends
 
-	 		else
-	 			puts("Empty list")
-
-	 		end #if-else ends
-		end #print() ends
-	end #class List end
+        puts slider.value
+      end #if-else ends
+    end #print ends
+  end #class List end
 end

@@ -3,7 +3,8 @@ module Utils
     include Enumerable
 
     attr_reader :size
-        def initialize
+
+    def initialize
       @size= 0
       @first= nil
       @last= nil
@@ -15,21 +16,26 @@ module Utils
 
     def queue (value)
       new_node = Node.new value
-      @last.next = new_node unless @last.nil?
-      @last = new_node
-      @first = @last if @size == 0
+      if @size == 0
+        @first = @last = new_node
+      else
+        @last = @last.next = new_node
+      end
 
       @size += 1
     end
 
     def dequeue
-      result = @first
+      return nil if @first.nil?
+
+      result = @first.value
+
       @first = @first.next
       @size -= 1
 
-      @last = @first if @size == 0
+      @last = nil if @size == 0
 
-      result.value
+      result
     end
 
     # TODO: Needs tests

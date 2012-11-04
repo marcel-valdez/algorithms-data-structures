@@ -3,11 +3,10 @@ require_relative "../../src/utils/queue"
 
 module Utils
   class QueueTest < TestHelper
-    def initialize *arg
+    def initialize(*arg)
       super(*arg)
       @target= Queue.new
     end
-
 
     test "It has API definition" do
       # Arrange
@@ -39,20 +38,17 @@ module Utils
       assert_true target.is_empty?
     end
 
-
     test "Test each to find node " do
 
       target = Queue.new
 
-     target.queue 1
-     target.queue 2
-     i=1
-     target.each { | node|
-      	assert_equal i, node
-	i+=1
+      target.queue 1
+      target.queue 2
+      i=1
+      target.each { |node|
+        assert_equal i, node
+        i+=1
       }
-
-
     end
 
     test "Test if it can add first node" do
@@ -65,9 +61,6 @@ module Utils
       # Assert
       assert_false target.is_empty?
       assert_equal 1, target.size
-      #assert_not_nil target.first
-      #assert_equal target.first, target.last
-      #assert_nil target.first.next
 
       sub_case "Test if it can add a second node" do
         # Act (2nd)
@@ -75,10 +68,6 @@ module Utils
 
         # Assert
         assert_equal 2, target.size
-        #assert_equal 2, target.first.value
-        #assert_not_equal target.first, target.last
-        #assert_equal target.first.next, target.last
-        #assert_nil target.last.next
 
         sub_case "Test if it can pop a node" do
           # Act (3rd)
@@ -87,8 +76,6 @@ module Utils
           # Assert
           assert_equal 1, target.size
           assert_false target.is_empty?
-          #assert_equal target.first, target.last
-          #assert_nil target.first.next
           assert_not_nil actual
           assert_equal 1, actual
 
@@ -105,8 +92,6 @@ module Utils
       end
     end
 
-
-	
 
   end
 end
