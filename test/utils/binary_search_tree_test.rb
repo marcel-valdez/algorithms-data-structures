@@ -98,7 +98,6 @@ module Utils
       assert_equal(expected_max, max)
     end
 
-
     test "if it can get floor" do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)

@@ -11,7 +11,7 @@ module Utils
     test "if it has API definition" do
       # Arrange
       api = [:put, :get, :delete, :contains?, :is_empty?, :size, :min, :max, :floor, :ceiling,
-             :rank, :select, :delete_min, :delete_max, :keys_in, :size_in, :keys]
+             :rank, :select, :delete_min, :delete_max, :keys]
       non_api = [:size=, :first=, :last=, :min=, :max=, :first, :last]
 
       # Act
@@ -72,6 +72,24 @@ module Utils
       # Assert
       assert_not_equal previous_value, actual_value
       assert_equal "Z", actual_value
+      assert_equal 1, target.size
+    end
+
+    test "if setting a key to nil value, deletes it" do
+      # Arrange
+      target = SymbolTable.new
+      set_pairs(target, 1 => "A")
+      # Legacy code pre-condition
+      assert_equal 1, target.size
+      assert_not_nil target.get(1)
+
+      # Act
+      target.put(1, nil)
+      actual_value = target.get(1)
+
+      # Assert
+      assert_nil actual_value
+      assert_equal 0, target.size
     end
 
     test "if it can add paired keys and retrieve them" do
@@ -102,23 +120,18 @@ module Utils
       # Assert rank (number of keys less than the key)
       assert_equal 3, target.rank(6)
 
-      # a key with rank 5 does not exist
-      assert_nil target.rank(5)
+      # a key with rank 5 does not exist, but still
+      # should return its rank
+      assert_equal 3, target.rank(5)
 
       # Assert select
       assert_equal 6, target.select(3)
       assert_equal 12, target.select(4)
       assert_nil target.select(7)
 
-      # Assert keys_in
-      # s_table = SymbolTable.new
-      # s_table.put(4,"C")
-      # assert_equal s_table, target.keys_in(3,5)
-      # assert_equal nil, target.keys_in(7,10)
-
-      # Assert size_in
-      assert_equal 2, target.size_in(1, 3)
-      assert_equal 0, target.size_in(7, 10)
+      # Assert size
+      assert_equal 2, target.size(1, 3)
+      assert_equal 0, target.size(7, 10)
     end
 
     test "if it can delete values" do
@@ -126,15 +139,104 @@ module Utils
       target = SymbolTable.new
       set_pairs(target, 1 => "A", 6 => "A", 4 => "C", 2 => "DB", 12 => "R", 8 => "T", 7 => "P")
 
+      # Legacy code pre-condition
+      assert_not_nil target.get(4)
       # Act
       target.delete 4
-      target.delete_min
-      target.delete_max
-
-      # Assert delete, delete_min, delete_max
+      # Assert delete
       assert_nil target.get(4)
+
+      # Legacy code pre-condition
+      assert_not_nil target.get(1)
+      # Act
+      target.delete_min
+      # Assert delete_min
       assert_nil target.get(1)
+
+      # Legacy code pre-condition
+      assert_not_nil target.get(12)
+      # Act
+      target.delete_max
+      # Assert delete_max
       assert_nil target.get(12)
+    end
+
+    test "if it can get a range of keys" do
+      # Arrange
+      keys = [3, 2, 1, 8, 7, 5]
+      @target = SymbolTable.new
+
+      set_pairs(@target, 3 => "3", 2 => "2", 1 => "1", 8 => "8", 7 => "7", 5 => "5")
+
+      # Act
+      verify_method :keys,
+                    with: [
+                        {
+                            params: [1, 1],
+                            predicate: Proc.new { |result|
+                              assert_equal 1, result.size
+                              assert_equal 1, result.dequeue
+
+                              true
+                            }
+                        },
+                        {
+                            params: [8, 8],
+                            predicate: Proc.new { |result|
+                              assert_equal 1, result.size
+                              assert_equal 8, result.dequeue
+
+                              true
+                            }
+                        },
+                        {
+                            params: [1, 8],
+                            predicate: Proc.new { |result|
+                              assert_equal 6, result.size
+
+                              keys.sort.each { |key|
+                                assert_equal key, result.dequeue
+                              }
+
+                              true
+                            }
+                        },
+                        {
+                            params: [0, 9],
+                            predicate: Proc.new { |result|
+                              assert_equal 6, result.size
+
+                              keys.sort.each { |key|
+                                assert_equal key, result.dequeue
+                              }
+
+                              true
+                            }
+                        },
+                        {
+                            params: [2, 7],
+                            predicate: Proc.new { |result|
+                              assert_equal 4, result.size
+
+                              [2, 3, 5, 7].each { |key|
+                                assert_equal key, result.dequeue
+                              }
+
+                              true
+                            }
+                        },
+                        {
+                            params: [3, 3],
+                            predicate: Proc.new { |result|
+                              assert_equal 1, result.size
+                              assert_equal 3, result.dequeue
+
+                              true
+                            }
+                        }
+                    ]
+      # Clean
+      @target = nil
     end
 
     def set_pairs(target, pairs)

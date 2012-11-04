@@ -11,9 +11,9 @@ The Basics:
 			1.3.20 Delete an element from a linked list (magg)
 			1.3.21 Find an element inside a linked list (magg)
 			1.3.30 Reverse a linked list (magg)
-			1.3.34 Randomize Bag Elements (priangulo/marcel-valdez)
+			1.3.34 Randomize Bag Elements (priangulo)
 		1.4 Analysis of Algorithms 
-			1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo/marcel-valdez)
+			1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo)
 	Chapter 2: Sorting
 		2.1 Elementary Sorts
 			2.1.3 Maximize min index modifications in selection sort (marcel-valdez)
@@ -22,7 +22,7 @@ The Basics:
 			2.1.16 Certification.
 	Chapter 3: Searching
 		3.1 Elementary Symbol Tables
-		    Create API for Symbol Table exercises utilities
+		    Utilities: Symbol Table implementation (priangulo/marcel-valdez)
 	Chapter 5: Strings
 		5.1 String Sorts
 			5.1.15 Sublinear number sorting algorithm (marcel-valdez)
@@ -41,8 +41,9 @@ The Opening:
 		    2.3.23 Super quick sort. PENDING
 	Chapter 3: Searching. 
 		3.2 Binary Search Trees
-			Reverse a BST and Tree API (magg)
-			3.2.6 Height alternatives for BST
+		    Utilities: Binary Search Tree implementation (marcel-valdez)
+			3.2.6 Height alternatives for BST. PENDING
+			3.2.WEB.1 The great tree-list recursion problem. PENDING.
 		3.3 Balanced Search Trees
 	Chapter 5: Strings. 
 		5.2 Tries
