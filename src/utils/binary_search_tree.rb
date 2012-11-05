@@ -1,4 +1,5 @@
 # encoding: utf-8
+require_relative 'queue'
 
 module Utils
   class BinarySearchTree
@@ -85,8 +86,8 @@ module Utils
 
     # @param [Object] key Is there a value paired with key?
     # @return [Boolean] true if it has a paired value, false otherwise.
-    def contains(key)
-      get(key).nil?
+    def contains?(key)
+      !get(key).nil?
     end
 
     # @return [Boolean] Is the tree empty?
@@ -139,6 +140,7 @@ module Utils
     private
 
     def node_to_s(node)
+      return "empty" if node.nil?
       queue = Utils::Queue.new
       queue.queue node
       res = ""
@@ -382,7 +384,7 @@ module Utils
       return if node.nil?
 
       each_node node.left, &block
-      block(node.left)
+      block.call(node)
       each_node node.right, &block
     end
 

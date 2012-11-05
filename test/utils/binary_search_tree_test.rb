@@ -17,7 +17,7 @@ module Utils
           :put,
           :get,
           :delete,
-          :contains,
+          :contains?,
           :is_empty?,
           :size,
           :keys,
@@ -209,7 +209,7 @@ module Utils
                             param: 1,
                             predicate: Proc.new {
                               assert_equal 5, @target.size
-                              assert_nil @target.get(1)
+                              assert_false @target.contains?(1)
                               @target.put(1, "1")
                               true
                             }
@@ -218,7 +218,7 @@ module Utils
                             param: 8,
                             predicate: Proc.new {
                               assert_equal 5, @target.size
-                              assert_nil @target.get(8)
+                              assert_false @target.contains?(8)
                               @target.put(8, "8")
                               true
                             }
@@ -227,7 +227,7 @@ module Utils
                             param: 3,
                             predicate: Proc.new {
                               assert_equal 5, @target.size
-                              assert_nil @target.get(3)
+                              assert_false @target.contains?(3)
                               @target.put(3, "3")
                               true
                             }
@@ -341,6 +341,7 @@ module Utils
       # Assert
       assert_false target.is_empty?
       assert_equal 1, target.size
+      assert_true target.contains?(1)
 
       sub_case " then test if it can add a second node" do
         # Act (2nd)
@@ -357,6 +358,7 @@ module Utils
           # Assert
           assert_equal 2, target.size
           assert_equal "2", actual
+          assert_true target.contains?(2)
 
           sub_case " then test if can delete a node" do
             # Act (4th)

@@ -18,7 +18,7 @@ module Chapter1
       # 8-bit 'alphabet', Two passes with keys from:
       # The first on the 0-7 bits of the number
       # Then on the 8-15 bits of the number
-      def sublinear_sort_e5115 values
+      def sublinear_sort_e5115(values)
         size = values.length
         aux = Array.new(size, 0)
         total_lsd_passes = 2
@@ -65,26 +65,25 @@ module Chapter1
         end
 
         # Insertion sort will be extremely fast because the numbers are partially ordered
-        insertion_sort values
+        # insertion_sort values
 
         values
       end
-
-      def insertion_sort values
-        i = 0
-        while i < values.length
-          j = i
-          while j > 0 and values[j] < values[j-1]
-            temp = values[j-1]
-            values[j-1] = values[j]
-            values[j] = temp
-            j -= 1
-          end
-
-          i += 1
-        end
-      end
-
+      # This would be needed if parameters were numbers higher than 2 ^ 16
+      #def insertion_sort(values)
+      #  i = 0
+      #  while i < values.length
+      #    j = i
+      #    while j > 0 and values[j] < values[j-1]
+      #      temp = values[j-1]
+      #      values[j-1] = values[j]
+      #      values[j] = temp
+      #      j -= 1
+      #    end
+      #
+      #    i += 1
+      #  end
+      #end
     end
   end
 end
