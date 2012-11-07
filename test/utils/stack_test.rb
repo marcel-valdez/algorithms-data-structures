@@ -7,7 +7,7 @@ module Utils
       @target= Stack.new
     end
 
-    test "It has API definition" do
+    test "if it has API definition" do
       # Arrange
       api = [:is_empty?, :size, :push, :pop, :peek]
       non_api = [:size=, :first=, :last=, :first, :last]
@@ -26,7 +26,7 @@ module Utils
       }
     end
 
-    test "Test it starts empty" do
+    test "if it starts empty" do
       # Arrange
 
       # Act
@@ -37,7 +37,7 @@ module Utils
     end
 
 
-    test "Test each to find node " do
+    test "if it can use each to find nodes" do
       # Arrange
       target = Stack.new
       i=2
@@ -53,7 +53,7 @@ module Utils
       }
     end
 
-    test "Test if it can add first node" do
+    test "if it can add first node" do
       # Arrange
       target = Stack.new
 

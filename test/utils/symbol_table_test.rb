@@ -120,7 +120,7 @@ module Utils
       # Assert rank (number of keys less than the key)
       assert_equal 3, target.rank(6)
 
-      # a key with rank 5 does not exist, but still
+      # the key 5 has not been added, but still
       # should return its rank
       assert_equal 3, target.rank(5)
 

@@ -11,7 +11,7 @@ module Chapter1
       def initialize
       end
 
-      def point_distance_e121 n
+      def point_distance_e121(n)
         # All numbers will be within a range 0,0 to n.n
         # PointMap[x][y]: I know that the real Point2D(x,y) is going to be x/n, y/n) where x=[0,n] and y=[0,n]
         points = Array.new(n) { Array.new(n) }
@@ -23,7 +23,7 @@ module Chapter1
           x = rand 0..(n-1)
           y = rand 0..(n-1)
           point = Point2D.new(Float(x)/n, Float(y)/n)
-          all_points.push(point)
+          all_points << point
 
           if points[x][y].nil?
             points[x][y] = point # Should I calculate until the end or while generating? Until the end
@@ -34,40 +34,44 @@ module Chapter1
           #                                   Q: Can it be done more efficiently?
           #                                   A: Yes, if points are ordered by X and Y, then it is only a matter of
           #                                      comparing the closest points.
-          # If the calculated value is less than the stores lowest, set new length
+          # If the calculated value is less than the stored lowest, set new length
         }
 
         if shortest != 0
           # Calculate distance to all points
           # loop all points
           points.each_with_index { |row, y|
-            row.each_with_index { |current_point, x|
-              unless current_point.nil?
+            row.each_with_index { |current, x|
+              unless current.nil?
                 # only look for points that can be near enough to current point
-                y_range = (y+1)..Math.min(n-1, y + shortest)
-                x_range = (x+1)..Math.min(n-1, x + shortest)
+                max_y = n-1#Math.min(n-1, (y + shortest).ceil)
+                y_range = y..max_y
+                min_x = Math.max(0, Integer(x-shortest))
+                max_x = n-1#Math.min(n-1, (x + shortest).ceil)
+                x_range = min_x..max_x
                 # loop all points that can be shorter, except current
                 y_range.each { |other_y|
                   x_range.each { |other_x|
-                    other_point = points[other_x][other_y]
-                    unless (x == other_x and y == other_y) or other_point.nil?
-                      distance = current_point.distance_to other_point
-                      shortest = distance if shortest > distance
-                      # (don't calculate points that are too far)
+                    if other_y != y or other_x != x
+                      other = points[other_y][other_x]
+                      if !other.nil? and current != other
+                        distance = current.distance_to other
+                        shortest = distance if shortest > distance
+                        # (don't calculate points that are too far)
+                      end
                     end
                   }
                 }
-
               end
             }
           }
         end
-        # return points and shortest length
 
+        # return points and shortest length
         return all_points, shortest
       end
 
-      def range_intersect_e122 ranges = []
+      def range_intersect_e122(ranges)
         # It is similar to the points intersection, but for ranges.
         intersected_pairs = []
         # loop ranges from 0 to n-1
@@ -122,6 +126,7 @@ module Chapter1
 
         return ranges, intersected, contained
       end
+
     end
   end
 end

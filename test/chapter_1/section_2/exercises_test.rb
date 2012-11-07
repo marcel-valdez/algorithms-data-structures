@@ -20,21 +20,27 @@ module Chapter1
         # Empty
       end
 
-      def check_points(n = 0, generated_points = [], shortest = 0)
+      def check_points(n = 0, generated_points = [], actual_shortest = 0)
         shortest = nil
         generated_points.each_with_index { |point, index|
-          if index < generated_points.length - 1
-            generated_points.drop(index + 1).each { |other_point|
+          generated_points.each { |other_point|
+            unless other_point.eql? point
               distance = point.distance_to other_point
               shortest = distance if shortest.nil? or shortest > distance
               break if shortest.eql? 0
-            }
-          end
+            end
+          }
         }
 
-        puts "Expected #{n} pairs but found #{generated_points.length}: #{generated_points.inspect}" unless n == generated_points.length
-        puts "Expected shortest #{shortest} but found #{shortest}. Points:#{generated_points.inspect}" unless shortest == shortest
-        n == generated_points.length and shortest == shortest
+        if n != generated_points.length
+          puts "Expected #{n} pairs but found #{generated_points.length}: #{generated_points.inspect}"
+        end
+
+        if actual_shortest != shortest
+          puts "Expected shortest #{shortest}but found #{actual_shortest}. Points:#{generated_points.inspect}"
+        end
+
+        n == generated_points.length and actual_shortest == shortest
       end
 
       # Write a Point2D method (src/utils/point2d.rb) that takes an integer value N as a parameter, and generates
@@ -58,6 +64,10 @@ module Chapter1
                                   {
                                       param: 9,
                                       predicate: Proc.new { |points_pairs, shortest| check_points(9, points_pairs, shortest) }
+                                  },
+                                  {
+                                      param: 30,
+                                      predicate: Proc.new { |points_pairs, shortest| check_points(30, points_pairs, shortest) }
                                   }]
         }
       end

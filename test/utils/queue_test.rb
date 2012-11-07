@@ -8,7 +8,7 @@ module Utils
       @target= Queue.new
     end
 
-    test "It has API definition" do
+    test "if it has API definition" do
       # Arrange
       api = [:is_empty?, :size, :queue, :dequeue]
       non_api = [:size=, :first=, :last=, :first, :last]
@@ -27,7 +27,7 @@ module Utils
       }
     end
 
-    test "Test it starts empty" do
+    test "if it starts empty" do
 
       # Arrange
 
@@ -38,7 +38,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test "Test each to find node " do
+    test "if it can use 'each' to find nodes" do
 
       target = Queue.new
 
@@ -51,7 +51,7 @@ module Utils
       }
     end
 
-    test "Test if it can add first node" do
+    test "if it can add first node" do
       # Arrange
       target = Queue.new
 
@@ -62,14 +62,14 @@ module Utils
       assert_false target.is_empty?
       assert_equal 1, target.size
 
-      sub_case "Test if it can add a second node" do
+      sub_case "test if it can add a second node" do
         # Act (2nd)
         target.queue 2
 
         # Assert
         assert_equal 2, target.size
 
-        sub_case "Test if it can pop a node" do
+        sub_case "test if it can pop a node" do
           # Act (3rd)
           actual = target.dequeue
 
@@ -79,7 +79,7 @@ module Utils
           assert_not_nil actual
           assert_equal 1, actual
 
-          sub_case "Test if can pop the last node" do
+          sub_case "test if can pop the last node" do
             # Act (4th)
             actual = target.dequeue
 

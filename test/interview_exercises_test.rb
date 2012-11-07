@@ -29,11 +29,14 @@ class InterviewExercises_test < TestHelper
                   with: {param: input, expect: expected}
   end
 
+  # TODO: Write test for this exercise
   # write true random shuffle of N numbers, with O(N) complexity
 
+  # TODO: Write test for this exercise
   # write a function that balances a tree with an unknown amount of input: it receives a stream of numbers
   # with n log2(n) complexity
 
+  # TODO: Write test for this exercise
   # write a function that for an array of N numbers, determines if there is
   # a pair i,j that satisfies the condition: array[i] + array[j] == m
   # Test: That the function is correct
@@ -88,6 +91,69 @@ class InterviewExercises_test < TestHelper
     assert_operator(actual_time * 2, :<, naive_time)
   end
 
+  # Given a binary search tree in which each node has access to its parent node
+  # write a function *find_path* that receives two *nodes*: source and destination
+  # and returns the path to follow from the source to the destination.
+  # If there is no route to the destination, write 'no path' where the
+  # path cuts off.
+  # Examples:
+  # For the tree:
+  #        root
+  # left     5   right
+  #       1      7
+  #    -1   3   6 8
+  #   -2 0 2 4
+  #
+  #    Input         Output
+  # src:{1} dst:{5}  "1,5"
+  # src:{5} dst:{7}  "5,7"
+  # src:{-2} dst:{5} "-2,-1,1,5"
+  # src:{-2} dst:{0} "-2,-1,0"
+  # src:{4} dst:{2}  "4,3,2"
+  # src:{2} dst:{6}  "2,3,1,5,7,6"
+  # src:{2} dst:{10}  "no path" <-- could be "2,3,1,5,7,8, no path"
+  #                                 as long as it contains the words 'no path'
+  def test_find_path
+    # Arrange
+    map = build_tree
+
+    # Act
+    verify_method :find_path,
+                  with: [
+                      {params: [map[:five], map[:seven]], expect: "5,7"},
+                      {params: [map[:seven], map[:five]], expect: "7,5"},
+                      {params: [map[:five], map[:one]], expect: "5,1"},
+                      {params: [map[:one], map[:five]], expect: "1,5"},
+                      {params: [map[:minus_one], map[:five]], expect: "-1,1,5"},
+                      {params: [map[:eight], map[:five]], expect: "8,7,5"},
+                      {params: [map[:five], map[:eight]], expect: "5,7,8"},
+                      {params: [map[:three], map[:one]], expect: "3,1"},
+                      {params: [map[:one], map[:three]], expect: "1,3"},
+                      {params: [map[:minus_one], map[:one]], expect: "-1,1"},
+                      {params: [map[:minus_one], map[:three]], expect: "-1,1,3"},
+                      {params: [map[:three], map[:minus_one]], expect: "3,1,-1"},
+                      {params: [map[:one], map[:seven]], expect: "1,5,7"},
+                      {params: [map[:seven], map[:one]], expect: "7,5,1"},
+                      {params: [map[:three], map[:five]], expect: "3,1,5"},
+                      {params: [map[:five], map[:three]], expect: "5,1,3"},
+                      {params: [map[:six], map[:three]], expect: "6,7,5,1,3"},
+                      {params: [map[:three], map[:six]], expect: "3,1,5,7,6"},
+                      {params: [map[:two], map[:eight]], expect: "2,3,1,5,7,8"},
+                      {params: [map[:eight], map[:two]], expect: "8,7,5,1,3,2"},
+                      {params: [map[:four], map[:eight]], expect: "4,3,1,5,7,8"},
+                      {params: [map[:eight], map[:four]], expect: "8,7,5,1,3,4"},
+                      {params: [map[:minus_two], map[:eight]], expect: "-2,-1,1,5,7,8"},
+                      {
+                          params: [map[:minus_two], Node.new(9)],
+                          predicate: Proc.new { |result| result.include? "no path" }
+                      },
+                      {
+                          params: [Node.new(-3), map[:eight]],
+                          predicate: Proc.new { |result| result.include? "no path" }
+                      }
+                  ]
+  end
+
   def generate_random_lines(line_count)
     lines = Array.new(line_count)
     alphabet = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
@@ -102,5 +168,75 @@ class InterviewExercises_test < TestHelper
     distinct_lines = []
     lines.each { |line| distinct_lines << line if not distinct_lines.include? line }
     distinct_lines
+  end
+
+  # Builds the tree:
+  #        root
+  # left     5   right
+  #       1      7
+  #    -1   3   6 8
+  #   -2 0 2 4
+  # @return [Hash] a hash map where:
+  #                  hash[:one] returns node {1}
+  #                  hash[:five] returns node {5}
+  #                  and so on.
+  def build_tree
+    map = {}
+    map[:minus_two] = minus_two = Node.new -2
+    map[:minus_one] = minus_one = Node.new -1
+    map[:zero] = zero = Node.new 0
+    map[:one] = one = Node.new 1
+    map[:two] = two = Node.new 2
+    map[:three] = three = Node.new 3
+    map[:four] = four = Node.new 4
+    map[:five] = five = Node.new 5
+    map[:six] = six = Node.new 6
+    map[:seven] = seven = Node.new 7
+    map[:eight] = eight = Node.new 8
+    # first level
+    five.left = one
+    five.right = seven
+    # second level
+    one.left = minus_one
+    one.right = three
+    seven.left = six
+    seven.right = eight
+    # third level
+    minus_one.left = minus_two
+    minus_one.right = zero
+    three.left = two
+    three.right = four
+
+    map
+  end
+
+  class Node
+    attr_accessor :value, :left, :right, :parent
+
+    # @param [Object] args
+    def initialize(val, args = {})
+      @value = val
+      @left = args[:left]
+      @right = args[:right]
+      @parent = args[:parent]
+    end
+
+    # @param [Node] left_node
+    def left=(left_node)
+      @left = left_node
+      left_node.parent = self
+    end
+
+    # @param [Node] right_node
+    def right=(right_node)
+      @right = right_node
+      right_node.parent = self
+    end
+
+    def to_s
+      left_val = !left.nil? ? left.value : nil
+      right_val = !right.nil? ? right.value : nil
+      return "<val:#{value},l:#{left_val},r:#{right_val}>"
+    end
   end
 end

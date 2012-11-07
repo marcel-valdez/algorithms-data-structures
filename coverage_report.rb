@@ -4,7 +4,7 @@ require 'simplecov'
 SimpleCov.adapters.define("tests") {
   add_filter('/test/')
 
-  add_group('interview exercises', 'src')
+  add_group('interview exercises', 'src/interview_exercises.rb')
   add_group('utilities', 'src/utils')
   add_group('chapter 1', 'src/chapter_1')
   add_group('chapter 2', 'src/chapter_2')

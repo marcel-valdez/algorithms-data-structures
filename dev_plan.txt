@@ -14,6 +14,7 @@ The Basics:
 			1.3.34 Randomize Bag Elements (priangulo)
 		1.4 Analysis of Algorithms 
 			1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo)
+			* Need more exercises
 	Chapter 2: Sorting
 		2.1 Elementary Sorts
 			2.1.3 Maximize min index modifications in selection sort (marcel-valdez)
@@ -22,10 +23,15 @@ The Basics:
 			2.1.16 Certification.
 	Chapter 3: Searching
 		3.1 Elementary Symbol Tables
-		    Utilities: Symbol Table implementation (priangulo/marcel-valdez)
+		    Utilities: Symbol-table implementation. (priangulo/marcel-valdez)
+		    3.1.2 Symbol-table that uses an unordered array. PENDING
+		    3.1.22 Self-organizing search. PENDING
+            3.1.24 Interpolation search. PENDING
+
 	Chapter 5: Strings
 		5.1 String Sorts
 			5.1.15 Sublinear number sorting algorithm (marcel-valdez)
+			* Need more exercises
 
 The Opening:
 	Chapter 2: Sorting.
@@ -33,7 +39,7 @@ The Opening:
 		    2.2.10 Faster merge. (marcel-valdez)
 		    2.2.11 Implement 3 improvements to mergesort. Note: Implies 2.2.10. (marcel-valdez)
 		    2.2.14 Merging sorted queues. PENDING
-		    2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14 TODO
+		    2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14 PENDING
 		    2.2.17 Linked-list mergesort. PENDING
 		2.3 Quicksort
 		    2.3.18 Median-of-3 partitioning. (marcel-valdez)
