@@ -111,8 +111,8 @@ class InterviewExercises_test < TestHelper
   # src:{-2} dst:{0} "-2,-1,0"
   # src:{4} dst:{2}  "4,3,2"
   # src:{2} dst:{6}  "2,3,1,5,7,6"
-  # src:{2} dst:{10}  "no path" <-- could be "2,3,1,5,7,8, no path"
-  #                                 as long as it contains the words 'no path'
+  # src:{2} dst:{10}  "n" <-- could be "2,3,1,5,7,8,n"
+  #                                 as long as it contains the letter 'n'
   def test_find_path
     # Arrange
     map = build_tree
@@ -120,6 +120,7 @@ class InterviewExercises_test < TestHelper
     # Act
     verify_method :find_path,
                   with: [
+                      # Assert
                       {params: [map[:five], map[:seven]], expect: "5,7"},
                       {params: [map[:seven], map[:five]], expect: "7,5"},
                       {params: [map[:five], map[:one]], expect: "5,1"},
@@ -145,11 +146,11 @@ class InterviewExercises_test < TestHelper
                       {params: [map[:minus_two], map[:eight]], expect: "-2,-1,1,5,7,8"},
                       {
                           params: [map[:minus_two], Node.new(9)],
-                          predicate: Proc.new { |result| result.include? "no path" }
+                          predicate: Proc.new { |result| result.end_with? "n" }
                       },
                       {
                           params: [Node.new(-3), map[:eight]],
-                          predicate: Proc.new { |result| result.include? "no path" }
+                          predicate: Proc.new { |result| result.end_with? "n" }
                       }
                   ]
   end
@@ -236,7 +237,7 @@ class InterviewExercises_test < TestHelper
     def to_s
       left_val = !left.nil? ? left.value : nil
       right_val = !right.nil? ? right.value : nil
-      return "<val:#{value},l:#{left_val},r:#{right_val}>"
+      "<val:#{value},l:#{left_val},r:#{right_val}>"
     end
   end
 end

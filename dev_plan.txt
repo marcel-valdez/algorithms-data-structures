@@ -12,7 +12,7 @@ The Basics:
 			1.3.21 Find an element inside a linked list (magg)
 			1.3.30 Reverse a linked list (magg)
 			1.3.34 Randomize Bag Elements (priangulo)
-		1.4 Analysis of Algorithms 
+		1.4 Analysis of Algorithms
 			1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo)
 			* Need more exercises
 	Chapter 2: Sorting
@@ -45,32 +45,30 @@ The Opening:
 		    2.3.18 Median-of-3 partitioning. (marcel-valdez)
 		    2.3.22 Fast 3-way partitioning. PENDING
 		    2.3.23 Super quick sort. PENDING
-	Chapter 3: Searching. 
+        2.4 Priority Queues
+	Chapter 3: Searching.
 		3.2 Binary Search Trees
 		    Utilities: Binary Search Tree implementation (marcel-valdez)
 			3.2.6 Height alternatives for BST. PENDING
 			3.2.WEB.1 The great tree-list recursion problem. PENDING.
 		3.3 Balanced Search Trees
-	Chapter 5: Strings. 
+	Chapter 5: Strings.
 		5.2 Tries
 		5.3 Substring Search
-    Chapter 6: Context.
-        6.2 B-Trees
 
 The Middlegame:
-	Chapter 3: Searching. 
+	Chapter 3: Searching.
 		3.4 Hash Tables
-	Chapter 4: Graphs. 
+	Chapter 4: Graphs.
 		4.1 Unidirected Graph
 		4.2 Directed Graphs
 		4.4 Shortest Paths
 	Chapter 6: Context.
 		6.6 Intractability
+		6.2 B-Trees
 
 The Endgame:
-	Chapter 2: Sorting.
-        2.4 Priority Queues
-	Chapter 4: Graphs. 
+	Chapter 4: Graphs.
 		4.3 Minimum Spanning Trees
     Chapter 5: Strings.
         5.4 Regular Expressions

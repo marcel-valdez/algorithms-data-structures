@@ -28,26 +28,27 @@ class InterviewExercises
 
   # Worst-case time complexity for a single search: O(n log n)
   # this happens when the entire tree has to be traversed before
-  # traversing to parent node
+  # traversing to each node's parent
   # Average-time complexity for a single search: O(log n)
-  def find_path(src, dst, caller = nil)
-    return "no path" if src.nil?
-    return src.value.to_s if src.value == dst.value
-
-    next_path = "no path"
-    if dst.value < src.value and src.left != caller
-      next_path = find_path(src.left, dst, src)
+  def find_path(src, dst, invoker = nil)
+    return "n"  if src.nil? # n if did not find a path to dst
+    return src.value.to_s if src.value == dst.value # src if reached dst
+    # start off without a valid path
+    path = "n"
+    if dst.value < src.value # if dst is to the left
+      # try to find dst in left sub-tree, unless left child is the invoker
+      path = find_path(src.left, dst, src)  unless src.left == invoker
+    elsif dst.value > src.value # if dst is to the right
+      # try to find dst in right sub-tree, unless right child is the invoker
+      path = find_path(src.right, dst, src)  unless src.right == invoker
     end
 
-    if dst.value > src.value and src.right != caller
-      next_path = find_path(src.right, dst, src)
+    if path.end_with? "n" # if dst wasn't found in children
+      # look for path in parent, unless parent is the invoker
+      path = find_path(src.parent, dst, src)  unless src.parent == invoker
     end
-
-    if next_path.include? "no path" and src.parent != caller
-      next_path = find_path(src.parent, dst, src)
-    end
-
-    "#{src.value},#{next_path}"
+    # return path from src to end
+    "#{src.value},#{path}"
   end
 
   def distinct_line?(line, current_node)
