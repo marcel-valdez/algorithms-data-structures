@@ -1,6 +1,9 @@
 require 'simplecov'
 require 'rake/testtask'
 
+task :default => [:test, :coverage] do
+end
+
 desc "Run tests with code coverage."
 task :coverage do
   SimpleCov.start do
