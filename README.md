@@ -1,13 +1,16 @@
-**Ohloh Statistics:**  
+**Ohloh Statistics:**
 <a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
 <img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_partner_badge.gif">
 </a>
 
+**Build Status**
+[![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)
+
 This project is inspired by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
 This project will help the user learn algorithms and data structures by asking of him to code methods that
-must pass tests that specify the behavior of many fundamental algorithms and data structures of Computer Science.  
-  
-This project will contain the topics of algorithms and data structures found in the book:  
+must pass tests that specify the behavior of many fundamental algorithms and data structures of Computer Science.
+
+This project will contain the topics of algorithms and data structures found in the book:
 Algorithms 4th Ed by Robert Sedgewick and Kevin Wayne, focusing on the book and the exercises at http://algs4.cs.princeton.edu/home/
 
 The folders src and test have a simmetric structure:
@@ -16,22 +19,22 @@ The folders src and test have a simmetric structure:
 * test/ contains tests for the algorithm, note that if you plan to contribute to this project, you should use TDD for the development of these algorithms.
 
 Folder organization:
-* src/  
-    * chapterX/  
+* src/
+    * chapterX/
         * sectionY/
-          * ZzzExercises.rb  
+          * ZzzExercises.rb
     * utils/
-  
-* test/ 
-    * chapterX/  
+
+* test/
+    * chapterX/
       * sectionY/
-          * ZzzExercises_test.rb  
+          * ZzzExercises_test.rb
 
-**All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
-book: Algorithms 4th Ed by Robert Sedgewick  
-webpage: http://algs4.cs.princeton.edu/home/  
+**All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**
+book: Algorithms 4th Ed by Robert Sedgewick
+webpage: http://algs4.cs.princeton.edu/home/
 
-In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.  
+In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.
 
 How to setup the project on Linux:
 
@@ -52,7 +55,7 @@ bundle exec guard
 ````
 
 Rules for contributing to the project:
-* Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, appending 
+* Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, appending
   your github username (and be known for you mad algorithmic skillz).
 * All exercises must have a test and solution
 * All pull requests are reviewed by the reviewing team
