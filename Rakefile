@@ -53,6 +53,7 @@ Cane::RakeTask.new(:style) do |cane|
   cane.doc_glob = 'test/**/*.rb'
   cane.style_glob = '{src,test}/**/*.rb'
   cane.no_style = false
+  # TODO: Reduce cane style violations
   cane.max_violations = 167
 end
 
@@ -60,6 +61,8 @@ desc "Use flay to check code similarity"
 FlayTask.new(:flay) do |flay|
   flay.dirs = %w(src test)
   flay.verbose = true
+  # TODO: Reduce flay values
+  # TODO: Reduce flay found IDENTICAL code
   flay.threshold = 1644
 end
 
