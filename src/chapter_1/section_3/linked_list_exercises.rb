@@ -2,17 +2,17 @@
 
 require_relative "../../utils/point2d"
 require_relative "../../utils/number_utils"
-require_relative "../../utils/linkedlist"
+require_relative "../../utils/linked_list"
 
 module Chapter1
   module Section3
     class LinkedListExercises
 
 		def initialize
-		   
+
 		end
 
-      	# Write a method delete() that takes an int argument k and deletes the kth 
+      	# Write a method delete() that takes an int argument k and deletes the kth
       	# element in a linked list, if it exists.
       	# Assume input is always a string
      	# Examples:
@@ -20,15 +20,15 @@ module Chapter1
 
 			while nodo.next != nil
 					if nodo.value == input
-						nodo.value = nodo.next.value 
-						nodo.next = nodo.next.next 
-					else 
+						nodo.value = nodo.next.value
+						nodo.next = nodo.next.next
+					else
 				 		nodo = nodo.next
 					end
 			end #while ends
 		 end
 
-		#Write a method find() that takes a linked list and a string key as 
+		#Write a method find() that takes a linked list and a string key as
 		#arguments and returns true if some node in the list has key as its item field, false otherwise.
       	# Assume input is always a string
 		def find_e32(nodo,input)
@@ -41,7 +41,7 @@ module Chapter1
 			return false
 		end
 
-    # Write a method delete() that takes an int argument k and deletes 
+    # Write a method delete() that takes an int argument k and deletes
     #the kth element in a linked list, if it exists.
 		def reverse_iter_e33(root)
 			previous_node = nil
@@ -55,7 +55,7 @@ module Chapter1
 			return previous_node
 		end
 
-    # Write a method delete() that takes an int argument k and deletes 
+    # Write a method delete() that takes an int argument k and deletes
     #the kth element in a linked list, if it exists.
 		def reverse_recur_e33(root)
 			return nil if root.nil?

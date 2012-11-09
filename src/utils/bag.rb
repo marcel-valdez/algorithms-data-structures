@@ -1,3 +1,6 @@
+# encoding: utf-8
+require_relative "list_node"
+
 module Utils
 	class Bag
 		include Enumerable
@@ -14,7 +17,7 @@ module Utils
 
 		def insert (value)
 			old_first = @first
-			new_node = NodeOfBag.new(value, old_first)
+			new_node = ListNode.new(value, old_first)
 			@size += 1
 			@first = new_node
 		end
@@ -30,14 +33,5 @@ module Utils
 		private
 		attr_accessor :first
 		attr_writer :size
-
-		class NodeOfBag
-			attr_accessor :value, :next
-
-			def initialize (value, next_node)
-				@value     = value
-			    @next   = next_node
-			end
-		end
 	end
 end

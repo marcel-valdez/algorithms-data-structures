@@ -14,65 +14,43 @@ module Chapter1
         @target = Exercises.new
       end
 
-      # Called after every test method runs. Can be used to tear
-      # down fixture information.
-      def teardown
-        # Empty
-      end
-
-      def check_points(n = 0, generated_points = [], actual_shortest = 0)
-        shortest = nil
-        generated_points.each_with_index { |point, index|
-          generated_points.each { |other_point|
-            unless other_point.eql? point
-              distance = point.distance_to other_point
-              shortest = distance if shortest.nil? or shortest > distance
-              break if shortest.eql? 0
-            end
-          }
-        }
-
-        if n != generated_points.length
-          puts "Expected #{n} pairs but found #{generated_points.length}: #{generated_points.inspect}"
-        end
-
-        if actual_shortest != shortest
-          puts "Expected shortest #{shortest}but found #{actual_shortest}. Points:#{generated_points.inspect}"
-        end
-
-        n == generated_points.length and actual_shortest == shortest
-      end
-
-      # Write a Point2D method (src/utils/point2d.rb) that takes an integer value N as a parameter, and generates
-      # random N points, computes the distance separating the closest pair of points, and returns an array of points of Point2D
-      # with the generated points, and the distance between the two closest points
+      # 1.2.1 Write a Point2D method (src/utils/point2d.rb) that takes an integer value N as a parameter,
+      # and generates random N points, computes the distance separating the closest pair of points, and
+      # returns an array of points of Point2D with the generated points, and the distance between the
+      # two closest points
       def test_point_distance_e121
         (1..30).each {#Idempotence verification
           verify_method :point_distance_e121,
                         :with => [{
                                       param: 2,
-                                      predicate: Proc.new { |points_pairs, shortest| check_points(2, points_pairs, shortest)
+                                      predicate: Proc.new { |points_pairs, shortest|
+                                        check_points(2, points_pairs, shortest)
                                       }},
                                   {
                                       param: 3,
-                                      predicate: Proc.new { |points_pairs, shortest| check_points(3, points_pairs, shortest) }
+                                      predicate: Proc.new { |points_pairs, shortest|
+                                        check_points(3, points_pairs, shortest) }
                                   },
                                   {
                                       param: 5,
-                                      predicate: Proc.new { |points_pairs, shortest| check_points(5, points_pairs, shortest) }
+                                      predicate: Proc.new { |points_pairs, shortest|
+                                        check_points(5, points_pairs, shortest) }
                                   },
                                   {
                                       param: 9,
-                                      predicate: Proc.new { |points_pairs, shortest| check_points(9, points_pairs, shortest) }
+                                      predicate: Proc.new { |points_pairs, shortest|
+                                        check_points(9, points_pairs, shortest) }
                                   },
                                   {
                                       param: 30,
-                                      predicate: Proc.new { |points_pairs, shortest| check_points(30, points_pairs, shortest) }
+                                      predicate: Proc.new { |points_pairs, shortest|
+                                        check_points(30, points_pairs, shortest) }
                                   }]
         }
       end
 
-      # Write a program that receives N Ranges (a..b), and returns all pairs of ranges that intersect
+      # 1.2.2 Write a method range_intersect_e122 that receives N Ranges (a..b), and returns all
+      # pairs of ranges that intersect.
       # For example: 0..1, 1..2, 1..3 should return pairs: {0..1, 1..2}, {1..2, 1..3}, {0..1, 1..3}
       def test_range_intersect_e122
         verify_method :range_intersect_e122,
@@ -99,6 +77,31 @@ module Chapter1
                           ]
       end
 
+      # 1.2.3 Write a program that receives N, min, and max, and generates N ranges with a
+      # start between min..max and end between min..max, then calculates all pairs of ranges
+      # that intersect and all pairs of ranges contained one inside the other. The method
+      # should return all generated ranges, intersecting ranges and ranges contained.
+      # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
+      # Assume N > 1 and min < max and min >= 0
+      def test_include_intersect_e123
+        verify_method :include_intersect_e123,
+                      :with =>
+                          [
+                              {
+                                  params: [2, 1, 2],
+                                  predicate: Proc.new { |all, intersect, include| check_included_intersected(2, 1, 2, all, intersect, include) }
+                              },
+                              {
+                                  params: [5, 1, 10],
+                                  predicate: Proc.new { |all, intersect, include| check_included_intersected(5, 1, 10, all, intersect, include) }
+                              }
+                          ]
+
+      end
+
+      # TODO: Add the rest of exercises for Chapter 1 Section 2
+
+      private
 
       def check_included_intersected (n, min, max, all_ranges, intersected_pairs, included_pairs)
         if n != all_ranges.length
@@ -129,28 +132,28 @@ module Chapter1
         true
       end
 
-      # Write a program that receives N, min, and max, and generates N ranges with a start between min..max and
-      # end between min..max, then calculates all pairs of ranges that intersect and all pairs of ranges contained
-      # one inside the other. The method should return all generated ranges, intersecting ranges and ranges contained
-      # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
-      # Assume N > 1 and min < max and min >= 0
-      def test_include_intersect_e123
-        verify_method :include_intersect_e123,
-                      :with =>
-                          [
-                              {
-                                  params: [2, 1, 2],
-                                  predicate: Proc.new { |all, intersect, include| check_included_intersected(2, 1, 2, all, intersect, include) }
-                              },
-                              {
-                                  params: [5, 1, 10],
-                                  predicate: Proc.new { |all, intersect, include| check_included_intersected(5, 1, 10, all, intersect, include) }
-                              }
-                          ]
+      def check_points(n = 0, generated_points = [], actual_shortest = 0)
+        shortest = nil
+        generated_points.each_with_index { |point, index|
+          generated_points.each { |other_point|
+            unless other_point.eql? point
+              distance = point.distance_to other_point
+              shortest = distance if shortest.nil? or shortest > distance
+              break if shortest.eql? 0
+            end
+          }
+        }
 
+        if n != generated_points.length
+          puts "Expected #{n} pairs but found #{generated_points.length}: #{generated_points.inspect}"
+        end
+
+        if actual_shortest != shortest
+          puts "Expected shortest #{shortest}but found #{actual_shortest}. Points:#{generated_points.inspect}"
+        end
+
+        n == generated_points.length and actual_shortest == shortest
       end
-
-      # TODO: Add the rest of exercises for Chapter 1 Section 2
     end
   end
 end

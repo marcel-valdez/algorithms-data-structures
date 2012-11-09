@@ -139,10 +139,10 @@ class TestHelper < Test::Unit::TestCase
     loops = yield n
     time_block {
       i = 0
-      for x in (1..loops)
+      (1..loops).each { |x|
         # Perform a 'real' operation, not just a sum or concatenation
         i += Float(i)/x
-      end
+      }
     }
   end
 end

@@ -50,10 +50,14 @@ module Chapter1
 
       def quick_sort(values)
         return [] if values.size == 0
-        # note that it is a good idea to use ruby's built-in features because they are implemented in C
-        first, *work = *values # gets the value at values[0] and separates it from the input array
-        less, more = work.partition { |y| y < first } # partitions by the first value
-        quick_sort(less) + [first] + quick_sort(more) # sorts each side separately and concatenates
+        # note that it is a good idea to use ruby's built-in features
+        # because they are implemented in C
+        # gets the value at values[0] and separates it from the input array
+        first, *work = *values
+        # partitions by the first value
+        less, more = work.partition { |y| y < first }
+        # sorts each side separately and concatenates
+        quick_sort(less) + [first] + quick_sort(more)
       end
     end
   end

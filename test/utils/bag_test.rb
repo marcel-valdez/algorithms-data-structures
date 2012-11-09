@@ -1,8 +1,9 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/bag"
+
 module Utils
   class BagTest < TestHelper
-  	
+
   	def initialize(*arg)
       super(*arg)
       @target= Bag.new
@@ -54,15 +55,15 @@ module Utils
 
         # Assert
         assert_equal 2, target.size
-        assert_false target.is_empty?       
+        assert_false target.is_empty?
       end
 
       sub_case "test if it can traverse the nodes" do
-      	# Arrange 
+      	# Arrange
       	i = 2
-      	
+
         # Act (3th)
-       	target.each {|item| 
+       	target.each {|item|
        		# Assert
        		assert_equal i, item
        		i-=1

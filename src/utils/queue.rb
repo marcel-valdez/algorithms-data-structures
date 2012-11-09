@@ -1,3 +1,5 @@
+require_relative "list_node"
+
 module Utils
   class Queue
     include Enumerable
@@ -15,7 +17,7 @@ module Utils
     end
 
     def queue (value)
-      new_node = Node.new value
+      new_node = ListNode.new value
       if @size == 0
         @first = @last = new_node
       else
@@ -50,14 +52,5 @@ module Utils
     private
     attr_accessor :first, :last
     attr_writer :size
-
-    class Node
-      attr_accessor :value, :next
-
-      def initialize (value)
-        @value=value
-        @next=nil
-      end
-    end
   end
 end

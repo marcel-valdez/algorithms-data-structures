@@ -1,14 +1,4 @@
 module Utils
-  class Node
-    attr_accessor :value, :next
-
-    def initialize(value)
-      @value = value
-      @next = nil
-    end
-
-  end
-
   class LinkedList
     include Enumerable
 
@@ -47,7 +37,7 @@ module Utils
     end
 
     # TODO: add test for this
-    def print
+    def to_s
       if @last.nil?
         puts("Empty list")
       else
@@ -57,7 +47,7 @@ module Utils
         while slider.next != nil
           puts slider.value
           slider = slider.next
-        end #while ends
+        end
 
         puts slider.value
       end #if-else ends

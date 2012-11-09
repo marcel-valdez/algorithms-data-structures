@@ -42,12 +42,10 @@ module Chapter1
           end
 
           i = 0
-
           # Order numbers based on the occurrence count of their key
           while i < size
-            # Obains the key of the 8-bit number after shifting 'bit_shift' bits
+            # Obtains the key of the 8-bit number after shifting 'bit_shift' bits
             idx = (values[i] >> bit_shift) & @letter_and
-
             aux[count[idx]] = values[i]
             count[idx]+=1
 

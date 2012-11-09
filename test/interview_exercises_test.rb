@@ -42,7 +42,7 @@ class InterviewExercises_test < TestHelper
   # Test: That the function is correct
   #       That it is faster than the naive implementation.
 
-  # function that removes duplicate strings in an array of strings (where each string can be very long)
+  # Function that removes duplicate strings in an array of strings (where each string can be very long)
   # and there could be millions of strings.
   # Assumption: Assume that the string will only contain letters a-z and A-Z
   # Note: Do not compare all strings vs. all strings.
@@ -86,8 +86,11 @@ class InterviewExercises_test < TestHelper
     naive_time = time_block { naive_remove_duplicate_lines(random_lines) }
     actual_time = time_block { @target.remove_duplicate_lines(random_lines) }
 
-    #puts "naive time: #{naive_time}"
-    #puts "actual time: #{actual_time}"
+    if naive_time < actual_time * 2
+      puts "naive time: #{naive_time}"
+      puts "actual time: #{actual_time}"
+    end
+
     assert_operator(actual_time * 2, :<, naive_time)
   end
 
@@ -112,7 +115,7 @@ class InterviewExercises_test < TestHelper
   # src:{4} dst:{2}  "4,3,2"
   # src:{2} dst:{6}  "2,3,1,5,7,6"
   # src:{2} dst:{10}  "n" <-- could be "2,3,1,5,7,8,n"
-  #                                 as long as it contains the letter 'n'
+  #                                 as long as it ends with the letter 'n'
   def test_find_path
     # Arrange
     map = build_tree
@@ -171,6 +174,8 @@ class InterviewExercises_test < TestHelper
     distinct_lines
   end
 
+  private
+
   # Builds the tree:
   #        root
   # left     5   right
@@ -178,8 +183,8 @@ class InterviewExercises_test < TestHelper
   #    -1   3   6 8
   #   -2 0 2 4
   # @return [Hash] a hash map where:
-  #                  hash[:one] returns node {1}
-  #                  hash[:five] returns node {5}
+  #                  hash[:one] returns Node {1}
+  #                  hash[:five] returns Node {5}
   #                  and so on.
   def build_tree
     map = {}
