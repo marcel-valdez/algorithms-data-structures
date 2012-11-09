@@ -1,8 +1,18 @@
 require 'simplecov'
 require 'rake/testtask'
+require 'flay_task'
+require 'cane/rake_task'
 
-task :default => [:test, :coverage] do
+task :default => [:test, :coverage, :check_style] do
 end
+
+desc "Run tests in the project"
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'src' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
+end
+
 
 desc "Run tests with code coverage."
 task :coverage do
@@ -35,11 +45,27 @@ task :coverage do
   #Rake::Task['test'].execute
 end
 
-desc "Run tests in the project"
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'src' << 'test'
-  test.pattern = 'test/**/*_test.rb'
-  test.verbose = true
+desc "Check coding style with cane"
+Cane::RakeTask.new(:style) do |cane|
+  cane.abc_glob = '{test}/**/*.rb'
+  cane.abc_max = 15
+  cane.style_measure = 100
+  cane.doc_glob = 'test/**/*.rb'
+  cane.style_glob = '{src,test}/**/*.rb'
+  cane.no_style = false
+  cane.max_violations = 167
+end
+
+desc "Use flay to check code similarity"
+FlayTask.new(:flay) do |flay|
+  flay.dirs = %w(src test)
+  flay.verbose = true
+  flay.threshold = 1644
+end
+
+desc "Check for good style and code similarity"
+# Had to make it depend on coverage so it is not ran before simplecov
+task :check_style => [:flay, :style] do
 end
 
 def require_dir_files(dir_path)
