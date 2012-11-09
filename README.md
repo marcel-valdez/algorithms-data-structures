@@ -3,7 +3,7 @@
 <img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_partner_badge.gif">
 </a>
 
-**Build Status**
+**Build Status: **
 [![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)
 
 This project is inspired by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
