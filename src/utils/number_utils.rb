@@ -1,3 +1,10 @@
+class Array
+  # swaps element at index i for the element at index j
+  def swap(i, j)
+    self[i], self[j] = self[j], self[i]
+  end
+end
+
 module Math
   def Math.min(a, b)
     a < b ? a : b

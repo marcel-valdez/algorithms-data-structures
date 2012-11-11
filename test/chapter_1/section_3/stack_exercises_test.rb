@@ -55,6 +55,33 @@ module Chapter1
                           ]
       end
 
+      # Write a method postfix_evaluator_e1311 that takes a postfix expression
+      # as a string parameter, evaluates it, and returns the value of the arithmetic operation.
+      # Assume input is always in correct postfix format, you only need to
+      # consider +, -, /, * operations.
+      # Example:
+      # input: 1 2 + output: 3
+      # input: 1 2 3 + output: 6
+      # input: 3 4 - 5 + output: 4
+      # input: 3 4 - 5 * output: -5
+      # input: 5 3 4 - * output: -5
+      # input 3 4 5 - * output: -3
+      # input: 3 4 + 5 6 * * 2 + output: 212
+      def test_postfix_evaluator_e1311
+        verify_method :postfix_evaluator_e1311,
+                      :with =>
+                          [
+                              {param: '1 2 +', expect: 3},
+                              {param: '1 2 3 +', expect: 6},
+                              {param: '3 4 - 5 +', expect: 4},
+                              {param: '3 4 - 5 *', expect: -5},
+                              {param: '5 3 4 - *', expect: -5},
+                              {param: '3 4 5 - *', expect: -3},
+                              {param: '3 4 + 5 6 * * 2 +', expect: 212}
+                          ]
+      end
+
+      # Depends on: postfix_evaluator_e1311
       # Write a method that converts an arithmetic expression from infix to postfix.
       # Using stacks to process the infix and postfix expressions
       # Assume input is always in correct infix format
@@ -99,70 +126,35 @@ module Chapter1
                           ]
       end
 
-      # Write a method postfix_evaluator_e1311 that takes a postfix expression
-      # as a string parameter, evaluates it, and returns the value of the arithmetic operation.
-      # Assume input is always in correct postfix format, you only need to
-      # consider +, -, /, * operations.
-      # Example:
-      # input: 1 2 + output: 3
-      # input: 1 2 3 + output: 6
-      # input: 3 4 - 5 + output: 4
-      # input: 3 4 - 5 * output: -5
-      # input: 5 3 4 - * output: -5
-      # input 3 4 5 - * output: -3
-      # input: 3 4 + 5 6 * * 2 + output: 212
-      def test_postfix_evaluator_e1311
-        verify_method :postfix_evaluator_e1311,
-                      :with =>
-                          [
-                              {param: '1 2 +', expect: 3},
-                              {param: '1 2 3 +', expect: 6},
-                              {param: '3 4 - 5 +', expect: 4},
-                              {param: '3 4 - 5 *', expect: -5},
-                              {param: '5 3 4 - *', expect: -5},
-                              {param: '3 4 5 - *', expect: -3},
-                              {param: '3 4 + 5 6 * * 2 +', expect: 212}
-                          ]
-      end
-
       private
 
       # @param [String] expression
       # @param [Numeric] expected_result
       def check_expression_result(expression, expected_result)
         actual_result = evaluate_postfix_expression expression
-        puts "Expected: #{expected_result} but received: #{actual_result}, with expression: #{expression}" if actual_result != expected_result
+        if actual_result != expected_result
+          msg = "Expected: #{expected_result} but received: #{actual_result}, "
+          msg += "with expression: #{expression}"
+
+          puts msg
+        end
+
         actual_result == expected_result
       end
 
+      # Uses the postfix evaluator you wrote for exercise e1311 to
+      # test your infix to postfix implementation.
       def evaluate_postfix_expression(postfix_input)
-        stack = Utils::Stack.new
-        # Iterate every token
-        begin
-          tokens = postfix_input.split(' ')
-          tokens.each_with_index { |token, index|
-            # Encounter operator
-            if token.match @is_oper
-              begin
-                # Set right operand
-                right_operand = stack.pop
-                # Set left operand
-                left_operand = stack.pop
-                # Append operation
-                oper_result = execute_operation(left_operand, right_operand, token)
-                stack.push oper_result
-              end until stack.size < 2 || index < tokens.size - 1
-            else
-              stack.push token
-            end
-          }
+        unless @target.respond_to? :postfix_evaluator_e1311
+          fail "You must solve test_postfix_evaluator_e1311 first"
+        end
 
+        begin
+          return @target.postfix_evaluator_e1311(postfix_input)
         rescue Exception => error
           msg = "Bad postfix format: #{postfix_input}, #{error.message}"
           raise Test::Unit::AssertionFailedError.new(msg)
         end
-
-        stack.pop
       end
 
       def execute_operation(left_operand, right_operand, operator)
