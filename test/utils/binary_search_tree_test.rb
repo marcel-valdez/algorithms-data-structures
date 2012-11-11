@@ -2,9 +2,11 @@
 
 require_relative "../test_helper"
 require_relative "../../src/utils/binary_search_tree"
+require_relative "utils_test_helper"
 
 module Utils
   class BinarySearchTreeTest < TestHelper
+    include UtilsTestHelper
 
     def initialize(*arg)
       super(*arg)
@@ -32,17 +34,10 @@ module Utils
       non_api = [:size=, :is_empty=, :keys=, :root, :root=, :min=, :floor=]
 
       # Act
-      target = BinarySearchTree.new
+      @target = BinarySearchTree.new
 
       # Assert
-
-      api.each { |method_name|
-        assert_respond_to target, method_name
-      }
-
-      non_api.each { |method_name|
-        assert_not_respond_to target, method_name
-      }
+      assert_api(api, non_api)
     end
 
     test "if it starts empty" do

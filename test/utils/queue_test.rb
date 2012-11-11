@@ -1,8 +1,11 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/queue"
+require_relative "utils_test_helper"
 
 module Utils
   class QueueTest < TestHelper
+    include UtilsTestHelper
+
     def initialize(*arg)
       super(*arg)
       @target= Queue.new
@@ -14,23 +17,14 @@ module Utils
       non_api = [:size=, :first=, :last=, :first, :last]
 
       # Act
-      target = Queue.new
+      @target = Queue.new
 
       # Assert
-
-      api.each { |method_name|
-        assert_respond_to target, method_name
-      }
-
-      non_api.each { |method_name|
-        assert_not_respond_to target, method_name
-      }
+      assert_api(api, non_api)
     end
 
     test "if it starts empty" do
-
       # Arrange
-
       # Act
       target = Queue.new
 
@@ -39,7 +33,6 @@ module Utils
     end
 
     test "if it can use 'each' to find nodes" do
-
       target = Queue.new
 
       target.queue 1
@@ -91,7 +84,6 @@ module Utils
         end
       end
     end
-
 
   end
 end

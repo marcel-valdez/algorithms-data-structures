@@ -15,5 +15,3 @@ gem 'flay', :group => [:development, :test]
 gem 'rake', :group => :test
 gem 'cane', :group => :test
 gem 'simplecov', :group => :test
-
-

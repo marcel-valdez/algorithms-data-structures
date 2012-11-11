@@ -3,6 +3,7 @@ require_relative "../../src/utils/symbol_table"
 
 module Utils
   class SymbolTableTest < TestHelper
+
     def initialize(*arg)
       super(*arg)
       @target= SymbolTable.new

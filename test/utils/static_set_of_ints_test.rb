@@ -1,7 +1,11 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/static_set_of_ints"
+require_relative "utils_test_helper"
+
 module Utils
   class StaticSetOfIntsTest < TestHelper
+    include UtilsTestHelper
+
     def initialize(*arg)
       super(*arg)
       @target= StaticSetOfIntegers.new [2, 4, 5, 7, 12]
@@ -13,16 +17,10 @@ module Utils
       non_api = [:array=]
 
       # Act
-      target = StaticSetOfIntegers.new [2, 4, 5, 7, 12]
+      @target = StaticSetOfIntegers.new [2, 4, 5, 7, 12]
 
       # Assert
-      api.each { |method_name|
-        assert_respond_to target, method_name
-      }
-
-      non_api.each { |method_name|
-        assert_not_respond_to target, method_name
-      }
+      assert_api(api, non_api)
     end
 
     test "if it has a working contains? method" do

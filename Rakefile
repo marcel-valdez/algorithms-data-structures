@@ -54,7 +54,7 @@ Cane::RakeTask.new(:style) do |cane|
   cane.style_glob = '{src,test}/**/*.rb'
   cane.no_style = false
   # TODO: Reduce cane style violations
-  cane.max_violations = 167
+  cane.max_violations = 159
 end
 
 desc "Use flay to check code similarity"
