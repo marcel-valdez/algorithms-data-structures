@@ -11,6 +11,7 @@ Rake::TestTask.new(:test) do |test|
   test.libs << 'src' << 'test'
   test.pattern = 'test/**/*_test.rb'
   test.verbose = true
+  ENV["TASK"] = ENV["TASK"].to_s + ":TEST"
 end
 
 
@@ -40,6 +41,8 @@ task :coverage do
   require_dir_files(lib_dir)
   require_dir_files(test_dir)
 
+  ENV["TASK"] = ENV["TASK"].to_s + ":COVERAGE"
+
   #$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
   #$LOAD_PATH.unshift(test_dir) unless $LOAD_PATH.include?(test_dir)
   #Rake::Task['test'].execute
@@ -55,6 +58,7 @@ Cane::RakeTask.new(:style) do |cane|
   cane.no_style = false
   # TODO: Reduce cane style violations
   cane.max_violations = 167
+  ENV["TASK"] = ENV["TASK"].to_s + ":STYLE"
 end
 
 desc "Use flay to check code similarity"
@@ -64,11 +68,13 @@ FlayTask.new(:flay) do |flay|
   # TODO: Reduce flay values
   # TODO: Reduce flay found IDENTICAL code
   flay.threshold = 1644
+  ENV["TASK"] = ENV["TASK"].to_s + ":FLAY"
 end
 
 desc "Check for good style and code similarity"
 # Had to make it depend on coverage so it is not ran before simplecov
 task :check_style => [:flay, :style] do
+  ENV["TASK"] = ENV["TASK"].to_s + ":CHECK_STYLE"
 end
 
 def require_dir_files(dir_path)

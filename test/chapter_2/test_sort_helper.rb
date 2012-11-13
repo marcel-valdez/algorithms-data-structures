@@ -34,7 +34,11 @@ module Chapter2
       lesser_time = time_block { faster.() }
       greater_time = time_block { slower.() }
 
-      assert_operator lesser_time, :<, greater_time
+      # When coverage is being calculated, the calculation times
+      # get screwed up due to instrumentation.
+      unless ENV["TASK"].include? "COVERAGE"
+        assert_operator lesser_time, :<, greater_time
+      end
     end
 
     def create_proc(method_name, input)

@@ -51,6 +51,11 @@ class InterviewExercises
     "#{src.value},#{path}"
   end
 
+  # TODO: Write tests for this.
+  # Write a function that receives 2 Binary Tree nodes and a root, and
+  # finds the least common ancestor, if there is one, if the nodes are not
+  # connected, then return nil.
+
   def distinct_line?(line, current_node)
     previous_node = current_node
     (0...line.length).each { |i| # transverse all characters

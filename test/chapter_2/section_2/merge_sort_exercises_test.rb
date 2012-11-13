@@ -86,7 +86,9 @@ module Chapter2
         big_input = thousand_elements.shuffle
         faster_time = exec_time_of(method_sym, for: big_input)
         # puts "assert_operator #{standard_time} > #{faster_time}. Improvement: #{(((standard_time/faster_time)-1)*100).ceil}%"
-        assert_operator standard_time, :>, faster_time
+        unless ENV["TASK"].include? "COVERAGE"
+          assert_operator standard_time, :>, faster_time
+        end
       end
 
       ## End Utility Methods

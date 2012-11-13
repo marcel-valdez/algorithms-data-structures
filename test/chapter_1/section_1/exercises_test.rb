@@ -91,14 +91,14 @@ module Chapter1
                                 {params: [[1, 2, 3, 3, 3, 4], 5], expect: [0, 1, 1, 3, 1]}]
       end
 
-      def recursive_fibonacci (n)
+      def recursive_fibonacci(n)
         return 0 if n == 0
         return 1 if n == 1
 
         recursive_fibonacci(n - 1) + recursive_fibonacci(n -2)
       end
 
-      def calc_all_fibonacci (n)
+      def calc_all_fibonacci(n)
         result = Array.new n + 1
         (0..n).each { |i| result[i] = recursive_fibonacci(i) }
 
