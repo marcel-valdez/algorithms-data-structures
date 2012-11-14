@@ -44,8 +44,9 @@ module Chapter1
           @target.sublinear_sort_e5115(my_numbers)
         }
 
-        assert_operator sublinear_time, :<, linearithmic_time
-
+        unless ENV["TASK"].include? "COVERAGE"
+          assert_operator sublinear_time, :<, linearithmic_time
+        end
       end
 
       def quick_sort(values)
