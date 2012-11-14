@@ -1,7 +1,11 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/stack"
+require_relative "utils_test_helper"
+
 module Utils
   class StackTest < TestHelper
+    include UtilsTestHelper
+
     def initialize(*arg)
       super(*arg)
       @target= Stack.new
@@ -13,29 +17,20 @@ module Utils
       non_api = [:size=, :first=, :last=, :first, :last]
 
       # Act
-      target = Stack.new
+      @target = Stack.new
 
       # Assert
-
-      api.each { |method_name|
-        assert_respond_to target, method_name
-      }
-
-      non_api.each { |method_name|
-        assert_not_respond_to target, method_name
-      }
+      assert_api(api, non_api)
     end
 
     test "if it starts empty" do
       # Arrange
-
       # Act
       target = Stack.new
 
       # Assert
       assert_true target.is_empty?
     end
-
 
     test "if it can use each to find nodes" do
       # Arrange

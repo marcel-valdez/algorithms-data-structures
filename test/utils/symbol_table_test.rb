@@ -1,8 +1,11 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/symbol_table"
+require_relative "utils_test_helper"
 
 module Utils
   class SymbolTableTest < TestHelper
+    include UtilsTestHelper
+
     def initialize(*arg)
       super(*arg)
       @target= SymbolTable.new
@@ -169,72 +172,8 @@ module Utils
       set_pairs(@target, 3 => "3", 2 => "2", 1 => "1", 8 => "8", 7 => "7", 5 => "5")
 
       # Act
-      verify_method :keys,
-                    with: [
-                        {
-                            params: [1, 1],
-                            predicate: Proc.new { |result|
-                              assert_equal 1, result.size
-                              assert_equal 1, result.dequeue
+      verify_keys_range_behavior keys
 
-                              true
-                            }
-                        },
-                        {
-                            params: [8, 8],
-                            predicate: Proc.new { |result|
-                              assert_equal 1, result.size
-                              assert_equal 8, result.dequeue
-
-                              true
-                            }
-                        },
-                        {
-                            params: [1, 8],
-                            predicate: Proc.new { |result|
-                              assert_equal 6, result.size
-
-                              keys.sort.each { |key|
-                                assert_equal key, result.dequeue
-                              }
-
-                              true
-                            }
-                        },
-                        {
-                            params: [0, 9],
-                            predicate: Proc.new { |result|
-                              assert_equal 6, result.size
-
-                              keys.sort.each { |key|
-                                assert_equal key, result.dequeue
-                              }
-
-                              true
-                            }
-                        },
-                        {
-                            params: [2, 7],
-                            predicate: Proc.new { |result|
-                              assert_equal 4, result.size
-
-                              [2, 3, 5, 7].each { |key|
-                                assert_equal key, result.dequeue
-                              }
-
-                              true
-                            }
-                        },
-                        {
-                            params: [3, 3],
-                            predicate: Proc.new { |result|
-                              assert_equal 1, result.size
-                              assert_equal 3, result.dequeue
-
-                              true
-                            }
-                        }
-                    ]
       # Clean
       @target = nil
     end

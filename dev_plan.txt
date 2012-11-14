@@ -46,6 +46,8 @@ The Opening:
 		    2.3.22 Fast 3-way partitioning. PENDING
 		    2.3.23 Super quick sort. PENDING
         2.4 Priority Queues
+            Utilities: Maximum Priority Queue. (marcel-valdez)
+            Utilities: Minimum Priority Queue. PENDING.
 	Chapter 3: Searching.
 		3.2 Binary Search Trees
 		    Utilities: Binary Search Tree implementation (marcel-valdez)

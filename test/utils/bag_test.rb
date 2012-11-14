@@ -1,10 +1,12 @@
 require_relative "../test_helper"
 require_relative "../../src/utils/bag"
+require_relative "utils_test_helper"
 
 module Utils
   class BagTest < TestHelper
+    include UtilsTestHelper
 
-  	def initialize(*arg)
+    def initialize(*arg)
       super(*arg)
       @target= Bag.new
     end
@@ -15,17 +17,10 @@ module Utils
       non_api = [:size=, :first=, :first]
 
       # Act
-      target = Bag.new
+      @target=Bag.new
 
       # Assert
-
-      api.each { |method_name|
-        assert_respond_to target, method_name
-      }
-
-      non_api.each { |method_name|
-        assert_not_respond_to target, method_name
-      }
+      assert_api(api, non_api)
     end
 
     test "if it starts empty" do
@@ -59,18 +54,16 @@ module Utils
       end
 
       sub_case "test if it can traverse the nodes" do
-      	# Arrange
-      	i = 2
+        # Arrange
+        i = 2
 
         # Act (3th)
-       	target.each {|item|
-       		# Assert
-       		assert_equal i, item
-       		i-=1
-       	}
-
+        target.each { |item|
+          # Assert
+          assert_equal i, item
+          i-=1
+        }
       end
     end
-
   end
 end
