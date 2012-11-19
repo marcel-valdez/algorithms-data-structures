@@ -67,47 +67,43 @@ module Chapter1
       # argument and (destructively) reverses the list, returning the first Node in the result.
       # Use recursion.
       def test_reverse_recur_e33
-        root = Utils::ListNode.new("1")
-        list = Utils::LinkedList.new(root)
-        create_list(list, "2", "3", "4")
-        reversed_list = Array["4", "3", "2", "1"]
-        root2 = Utils::ListNode.new("1")
-        list2 = Utils::LinkedList.new(root2)
-        create_list(list2, "1", "3", "5")
-        reversed_list2 = Array["5", "3", "1", "1"]
-
-        verify_method :reverse_recur_e33,
-                      :with =>
-                          [
-                              {params: [root], predicate: Proc.new { |new_root| check_list(new_root, reversed_list) }},
-                              {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, reversed_list2) }},
-
-                          ]
+        test_reverse_linked_list :reverse_recur_e33
       end
 
       # Write a function reverse_iter_e33 that takes the first Node in a linked list as
       # argument and (destructively) reverses the list, returning the first Node in the result.
       # Use iteration without recursion.
       def test_reverse_iter_e33
+        test_reverse_linked_list :reverse_iter_e33
+      end
+
+
+      private
+
+      # Helps test the linked list reversal algorithm behavior
+      def test_reverse_linked_list(method_name)
         root = Utils::ListNode.new("1")
+        root2 = Utils::ListNode.new("1")
         list = Utils::LinkedList.new(root)
+        list2 = Utils::LinkedList.new(root2)
         create_list(list, "2", "3", "4")
         reversed_list = Array["4", "3", "2", "1"]
-        root2 = Utils::ListNode.new("1")
-        list2 = Utils::LinkedList.new(root2)
         create_list(list2, "2", "3", "5")
         reversed_list2 = Array["5", "3", "2", "1"]
 
-        verify_method :reverse_iter_e33,
+        verify_method method_name,
                       :with =>
                           [
-                              {params: [root], predicate: Proc.new { |new_root| check_list(new_root, reversed_list) }},
-                              {params: [root2], predicate: Proc.new { |new_root| check_list(new_root, reversed_list2) }},
-
+                              {
+                                  param: root,
+                                  predicate: Proc.new { |new_root| check_list(new_root, reversed_list) }
+                              },
+                              {
+                                  params: root2,
+                                  predicate: Proc.new { |new_root| check_list(new_root, reversed_list2) }
+                              },
                           ]
       end
-
-      private
 
       def check_delete(input, node)
         node = node.next until node.nil? or node.value == input
