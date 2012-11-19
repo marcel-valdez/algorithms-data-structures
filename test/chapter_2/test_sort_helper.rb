@@ -36,7 +36,7 @@ module Chapter2
 
       # When coverage is being calculated, the calculation times
       # get screwed up due to instrumentation.
-      unless ENV["TASK"].nil? or ENV["TASK"].include? "COVERAGE"
+      if ENV["TASK"].nil? or not ENV["TASK"].include? "COVERAGE"
         assert_operator lesser_time, :<, greater_time
       end
     end
