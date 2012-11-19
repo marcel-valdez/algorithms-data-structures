@@ -44,7 +44,7 @@ module Chapter1
           @target.sublinear_sort_e5115(my_numbers)
         }
 
-        unless ENV["TASK"].include? "COVERAGE"
+        unless ENV["TASK"].nil? or ENV["TASK"].include? "COVERAGE"
           assert_operator sublinear_time, :<, linearithmic_time
         end
       end
