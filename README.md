@@ -4,8 +4,11 @@
 </a>
 
 **Build Status:**
-[![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)
-
+[![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)  
+  
+**Code Metrics Results:** 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)  
+  
 This project is inspired by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
 This project will help the user learn algorithms and data structures by asking of him to code methods that
 must pass tests that specify the behavior of many fundamental algorithms and data structures of Computer Science.
