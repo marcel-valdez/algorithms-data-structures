@@ -37,7 +37,7 @@ Folder organization:
 Book: Algorithms 4th Ed by Robert Sedgewick  
 Webpage: http://algs4.cs.princeton.edu/home/
 
-In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.
+In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/ZzzExercises.rb implementation.
 
 How to setup the project on Linux:
 
