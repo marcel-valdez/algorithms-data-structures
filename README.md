@@ -33,9 +33,9 @@ Folder organization:
       * sectionY/
           * ZzzExercises_test.rb
 
-**All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**
-book: Algorithms 4th Ed by Robert Sedgewick
-webpage: http://algs4.cs.princeton.edu/home/
+**All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
+Book: Algorithms 4th Ed by Robert Sedgewick  
+Webpage: http://algs4.cs.princeton.edu/home/
 
 In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/Exercises.rb implementation.
 
