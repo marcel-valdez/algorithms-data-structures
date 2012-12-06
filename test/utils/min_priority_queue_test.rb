@@ -1,13 +1,13 @@
 # encoding: utf-8
 
 require_relative "../test_helper"
-require_relative "../../src/utils/max_priority_queue"
+require_relative "../../src/utils/min_priority_queue"
 require_relative "utils_test_helper"
 require_relative "priority_queue_test_helper"
 
 module Utils
-  # This class contains the tests that describe the Max Priority Queue
-  class MaxPriorityQueueTest < TestHelper
+  # This class contains the tests that describe the Min Priority Queue
+  class MinPriorityQueueTest < TestHelper
     include UtilsTestHelper
     include PriorityQueueTestHelper
 
@@ -19,13 +19,13 @@ module Utils
     test "if it has the correct API" do
       # Arrange
       api = [
-          :delete_max,
+          :delete_min,
           :insert,
           :is_empty?,
           :each,
-          :max,
+          :min,
           :size]
-      non_api = [:size=, :is_empty=, :keys=, :max=, :size=]
+      non_api = [:size=, :is_empty=, :keys=, :min=, :size=]
 
       # Act
       @target = create_target()
@@ -38,40 +38,40 @@ module Utils
       check_insert_increases_size
     end
 
-    test "if it can get the max element" do
+    test "if it can get the min element" do
       # Arrange
       keys = [5, 1, 0, 6, 3, 9, 4, 8, 7]
 
       # Act/Assert
-      check_get_key(9, :max, keys)
+      check_get_key(0, :min, keys)
     end
 
-    test "if it can delete the largest key" do
+    test "if it can delete the smallest key" do
       # Arrange
       keys = (0..9).to_a
 
       # Act/Assert
-      check_can_delete(:delete_max, 9, keys)
+      check_can_delete(:delete_min, 0, keys)
     end
 
-    test "if it can delete the largest key until empty" do
+    test "if it can delete the smallest key until empty" do
       # Arrange
       keys = (0..9).to_a
 
       # Act/Assert
-      check_delete_until_empty(:delete_max, :max, keys)
+      check_delete_until_empty(:delete_min, :min, keys)
     end
 
-    test "if it can enumerate all keys in descending order" do
+    test "if it can enumerate all keys in ascending order" do
       # Arrange
-      keys = (0...9).to_a.reverse
+      keys = (0..9).to_a
 
       # Act/Assert
       check_key_enumeration(keys)
     end
 
     def create_target
-      MaxPriorityQueue.new
+      MinPriorityQueue.new
     end
   end
 end

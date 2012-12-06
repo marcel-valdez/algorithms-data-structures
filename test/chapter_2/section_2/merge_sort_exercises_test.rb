@@ -60,17 +60,17 @@ module Chapter2
       end
 
       def check_faster_for_sorted_array
-        thousand_elements = (0..100).to_a
-        standard_time = time_block {
-          @aux = Array.new(thousand_elements.length)
-          standard_merge_sort thousand_elements, 0, thousand_elements.length - 1
+        input = (0..100).to_a
+        standard_proc = lambda {
+          @aux = Array.new(input.length)
+          standard_merge_sort input, 0, input.length - 1
         }
 
-        faster_time = time_block {
-          @target.merge_improvements_e2211 thousand_elements
+        faster_proc = lambda {
+          @target.merge_improvements_e2211 input
         }
 
-        assert_operator((standard_time/2), :>, faster_time)
+        assert_faster_proc faster_proc, standard_proc
       end
 
       # This is not an exercise, it helps test the execution time of faster than
@@ -78,17 +78,15 @@ module Chapter2
       def check_faster_than_standard(method_sym)
         thousand_elements = (0..100).to_a
         big_input = thousand_elements.shuffle
-        standard_time = time_block {
+        standard_proc = lambda {
           @aux = Array.new(big_input.length)
           standard_merge_sort big_input, 0, big_input.length - 1
         }
 
         big_input = thousand_elements.shuffle
-        faster_time = exec_time_of(method_sym, for: big_input)
-        # puts "assert_operator #{standard_time} > #{faster_time}. Improvement: #{(((standard_time/faster_time)-1)*100).ceil}%"
-        if ENV["TASK"].nil? or not ENV["TASK"].include? "COVERAGE"
-          assert_operator standard_time, :>, faster_time
-        end
+        faster_proc = create_proc(method_sym, big_input)
+
+        assert_faster_proc faster_proc, standard_proc
       end
 
       ## End Utility Methods

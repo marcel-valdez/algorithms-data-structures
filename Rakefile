@@ -67,7 +67,7 @@ FlayTask.new(:flay) do |flay|
   flay.verbose = true
   # TODO: Reduce flay values
   # TODO: Reduce flay found IDENTICAL code
-  flay.threshold = 928
+  flay.threshold = 916
   ENV["TASK"] = ENV["TASK"].to_s + ":FLAY"
 end
 

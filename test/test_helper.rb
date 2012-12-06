@@ -21,13 +21,16 @@ class TestHelper < Test::Unit::TestCase
 # @param [Symbol] test_method
 # @param [Enumerable] test_data
 # Example:
-# verify_cases sum, with: [params: [2, 2], expect: 4]
+# verify_cases :sum, with: [params: [2, 2], expect: 4]
 #   will call:
-#   actual = @target.sum(2, 2)
+#   actual = @target.send(:sum, 2, 2)
 #   assert_equals(2, expected)
-# verify_cases average, with: [param: [2, 2], expect: 2]
-#   actual = @target.average([2, 2])
-#   assert_equals(2, expected)
+# verify_cases :average, with: [param: [2, 2], expect: 4]
+#   actual = @target.send(:average, [2, 2])
+#   assert_equals(4, expected)
+# verify_cases :sum, [[2,2], 4]
+#   actual = @target.send(:sum, [2,2])
+#   assert_equals(4, expected)
   def verify_method (test_method, test_data)
     test_cases = test_data[:with]
     # If we received with: { param: x, expect: y }, turn it into a single element array
@@ -42,7 +45,9 @@ class TestHelper < Test::Unit::TestCase
         predicate = test_case[:predicate]
         do_predicate_case(test_method, input, expands, &predicate)
       else
-        expected = test_case[:expect]
+        expected = nil
+        expected = test_case[:expect] if test_case.instance_of? Hash
+        expected = test_case[1] if test_case.instance_of? Array
         do_test_case(test_method, input, expected, expands)
       end
     end
@@ -111,11 +116,17 @@ class TestHelper < Test::Unit::TestCase
     "Call to #{test_method.to_s} with parameters #{input.to_s}, failed:" unless input.nil? or test_method.nil?
   end
 
-  def get_input (test_case = {})
+  def get_input (test_case)
+    raise "Test definition error: nil test case provided." if test_case.nil?
+
     keys = [:params, :param]
 
-    found, key = test_case.find_any keys
-    return found, key_expands?(key) unless found.nil?
+    if test_case.instance_of? Hash
+      found, key = test_case.find_any keys
+      return found, key_expands?(key)
+    elsif test_case.instance_of? Array
+      return test_case[0]
+    end
 
     nil
   end
@@ -127,8 +138,14 @@ class TestHelper < Test::Unit::TestCase
 
   def is_predicate? (test_case)
     keys = [:predicate]
-    found = test_case.find_any keys
-    not found.nil?
+    if test_case.instance_of? Hash
+      found = test_case.find_any keys
+      return !found.nil?
+    elsif test_case.instance_of? Array
+      test_case[1].instance_of? Proc
+    end
+
+    false
   end
 
   # Example usage: simulate_complexity(str.length) { |n| n**2}

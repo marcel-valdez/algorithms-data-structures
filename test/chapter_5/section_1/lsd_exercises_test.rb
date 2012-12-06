@@ -3,20 +3,16 @@
 require "test/unit"
 require_relative "../../../src/chapter_5/section_1/lsd_exercises"
 require_relative "../../test_helper"
+require_relative "../../chapter_2/test_sort_helper"
 
 module Chapter1
   module Section5
     class LSDExercises_test < TestHelper
+      include ::Chapter2::TestSortHelper
 
       def initialize(args)
         super(args)
         @target = LSDExercises.new
-      end
-
-      # Called after every test method runs. Can be used to tear
-      # down fixture information.
-      def teardown
-        # Empty
       end
 
       # 5.1.15 Sublinear sort. Develop a sort implementation for int values
@@ -36,17 +32,10 @@ module Chapter1
 
         numbers = (0...65535).to_a.shuffle
         my_numbers = (0...65535).to_a.shuffle
-        linearithmic_time = time_block {
-          quick_sort numbers
-        }
+        slower_method = lambda { quick_sort numbers }
+        faster_method = lambda { @target.sublinear_sort_e5115(my_numbers) }
 
-        sublinear_time = time_block {
-          @target.sublinear_sort_e5115(my_numbers)
-        }
-
-        if ENV["TASK"].nil? or not ENV["TASK"].include? "COVERAGE"
-          assert_operator sublinear_time, :<, linearithmic_time
-        end
+        assert_faster_proc faster_method, slower_method
       end
 
       def quick_sort(values)

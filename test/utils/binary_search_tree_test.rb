@@ -97,14 +97,10 @@ module Utils
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
-      # Act
+      # Act/Assert
       verify_method :floor,
-                    # Assert
-                    with: [{param: 6, expect: 5},
-                           {param: 5, expect: 5},
-                           {param: 0, expect: nil},
-                           {param: 9, expect: 8}]
-
+                    with: [[6, 5],[5, 5],
+                           [0, nil], [9, 8]]
       # Clean
       @target = nil
     end
@@ -113,14 +109,10 @@ module Utils
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
-      # Act
+      # Act/Assert
       verify_method :ceiling,
-                    # Assert
-                    with: [{param: 6, expect: 7},
-                           {param: 5, expect: 5},
-                           {param: 0, expect: 1},
-                           {param: 9, expect: nil}]
-
+                    with: [[6, 7], [5, 5],
+                           [0, 1], [9, nil]]
       # Clean
       @target = nil
     end
@@ -129,18 +121,11 @@ module Utils
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
-      # Act
+      # Act/Assert
       verify_method :select,
-                    # Assert
-                    with: [
-                        {param: 0, expect: 1},
-                        {param: 6, expect: nil},
-                        {param: -1, expect: nil},
-                        {param: 5, expect: 8},
-                        {param: 3, expect: 5},
-                        {param: 2, expect: 3}
-                    ]
 
+                    with: [[0, 1], [6, nil], [-1, nil],
+                           [5, 8], [3, 5], [2, 3]]
       # Clean
       @target = nil
     end
@@ -149,19 +134,10 @@ module Utils
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
-      # Act
+      # Act/Assert
       verify_method :rank,
-                    # Assert
-                    with: [
-                        {param: 1, expect: 0},
-                        {param: 6, expect: 4},
-                        {param: -1, expect: 0},
-                        {param: 8, expect: 5},
-                        {param: 5, expect: 3},
-                        {param: 3, expect: 2},
-                        {param: 9, expect: 6},
-                    ]
-
+                    with: [[1, 0], [6, 4], [-1, 0], [8, 5],
+                           [5, 3], [3, 2], [9, 6]]
       # Clean
       @target = nil
     end
@@ -169,12 +145,11 @@ module Utils
     test "if it can delete the largest key" do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
+      expect_deleted = [8, 7, 5]
 
       # Act
-      verify_method :delete_max,
-                    with: [{predicate: Proc.new { @target.get(8).nil? and @target.size == 5 }},
-                           {predicate: Proc.new { @target.get(7).nil? and @target.size == 4 }},
-                           {predicate: Proc.new { @target.get(5).nil? and @target.size == 3 }}]
+      check_delete(expect_deleted, :delete_max, 6)
+
       # Clean
       @target = nil
     end
@@ -182,12 +157,11 @@ module Utils
     test "if it can delete the smallest key" do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
+      expect_deleted = [1, 2, 3]
 
       # Act
-      verify_method :delete_min,
-                    with: [{predicate: Proc.new { @target.get(1).nil? and @target.size == 5 }},
-                           {predicate: Proc.new { @target.get(2).nil? and @target.size == 4 }},
-                           {predicate: Proc.new { @target.get(3).nil? and @target.size == 3 }}]
+      check_delete(expect_deleted, :delete_min, 6)
+
       # Clean
       @target = nil
     end
@@ -200,33 +174,10 @@ module Utils
       # Act
       verify_method :delete,
                     with: [
-                        {
-                            param: 1,
-                            predicate: Proc.new {
-                              assert_equal 5, @target.size
-                              assert_false @target.contains?(1)
-                              @target.put(1, "1")
-                              true
-                            }
-                        },
-                        {
-                            param: 8,
-                            predicate: Proc.new {
-                              assert_equal 5, @target.size
-                              assert_false @target.contains?(8)
-                              @target.put(8, "8")
-                              true
-                            }
-                        },
-                        {
-                            param: 3,
-                            predicate: Proc.new {
-                              assert_equal 5, @target.size
-                              assert_false @target.contains?(3)
-                              @target.put(3, "3")
-                              true
-                            }
-                        }]
+                        delete_expectation(1, 5),
+                        delete_expectation(8, 5),
+                        delete_expectation(3, 5)
+                    ]
       # Clean
       @target = nil
     end
@@ -243,8 +194,7 @@ module Utils
     end
 
     test "if it can get the size of a range of keys" do
-      keys = [3, 2, 1, 8, 7, 5]
-      set_target_values(*keys)
+      set_target_values(3, 2, 1, 8, 7, 5)
 
       # Act
       verify_method :size,
@@ -301,6 +251,18 @@ module Utils
       end
     end
 
+    def delete_expectation(param, size)
+      {
+          param: param,
+          predicate: Proc.new {
+            assert_equal size, @target.size
+            assert_false @target.contains?(param)
+            @target.put(param, param.to_s)
+            true
+          }
+      }
+    end
+
     def insert_values(target, range)
       range.each { |value| target.put(value, value.to_s) }
     end
@@ -308,6 +270,17 @@ module Utils
     def set_target_values(*key_values)
       @target = BinarySearchTree.new
       insert_values(target, key_values)
+    end
+
+    def check_delete(expected_deleted, method_name, size)
+      expected_deleted.each { |expected|
+        verify_method method_name,
+                      with: [{
+                                 predicate: Proc.new {
+                                   size -= 1
+                                   @target.get(expected).nil? and @target.size == size
+                                 }}]
+      }
     end
   end
 end
