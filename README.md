@@ -1,6 +1,6 @@
 **Ohloh Statistics:**
 <a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
-<img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_partner_badge.gif">
+<img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_thin_badge.gif">
 </a>
 
 **Build Status:**
@@ -32,6 +32,7 @@ Folder organization:
     * chapterX/
       * sectionY/
           * ZzzExercises_test.rb
+    * utils/
 
 **All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
 Book: Algorithms 4th Ed by Robert Sedgewick  
