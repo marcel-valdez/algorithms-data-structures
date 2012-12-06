@@ -48,6 +48,11 @@ The Opening:
         2.4 Priority Queues
             Utilities: Maximum Priority Queue. (marcel-valdez)
             Utilities: Minimum Priority Queue. (marcel-valdez)
+            2.4.24. Priority queue with explicit links. PENDING.
+            2.4.25. Computational number theory. PENDING.
+            2.4.27. Find the minimum, in a Max Priority Queue. PENDING.
+            2.4.28. Selection filter. PENDING.
+            2.4.30. Dynamic median-finding. PENDING.
 	Chapter 3: Searching.
 		3.2 Binary Search Trees
 		    Utilities: Binary Search Tree implementation (marcel-valdez)
