@@ -32,6 +32,7 @@ Folder organization:
     * chapterX/
       * sectionY/
           * ZzzExercises_test.rb
+    * utils/
 
 **All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
 Book: Algorithms 4th Ed by Robert Sedgewick  
