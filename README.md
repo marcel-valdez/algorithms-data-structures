@@ -1,16 +1,14 @@
 <h2>Reports</h2>
-
-**Ohloh Statistics:**
-<a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
-<img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_thin_badge.gif">
-</a>
-
 **Build Status:**
 [![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)  
   
 **Code Metrics Results:** 
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)  
   
+**Ohloh Statistics:**
+<a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
+<img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_thin_badge.gif">
+</a>
 <h2>Description</h2>
   
 This project is inspired by RubyKoans (http://rubykoans.com), in the sense of using TDD for learning.
