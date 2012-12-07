@@ -48,7 +48,8 @@ The Opening:
         2.4 Priority Queues
             Utilities: Maximum Priority Queue. (marcel-valdez)
             Utilities: Minimum Priority Queue. (marcel-valdez)
-            2.4.25. Computational number theory. PENDING.
+            2.4.25.a Computational number theory. (marcel-valdez)
+            2.4.25.b Find a,b,c,d such that a³+b³ = c³+d³. PENDING.
             2.4.27. Find the minimum, in a Max Priority Queue. PENDING.
             2.4.28. Selection filter. PENDING.
             2.4.30. Dynamic median-finding. PENDING.

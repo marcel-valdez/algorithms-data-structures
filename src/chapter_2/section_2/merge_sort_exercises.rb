@@ -4,9 +4,10 @@ module Chapter2
   module Section2
     class MergeSortExercises
       # 2.2.10 Faster merge. Implement a version of mergesort that copies the
-      # second half of the input array to the auxiliary array in -decreasing order- and then
-      # does the merge back to the input array. This change allows you to remove
-      # the code to test that each of the halves has been exhausted from the inner loop.
+      # second half of the input array to the auxiliary array in -decreasing
+      # order- and then does the merge back to the input array. This change
+      # allows you to remove the code to test that each of the halves has
+      # been exhausted from the inner loop.
       def faster_merge_e2210(input)
         @aux = Array.new(input.length)
         faster_merge_sort(input, 0, input.length - 1)
@@ -58,17 +59,20 @@ module Chapter2
         input
       end
 
-      # 2.2.11 Improvements. Implement the three improvements to mergesort described
-      # in the Algorithms 4th ed book. These are:
+      # 2.2.11 Improvements. Implement the three improvements to mergesort
+      # described in the Algorithms 4th ed book. These are:
       # 1) Add a cutoff for small subarrays. Use insertion sort for these.
-      # 2) Test whether the array is already in order. if a[mid] <= a[mid+1] don't merge.
+      # 2) Test whether the array is already in order. if a[mid] <= a[mid+1]
+      #    don't merge.
       # 3) Avoid the auxiliary copy, by switching arguments in the recursive code.
       #    Two invocations to sort:
-      #       1) input array as its parameter, and put the output in the aux array
-      #       2) aux array as its parameter, and put sorted output in the input array
+      #       1) input array as its parameter, put the output in aux array
+      #       2) aux array as its parameter, put sorted output in input array
       def merge_improvements_e2211(values)
         @aux = Array.new(values.length)
-        @aux.each_index { |i| values[i] = @aux[i] } if improved_merge_sort(values, 0, values.length - 1)
+        if improved_merge_sort(values, 0, values.length - 1)
+          @aux.each_index { |i| values[i] = @aux[i] }
+        end
 
         values
       end
