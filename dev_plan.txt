@@ -2,7 +2,7 @@ THE PLAN
 
 Fill this file with the exercise you wrote before committing
 
-The Basics:
+The Rules of the Game:
     Chapter 1: Fundamentals
         1.3 Bags, Queues, and Stacks
             1.3.4 Parens syntax evaluator with Stack (marcel-valdez)
