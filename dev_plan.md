@@ -3,7 +3,7 @@
 Fill this file with the exercise you wrote before committing
 
 <h2>Rules of the Game</h2>
-    Chapter 1: Fundamentals
+    <h3>Chapter 1: Fundamentals</h3>
         1.3 Bags, Queues, and Stacks
             1.3.4 Parens syntax evaluator with Stack (marcel-valdez)
             1.3.10 Convert infix to postfix using Stacks (marcel-valdez)
@@ -17,27 +17,27 @@ Fill this file with the exercise you wrote before committing
             1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo)
             * Need more exercises
   
-    Chapter 2: Sorting
+    <h3>Chapter 2: Sorting</h3>
         2.1 Elementary Sorts
             2.1.3 Maximize min index modifications in selection sort (marcel-valdez)
             2.1.11 Create the sequence of h for shell sort (marcel-valdez)
             2.1.15 Optimize insertion sort. (marcel-valdez)
             2.1.16 Certification. PENDING
   
-    Chapter 3: Searching
+    <h3>Chapter 3: Searching</h3>
         3.1 Elementary Symbol Tables
             Utilities: Symbol-table implementation. (priangulo/marcel-valdez)
             3.1.2 Symbol-table that uses an unordered array. PENDING
             3.1.22 Self-organizing search. PENDING
             3.1.24 Interpolation search. PENDING
 
-    Chapter 5: Strings
+    <h3>Chapter 5: Strings</h3>
         5.1 String Sorts
             5.1.15 Sublinear number sorting algorithm (marcel-valdez)
             * Need more exercises
 
 <h2>The Opening</h2>
-    Chapter 2: Sorting.
+    <h3>Chapter 2: Sorting.</h3>
         2.2 Mergesort
             2.2.10 Faster merge. (marcel-valdez)
             2.2.11 Implement 3 improvements to mergesort. Note: Implies 2.2.10. (marcel-valdez)
@@ -59,7 +59,7 @@ Fill this file with the exercise you wrote before committing
             2.4.28. Selection filter. PENDING.
             2.4.30. Dynamic median-finding. PENDING.
   
-    Chapter 3: Searching.
+    <h3>Chapter 3: Searching.</h3>
         3.2 Binary Search Trees
             Utilities: Binary Search Tree implementation (marcel-valdez)
             3.2.6 Height alternatives for BST. PENDING
@@ -67,45 +67,45 @@ Fill this file with the exercise you wrote before committing
   
         3.3 Balanced Search Trees *PENDING exercise identification.
   
-    Chapter 5: Strings.
+    <h3>Chapter 5: Strings.</h3>
         5.2 Tries *PENDING exercise identification.
         5.3 Substring Search *PENDING exercise identification.
   
 <h2>The Middlegame</h2>
-    Chapter 3: Searching.
+    <h3>Chapter 3: Searching.</h3>
         3.4 Hash Tables *PENDING exercise identification.
   
-    Chapter 4: Graphs.
+    <h3>Chapter 4: Graphs.</h3>
         4.1 Unidirected Graph *PENDING exercise identification.
         4.2 Directed Graphs *PENDING exercise identification.
         4.4 Shortest Paths *PENDING exercise identification.
   
-    Chapter 6: Context.
+    <h3>Chapter 6: Context.</h3>
         6.6 Intractability *PENDING exercise identification.
         6.2 B-Trees *PENDING exercise identification.
 
 <h2>The Endgame</h2>
-    Chapter 4: Graphs.
+    <h3>Chapter 4: Graphs.</h3>
         4.3 Minimum Spanning Trees *PENDING exercise identification.
   
-    Chapter 5: Strings.
+    <h3>Chapter 5: Strings.</h3>
         5.4 Regular Expressions *PENDING exercise identification.
         5.5 Data Compression *PENDING exercise identification.
   
-    Chapter 6: Context.
+    <h3>Chapter 6: Context.</h3>
         6.3 Suffix Arrays *PENDING exercise identification.
         6.5 Reductions *PENDING exercise identification.
 
 <h2>The Aftermath</h2>
-    Chapter 1: Fundamentals.
+    <h3>Chapter 1: Fundamentals.</h3>
         1.5 Case Study: Union-Find *PENDING exercise identification.
   
-    Chapter 2: Sorting.
+    <h3>Chapter 2: Sorting.</h3>
         2.5 Applications of Sorting *PENDING exercise identification.
   
-    Chapter 3: Searching.
+    <h3>Chapter 3: Searching.</h3>
         3.5 Applications *PENDING exercise identification.
   
-    Chapter 6: Context.
+    <h3>Chapter 6: Context.</h3>
         6.1 Event-Driven Simulation *PENDING exercise identification.
         6.4 Network Flow *PENDING exercise identification.
