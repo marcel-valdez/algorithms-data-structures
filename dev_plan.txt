@@ -12,6 +12,7 @@ The Basics:
             1.3.21 Find an element inside a linked list (magg)
             1.3.30 Reverse a linked list (magg)
             1.3.34 Randomize Bag Elements (priangulo)
+  
         1.4 Analysis of Algorithms
             1.4.11 Number repetition counter in an array in O(log2 n) time (priangulo)
             * Need more exercises
