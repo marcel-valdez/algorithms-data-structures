@@ -43,10 +43,12 @@ The Opening:
             2.2.14 Merging sorted queues. PENDING
             2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14 PENDING
             2.2.17 Linked-list mergesort. PENDING
+  
         2.3 Quicksort
             2.3.18 Median-of-3 partitioning. (marcel-valdez)
             2.3.22 Fast 3-way partitioning. PENDING
             2.3.23 Super quick sort. PENDING
+  
         2.4 Priority Queues
             Utilities: Maximum Priority Queue. (marcel-valdez)
             Utilities: Minimum Priority Queue. (marcel-valdez)
@@ -61,6 +63,7 @@ The Opening:
             Utilities: Binary Search Tree implementation (marcel-valdez)
             3.2.6 Height alternatives for BST. PENDING
             3.2.WEB.1 The great tree-list recursion problem. PENDING.
+  
         3.3 Balanced Search Trees *PENDING exercise identification.
   
     Chapter 5: Strings.
