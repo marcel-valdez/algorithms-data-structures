@@ -20,8 +20,6 @@ Fill this file with the exercise you wrote before committing
     - 1.4.11 Number repetition counter in an array in O(log2 n) time ([priangulo](https://github.com/priangulo))
     - Needs more exercises
   
-  
-
 ### Chapter 2: Sorting
 
 * 2.1 Elementary Sorts
@@ -30,7 +28,6 @@ Fill this file with the exercise you wrote before committing
     - 2.1.15 Optimize insertion sort. ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.1.16 Certification. **PENDING**
   
-
 ### Chapter 3: Searching
 
 * 3.1 Elementary Symbol Tables
@@ -70,7 +67,6 @@ Fill this file with the exercise you wrote before committing
     - 2.4.28. Selection filter. **PENDING**.
     - 2.4.30. Dynamic median-finding. **PENDING**.
   
-
 ### Chapter 3: Searching.
 
 * 3.2 Binary Search Trees
@@ -80,7 +76,6 @@ Fill this file with the exercise you wrote before committing
   
 * 3.3 Balanced Search Trees **PENDING** exercise identification.  
   
-
 ### Chapter 5: Strings.
 
 * 5.2 Tries **PENDING** exercise identification.
@@ -92,13 +87,11 @@ Fill this file with the exercise you wrote before committing
 
 * 3.4 Hash Tables **PENDING** exercise identification.
 
-
 ### Chapter 4: Graphs.
 
 * 4.1 Unidirected Graph **PENDING** exercise identification.
 * 4.2 Directed Graphs **PENDING** exercise identification.
 * 4.4 Shortest Paths **PENDING** exercise identification.
-
 
 ### Chapter 6: Context.
 
@@ -111,12 +104,10 @@ Fill this file with the exercise you wrote before committing
 
 * 4.3 Minimum Spanning Trees **PENDING** exercise identification.
 
-
 ### Chapter 5: Strings.
 
 * 5.4 Regular Expressions **PENDING** exercise identification.
 * 5.5 Data Compression **PENDING** exercise identification.
-
 
 ### Chapter 6: Context.
 
@@ -129,11 +120,9 @@ Fill this file with the exercise you wrote before committing
 
 * 1.5 Case Study: Union-Find **PENDING** exercise identification.
 
-
 ### Chapter 2: Sorting.
 
 * 2.5 Applications of Sorting **PENDING** exercise identification.
-
 
 ### Chapter 3: Searching.
 
