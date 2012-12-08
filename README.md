@@ -62,7 +62,7 @@ bundle exec guard
 Book: Algorithms 4th Ed by Robert Sedgewick  
 Webpage: http://algs4.cs.princeton.edu/home/
 
-In order to add exercises for a section you have to add a new test/chapterX/sectionY/ZzzExercises_test.rb file and a new src/chapterX/sectionY/ZzzExercises.rb implementation.
+In order to add exercises for a section you have to add a new test/chapter_X/section_Y/zzz_exercises_test.rb file and a new src/chapter_X/section_Y/zzz_exercises.rb implementation.
   
 <h3>Rules for contributing to the project</h3>
 * Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, appending
