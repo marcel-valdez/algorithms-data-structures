@@ -26,16 +26,16 @@ The folders src and test have a simmetric structure:
 * test/ contains tests for the algorithm, note that if you plan to contribute to this project, you should use TDD for the development of these algorithms.
 
 Folder organization:
-* src/
-    * chapterX/
-        * sectionY/
-          * ZzzExercises.rb
-    * utils/
-
 * test/
-    * chapterX/
-      * sectionY/
-          * ZzzExercises_test.rb
+    * chapter_X/
+      * section_Y/
+          * zzz_exercises_test.rb
+    * utils/
+  
+* src/
+    * chapter_X/
+        * section_Y/
+          * zzz_exercises.rb
     * utils/
 
 <h2>Usage</h2>
