@@ -71,6 +71,8 @@ In order to add exercises for a section you have to add a new test/chapter_x/sec
   your github username (and be known for you mad algorithmic skillz).
 * All exercises must have a test and solution
 * All pull requests are reviewed by the reviewing team
+* If the pull request does not pass the CI process, it is rejected.
+* It is not allowed to increment the minimum Flay score nor the number of style violations.
 * Please use good coding style (https://github.com/styleguide/ruby)
 * Your answers to any exercise must be in optimal big-O time complexity, unless the exercise requires a specific structure or
 algorithm.
