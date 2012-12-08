@@ -31,12 +31,14 @@ Folder organization:
       * section_Y/
           * zzz_exercises_test.rb
     * utils/
+      * xxx_test.rb
   
 * src/
     * chapter_X/
         * section_Y/
           * zzz_exercises.rb
     * utils/
+      * xxx.rb
 
 <h2>Usage</h2>
   
