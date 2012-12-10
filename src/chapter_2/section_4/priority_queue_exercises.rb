@@ -22,6 +22,51 @@ module Chapter2
         NumberHolder.new size
       end
 
+      # Exercise 2.5.25 Part B
+      # Using the Enumerable object from exercise e2425, find all the distinct
+      # integers a, b, c, d between 0 and 100 such that:
+      # a³ + b³ = c³ + d³
+      # The test expects your method distinct_numbers_e2425b to return an array
+      # of arrays with 4 elements: [a, b, c, d]
+      def distinct_numbers_e2425b
+        holder = NumberHolder.new 400
+        common = { }
+        result = []
+        count_1 = 0
+        holder.each { |tuple|
+          if tuple[1] != tuple[2]
+            common[tuple[0]] = [] if common[tuple[0]].nil?
+            common[tuple[0]] << [tuple[1], tuple[2]]
+          end
+          count_1+= 1
+        }
+
+        puts "count 1: #{count_1}"
+
+        count_2 = 0
+        common.each_value { |item|
+          if item.size > 1
+            pairs = item.combination(2).to_a
+            pairs = pairs.collect { |pair|
+              count_2 += 1
+              pair.flatten
+            }
+            flat_pairs = pairs.flatten
+            pairs = pairs.delete_if { |pair|
+              flat_pairs.count(pair[0]) > 1 or flat_pairs.count(pair[1]) > 1
+            }
+
+            #puts "item: #{item.inspect}"
+            #puts "pairs: #{pairs.inspect}"
+            result << pairs unless pairs.empty?
+          end
+        }
+
+        puts "count 2: #{count_2}"
+
+        result
+      end
+
       private
       class NumberHolder
         def initialize(size)

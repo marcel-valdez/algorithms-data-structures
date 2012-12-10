@@ -77,9 +77,41 @@ module Chapter2
       # Using the Enumerable object from exercise e2425, find all the distinct
       # integers a, b, c, d between 0 and 10⁶ such that:
       # a³ + b³ = c³ + d³
+      # The test expects your method distinct_numbers_e2425b to return an array
+      # of arrays with 4 elements: [a, b, c, d]
+      def test_distinct_numbers_e2425b
+        # Arrange
+        @target = PriorityQueueExercises.new
+
+        # Act
+        verify_method :distinct_numbers_e2425b,
+                      with: [{
+                               predicate: lambda { |r|
+                                 check_distinct_numbers_e2425b(r)
+                               }
+                             }]
+        # Assert
+      end
 
 
       private
+
+      def check_distinct_numbers_e2425b(result)
+        expected_size = 100
+
+        #uniq_element_count = result.uniq.size
+        #assert_equal uniq_element_count, result.size
+        puts result.inspect
+        result.each { |tuple|
+          assert_equal tuple[0]**2 + tuple[1]**2, tuple[2]**2 + tuple[3]**2
+          assert tuple[0] != tuple[1] and tuple[0] != tuple[2] and
+            tuple[0] != tuple[3] and tuple[1] != tuple[2] and
+            tuple[1] != tuple[3] and tuple[2] != tuple[3]
+        }
+
+        #assert_equal expected_size, result.size
+        true
+      end
 
       # Checks the result of exercise e2425
       # @param [Enumerable] result
@@ -90,6 +122,8 @@ module Chapter2
         expected_size   = (param+1)**2
         previous        = 0
         resulting_array = []
+        result_mem_prev = Memory.analyze result
+
         result.each { |tuple|
           sum = tuple[0]
           i   = tuple[1]
@@ -109,8 +143,12 @@ module Chapter2
 
         if param >= 10
           assert_operator result_mem[:bytes], :<, result_arr_mem[:bytes],
-                          "The Enumerable object should use less memory than " +
-                            "the actual results array."
+                          "After execution, the Enumerable object should use "+
+                            "less memory than the actual results array."
+
+          assert_operator result_mem_prev[:bytes], :<, result_arr_mem[:bytes]
+          "Prior to execution, the Enumerable object should use "+
+            "less memory than the actual results array."
         end
 
         true
