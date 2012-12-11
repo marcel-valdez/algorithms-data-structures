@@ -78,7 +78,17 @@ Fill this file with the exercise you wrote before committing
 
 ### Chapter 5: Strings.
 
-* 5.2 Tries **PENDING** exercise identification.
+* 5.2 Tries
+    - Utilities: Trie Search Tree **PENDING**
+    - Utilities: Ternary Search Tree implementation **PENDING**
+    - 5.2.5 Nonrecursive versions of TrieST and TST. **PENDING**
+    - 5.2.8 Ordered operations for TrieST. **PENDING**
+    - 5.2.9 Extended operations for TSTs. **PENDING**
+    - 5.2.10 Very eager size for TrieST and TST. **PENDING**
+    - 5.2.14 Unique substrings of length L. **PENDING**
+    - 5.2.15 Unique substrings. **PENDING**
+    - 5.2.17 Spell checking. **PENDING**
+
 * 5.3 Substring Search **PENDING** exercise identification.
 
 ## The Middlegame
