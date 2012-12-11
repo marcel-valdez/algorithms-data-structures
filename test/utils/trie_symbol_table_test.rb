@@ -47,7 +47,7 @@ module Utils
       # Arrange
       @target = TrieSymbolTable.new
 
-      # Act
+      # Act                                           shutdown -r noew
       @target.put("key", 1)
       value = @target.get("key")
       contained = @target.contains? "key"
@@ -62,10 +62,10 @@ module Utils
     end
 
     test "test if it it can put several values and retrieve all" do
+      raise "Finish coding Trie Symbol Table Utility"
       # Arrange
       @target = TrieSymbolTable.new
-
-      (1)
+      
       # Act
 
 
