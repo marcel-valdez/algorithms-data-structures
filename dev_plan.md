@@ -14,12 +14,12 @@ Fill this file with the exercise you wrote before committing
     - 1.3.21 Find an element inside a linked list ([magg](https://github.com/))
     - 1.3.30 Reverse a linked list ([magg](https://github.com/))
     - 1.3.34 Randomize Bag Elements ([priangulo](https://github.com/priangulo))
-  
-  
-* 1.4 Analysis of Algorithms  
+
+
+* 1.4 Analysis of Algorithms
     - 1.4.11 Number repetition counter in an array in O(log2 n) time ([priangulo](https://github.com/priangulo))
     - Needs more exercises
-  
+
 ### Chapter 2: Sorting
 
 * 2.1 Elementary Sorts
@@ -27,7 +27,7 @@ Fill this file with the exercise you wrote before committing
     - 2.1.11 Create the sequence of h for shell sort ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.1.15 Optimize insertion sort. ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.1.16 Certification. **PENDING**
-  
+
 ### Chapter 3: Searching
 
 * 3.1 Elementary Symbol Tables
@@ -41,7 +41,7 @@ Fill this file with the exercise you wrote before committing
 * 5.1 String Sorts
     - 5.1.15 Sublinear number sorting algorithm ([marcel-valdez](https://github.com/marcel-valdez))
     - Needs more exercises
-  
+
 ## The Opening
 
 ### Chapter 2: Sorting.
@@ -52,30 +52,30 @@ Fill this file with the exercise you wrote before committing
     - 2.2.14 Merging sorted queues. **PENDING**
     - 2.2.15 Bottom-up queue mergesort. Note: Implies 2.2.14 **PENDING**
     - 2.2.17 Linked-list mergesort. **PENDING**
-  
-* 2.3 Quicksort  
+
+* 2.3 Quicksort
     - 2.3.18 Median-of-3 partitioning. ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.3.22 Fast 3-way partitioning. **PENDING**
     - 2.3.23 Super quick sort. **PENDING**
-  
-* 2.4 Priority Queues  
+
+* 2.4 Priority Queues
     - Utilities: Maximum Priority Queue. ([marcel-valdez](https://github.com/marcel-valdez))
     - Utilities: Minimum Priority Queue. ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.4.25.a Computational number theory. ([marcel-valdez](https://github.com/marcel-valdez))
-    - 2.4.25.b Find a,b,c,d such that a³+b³ = c³+d³. **PENDING**.
+    - 2.4.25.b Find a,b,c,d such that a³+b³ = c³+d³. ([marcel-valdez](https://github.com/marcel-valdez))
     - 2.4.27. Find the minimum, in a Max Priority Queue. **PENDING**.
     - 2.4.28. Selection filter. **PENDING**.
     - 2.4.30. Dynamic median-finding. **PENDING**.
-  
+
 ### Chapter 3: Searching.
 
 * 3.2 Binary Search Trees
     - Utilities: Binary Search Tree implementation ([marcel-valdez](https://github.com/marcel-valdez))
     - 3.2.6 Height alternatives for BST. **PENDING**
     - 3.2.WEB.1 The great tree-list recursion problem. **PENDING**.
-  
-* 3.3 Balanced Search Trees **PENDING** exercise identification.  
-  
+
+* 3.3 Balanced Search Trees **PENDING** exercise identification.
+
 ### Chapter 5: Strings.
 
 * 5.2 Tries **PENDING** exercise identification.

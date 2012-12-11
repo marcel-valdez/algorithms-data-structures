@@ -29,40 +29,21 @@ module Chapter2
       # The test expects your method distinct_numbers_e2425b to return an array
       # of arrays with 4 elements: [a, b, c, d]
       def distinct_numbers_e2425b
-        holder = NumberHolder.new 400
-        common = { }
+        holder = DistinctNumberHolder.new 100
+        pair_groups = { }
         result = []
-        count_1 = 0
         holder.each { |tuple|
-          if tuple[1] != tuple[2]
-            common[tuple[0]] = [] if common[tuple[0]].nil?
-            common[tuple[0]] << [tuple[1], tuple[2]]
-          end
-          count_1+= 1
-        }
-
-        puts "count 1: #{count_1}"
-
-        count_2 = 0
-        common.each_value { |item|
-          if item.size > 1
-            pairs = item.combination(2).to_a
-            pairs = pairs.collect { |pair|
-              count_2 += 1
-              pair.flatten
+          pair_groups[tuple[0]] = [] if pair_groups[tuple[0]].nil?
+          pair_group = pair_groups[tuple[0]]
+          pair_group << [tuple[1], tuple[2]]
+          if pair_group.size > 1
+            pair_group.first(pair_group.size - 1).each { |pair|
+              result << [pair[0], pair[1], tuple[1], tuple[2]]
             }
-            flat_pairs = pairs.flatten
-            pairs = pairs.delete_if { |pair|
-              flat_pairs.count(pair[0]) > 1 or flat_pairs.count(pair[1]) > 1
-            }
-
-            #puts "item: #{item.inspect}"
-            #puts "pairs: #{pairs.inspect}"
-            result << pairs unless pairs.empty?
           end
-        }
 
-        puts "count 2: #{count_2}"
+
+        }
 
         result
       end
@@ -72,7 +53,7 @@ module Chapter2
         def initialize(size)
           @size = size
           @minpq = ::Utils::MinPriorityQueue.new { |a, b| compare_tuple(a, b) }
-          (0..size).to_a.each { |num|
+          (0..@size).to_a.each { |num|
             @minpq.insert([num**3, num, 0])
           }
         end
@@ -84,15 +65,28 @@ module Chapter2
         end
 
         def each
-          until @minpq.is_empty?
-            min = @minpq.delete_min
+          until minpq.is_empty?
+            min = minpq.delete_min
             i = min[1]
             j = min[2]
             yield min
-            if j < @size
-              @minpq.insert [i**3 + (j+1)**3, i, j+1]
+            if j < size
+              minpq.insert [i**3 + (j+1)**3, i, j+1]
             end
           end
+        end
+
+        protected
+        attr_accessor :size, :minpq
+      end
+
+      class DistinctNumberHolder < NumberHolder
+        def initialize(size)
+          @size = size
+          @minpq = ::Utils::MinPriorityQueue.new { |a, b| compare_tuple(a, b) }
+          (0..@size).to_a.each { |num|
+            @minpq.insert([num**3 + (num+1)**3, num, num+1])
+          }
         end
       end
     end

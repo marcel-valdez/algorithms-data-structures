@@ -3,13 +3,10 @@
 notification :libnotify, timeout: 2, transient: false, append: true
 guard :test, :cli => '--use-color' do
   # Watch all exercise files and run their respective test
-  # watch(src/[chapter]/[section]/[exercise]) { run test/[chapter]/[section]/[exercise]_test.rb}
-  watch(%r{^src/(.+)/(.+)/(.+)\.rb$}) { |m| "test/#{m[1]}/#{m[2]}/#{m[3]}_test.rb" }
-  # watch(src/*.rb) and run test/*_test.rb
-  watch(%r{^src/([^/]+)\.rb$}) { |m| "test/#{m[1]}_test.rb" }
+  watch(%r{^src/(.+)\.rb}) { |m| "test/#{m[1]}_test.rb" }
 
   # Watch all tests
-  watch(%r{^test/.+_test\.rb$})
+  watch(%r{^(test/.+_test\.rb)$}) { |m| "#{m[1]}" }
 
   #Watch the test helper, and if modified, run all tests
   watch('test/test_helper.rb') { "test" }
