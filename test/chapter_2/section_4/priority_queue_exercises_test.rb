@@ -49,25 +49,25 @@ module Chapter2
         # Act/Assert
         verify_method :number_theory_e2425,
                       with: [
-                              {
-                                param:     1,
-                                predicate: lambda { |res|
-                                  check_number_theory_e2425(1, res)
-                                }
-                              },
-                              {
-                                param:     2,
-                                predicate: lambda { |res|
-                                  check_number_theory_e2425(2, res)
-                                }
-                              },
-                              {
-                                param:     10,
-                                predicate: lambda { |res|
-                                  check_number_theory_e2425(10, res)
-                                }
-                              }
-                            ]
+                        {
+                          param: 1,
+                          predicate: lambda { |res|
+                            check_number_theory_e2425(1, res)
+                          }
+                        },
+                        {
+                          param: 2,
+                          predicate: lambda { |res|
+                            check_number_theory_e2425(2, res)
+                          }
+                        },
+                        {
+                          param: 10,
+                          predicate: lambda { |res|
+                            check_number_theory_e2425(10, res)
+                          }
+                        }
+                      ]
 
         # Clean
         @target = nil
@@ -77,9 +77,39 @@ module Chapter2
       # Using the Enumerable object from exercise e2425, find all the distinct
       # integers a, b, c, d between 0 and 10⁶ such that:
       # a³ + b³ = c³ + d³
+      # The test expects your method distinct_numbers_e2425b to return an array
+      # of arrays with 4 elements: [a, b, c, d]
+      def test_distinct_numbers_e2425b
+        # Arrange
+        @target = PriorityQueueExercises.new
+
+        # Act
+        verify_method :distinct_numbers_e2425b,
+                      with: [{
+                               predicate: lambda { |r|
+                                 check_distinct_numbers_e2425b(r)
+                               }
+                             }]
+        # Assert
+      end
 
 
       private
+
+      # @param [Enumerable] result
+      # @return [boolean] true if successful, false otherwise.
+      def check_distinct_numbers_e2425b(result)
+        expected_size = 45
+        result.each { |tuple|
+          assert_equal tuple[0]**3 + tuple[1]**3, tuple[2]**3 + tuple[3]**3
+          assert tuple[0] != tuple[1] and tuple[0] != tuple[2] and
+            tuple[0] != tuple[3] and tuple[1] != tuple[2] and
+            tuple[1] != tuple[3] and tuple[2] != tuple[3]
+        }
+
+        assert_equal expected_size, result.size
+        true
+      end
 
       # Checks the result of exercise e2425
       # @param [Enumerable] result
@@ -87,13 +117,15 @@ module Chapter2
       def check_number_theory_e2425(param, result)
         assert_not_nil result, "Result should not be null"
 
-        expected_size   = (param+1)**2
-        previous        = 0
+        expected_size = (param+1)**2
+        previous = 0
         resulting_array = []
+        result_mem_prev = Memory.analyze result
+
         result.each { |tuple|
           sum = tuple[0]
-          i   = tuple[1]
-          j   = tuple[2]
+          i = tuple[1]
+          j = tuple[2]
 
           assert_equal sum, i**3 + j**3
           assert_operator sum, :>=, previous,
@@ -104,13 +136,17 @@ module Chapter2
         assert_equal expected_size, resulting_array.size,
                      "Result should be of size #{expected_size}"
 
-        result_mem     = Memory.analyze result
+        result_mem = Memory.analyze result
         result_arr_mem = Memory.analyze resulting_array
 
         if param >= 10
           assert_operator result_mem[:bytes], :<, result_arr_mem[:bytes],
-                          "The Enumerable object should use less memory than " +
-                            "the actual results array."
+                          "After execution, the Enumerable object should use "+
+                            "less memory than the actual results array."
+
+          assert_operator result_mem_prev[:bytes], :<, result_arr_mem[:bytes]
+          "Prior to execution, the Enumerable object should use "+
+            "less memory than the actual results array."
         end
 
         true
