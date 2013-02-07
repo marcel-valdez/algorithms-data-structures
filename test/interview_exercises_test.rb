@@ -188,17 +188,17 @@ class InterviewExercises_test < TestHelper
   #                  and so on.
   def build_tree
     map = {}
-    map[:minus_two] = minus_two = Node.new -2
-    map[:minus_one] = minus_one = Node.new -1
-    map[:zero] = zero = Node.new 0
-    map[:one] = one = Node.new 1
-    map[:two] = two = Node.new 2
-    map[:three] = three = Node.new 3
-    map[:four] = four = Node.new 4
-    map[:five] = five = Node.new 5
-    map[:six] = six = Node.new 6
-    map[:seven] = seven = Node.new 7
-    map[:eight] = eight = Node.new 8
+    map[:minus_two] = minus_two = Node.new(-2)
+    map[:minus_one] = minus_one = Node.new(-1)
+    map[:zero] = zero = Node.new(0)
+    map[:one] = one = Node.new(1)
+    map[:two] = two = Node.new(2)
+    map[:three] = three = Node.new(3)
+    map[:four] = four = Node.new(4)
+    map[:five] = five = Node.new(5)
+    map[:six] = six = Node.new(6)
+    map[:seven] = seven = Node.new(7)
+    map[:eight] = eight = Node.new(8)
     # first level
     five.left = one
     five.right = seven

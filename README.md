@@ -67,7 +67,7 @@ Webpage: http://algs4.cs.princeton.edu/home/
 In order to add exercises for a section you have to add a new test/chapter_x/section_y/zzz_exercises_test.rb file and a new src/chapter_x/section_y/zzz_exercises.rb implementation.
   
 <h3>Rules for contributing to the project</h3>
-* Add the exercise name and section of the exercise you programmed/tested to the dev_plan.txt file, appending
+* Add the exercise name and section of the exercise you programmed/tested to the dev_plan.md file, appending
   your github username (and be known for you mad algorithmic skillz).
 * All exercises must have a test and solution
 * All pull requests are reviewed by the reviewing team

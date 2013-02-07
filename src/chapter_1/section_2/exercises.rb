@@ -20,8 +20,8 @@ module Chapter1
         # Loop 1 to N
         (1..n).each {
           # Create a point with random X and Y
-          x = rand 0..(n-1)
-          y = rand 0..(n-1)
+          x = rand(n-1)
+          y = rand(n-1)
           point = Point2D.new(Float(x)/n, Float(y)/n)
           all_points << point
 
@@ -93,14 +93,12 @@ module Chapter1
       # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
       # Assume N > 1 and min < max and min >= 0
       def include_intersect_e123 (n, min, max)
-        min_max = min..max
         ranges = []
         # loop i=1 a N
         (1..n).each { |i|
           # generate Ri with start = rand(min, max), end = (start, max) -> Note if start == max, then Range.length = 1
-          start = rand(min_max)
-          min_max_i = start..max
-          finish = rand(min_max_i)
+          start = rand(max - min) + min
+          finish = rand(max - start) + start
           range = start..finish
           ranges.push(range)
         }
