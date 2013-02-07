@@ -1,7 +1,7 @@
 # More info at https://github.com/guard/guard#readme
 
 notification :libnotify, timeout: 2, transient: false, append: true
-guard :test, :cli => '--use-color' do
+guard :test, :cli => '--use-color --no-show-detail-immediately --verbose=important-only' do
   # Watch all exercise files and run their respective test
   watch(%r{^src/(.+)\.rb}) { |m| "test/#{m[1]}_test.rb" }
 
