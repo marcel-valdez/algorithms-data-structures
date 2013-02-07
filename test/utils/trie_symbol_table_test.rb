@@ -6,7 +6,7 @@ require_relative "utils_test_helper"
 
 module Utils
   class TrieSymbolTableTest < TestHelper
-    include UtilsTestHelper
+    include UtilsTestHelper    
 
     def initialize(*arg)
       super(*arg)
@@ -47,7 +47,7 @@ module Utils
       # Arrange
       @target = TrieSymbolTable.new
 
-      # Act                                           shutdown -r noew
+      # Act
       @target.put("key", 1)
       value = @target.get("key")
       contained = @target.contains? "key"
@@ -62,7 +62,7 @@ module Utils
     end
 
     test "test if it it can put several values and retrieve all" do
-      raise "Finish coding Trie Symbol Table Utility"
+      omit "TODO"
       # Arrange
       @target = TrieSymbolTable.new
       

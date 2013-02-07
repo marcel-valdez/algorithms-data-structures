@@ -18,7 +18,6 @@ module Chapter2
       end
 
       def partition(input, lo, hi)
-        #puts "-"*10 +"\npartition(#{input}, #{lo}, #{hi})"
         # handle the cases in which the partition is size 2
         if hi - lo == 1
           if input[lo] > input[hi] # items are order inverted
@@ -31,8 +30,7 @@ module Chapter2
         # find 3-sample median
         forwards, backwards = lo, hi+1
         median = find_median3(hi, input, lo)
-
-        #puts "\tpartition.median:#{median}, input:#{input}"
+        
         while true
           forwards+=1
           until input[forwards] >= median or forwards == hi # until item belonging to right side found
@@ -49,9 +47,7 @@ module Chapter2
           input[backwards], input[forwards] = input[forwards], input[backwards] # swap items
         end
 
-        #puts "\tswap lo:input[#{lo}]=#{input[lo]} and backwards:input[#{backwards}]=#{input[backwards]}"
         input[lo], input[backwards] = input[backwards], input[lo]
-        #puts "\tpartition.result: #{input}"
         backwards
       end
 
