@@ -117,7 +117,7 @@ class TestHelper < Test::Unit::TestCase
   end
 
   def get_input (test_case)
-    raise "Test definition error: nil test case provided." if test_case.nil?
+    raise 'Test definition error: nil test case provided.' if test_case.nil?
 
     keys = [:params, :param]
 

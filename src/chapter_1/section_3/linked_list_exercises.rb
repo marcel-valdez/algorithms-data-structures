@@ -16,8 +16,7 @@ module Chapter1
       # element in a linked list, if it exists.
       # Assume input is always a string
       # Examples:
-      def delete_e31(nodo,input)
-
+      def delete_e31(nodo, input)
         while nodo.next != nil
           if nodo.value == input
             nodo.value = nodo.next.value
@@ -28,10 +27,11 @@ module Chapter1
         end #while ends
       end
 
-      #Write a method find() that takes a linked list and a string key as
-      #arguments and returns true if some node in the list has key as its item field, false otherwise.
+
+      # Write a method find() that takes a linked list and a string key as
+      # arguments and returns true if some node in the list has key as its item field, false otherwise.
       # Assume input is always a string
-      def find_e32(nodo,input)
+      def find_e32(nodo, input)
         while nodo.next != nil
           if nodo.value == input
             return true
@@ -41,8 +41,10 @@ module Chapter1
         return false
       end
 
-      # Write a method delete() that takes an int argument k and deletes
-      #the kth element in a linked list, if it exists.
+      # Write a function reverse_iter_e33 that takes the first Node
+      # in a linked list as argument and (destructively) reverses the
+      # list, returning the first Node in the result.
+      # Use iteration.
       def reverse_iter_e33(root)
         previous_node = nil
         current = root
@@ -55,17 +57,27 @@ module Chapter1
         return previous_node
       end
 
-      # Write a method delete() that takes an int argument k and deletes
-      #the kth element in a linked list, if it exists.
-      def reverse_recur_e33(root)
-        return nil if root.nil?
+      # Write a function reverse_recur_e33 that takes the first Node
+      # in a linked list as argument and (destructively) reverses the
+      # list, returning the first Node in the result.
+      # Use recursion.
+      def reverse_recur_e33(node)
+        # guard clause to validate input
+        return nil if node.nil?
+        # the node is the new root if its the end of the list
+        return node if node.next.nil?
 
-        return root if root.next.nil?
+        # get the next node
+        next_node = node.next
 
-        second = root.next
-        rest = reverse_recur_e33(second)
-        second.next = root
-        root.next = nil
+        # reverse the rest of the nodes
+        rest = reverse_recur_e33(next_node)
+        # reverse the current pair of nodes
+        next_node.next = node
+        # set node as the new tail
+        node.next = nil
+
+        # return the new root
         return rest
       end
 
