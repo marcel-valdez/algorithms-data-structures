@@ -15,8 +15,8 @@ module Chapter2
       # maximizes the number of times the test a[ j] < a[ min] succeeds (and,
       # therefore, min gets updated) during the operation of selection sort.
       # Assume N >= 3
-      def test_get_maximized_array_e213
-        verify_method :get_maximized_array_e213,
+      def test_e213_get_maximized_array
+        verify_method :e213_get_maximized_array,
                       :with => [
                           param: 3,
                           predicate: Proc.new { |arr| check_min_pass_count(3, arr) }

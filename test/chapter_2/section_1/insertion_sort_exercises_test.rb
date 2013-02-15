@@ -18,13 +18,13 @@ module Chapter2
       # entry, rather than exchanging.
       # Note: Your code must run faster than the implementation without this optimization.
       # 			and also provide a correct sort.
-      def test_insertion_sort_no_swap_e2125
+      def test_e2125_insertion_sort_no_swap
       	# puts "*** Executing insertion_sort_without_exchanges_e2125_test ***"
-        check_sort_correctness :insertion_sort_no_swap_e2125
+        check_sort_correctness :e2125_insertion_sort_no_swap
 
         hundred_elements = (0..100).to_a
         faster = Proc.new {
-            @target.insertion_sort_no_swap_e2125(hundred_elements.shuffle)
+            @target.e2125_insertion_sort_no_swap(hundred_elements.shuffle)
         }
 
         slower = Proc.new {

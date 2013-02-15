@@ -18,7 +18,7 @@ module Chapter1
       # 8-bit 'alphabet', Two passes with keys from:
       # The first on the 0-7 bits of the number
       # Then on the 8-15 bits of the number
-      def sublinear_sort_e5115(values)
+      def e5115_sublinear_sort(values)
         size = values.length
         aux = Array.new(size, 0)
         total_lsd_passes = 2

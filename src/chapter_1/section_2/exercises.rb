@@ -11,7 +11,7 @@ module Chapter1
       def initialize
       end
 
-      def point_distance_e121(n)
+      def e121_point_distance(n)
         # All numbers will be within a range 0,0 to n.n
         # PointMap[x][y]: I know that the real Point2D(x,y) is going to be x/n, y/n) where x=[0,n] and y=[0,n]
         points = Array.new(n) { Array.new(n) }
@@ -71,7 +71,7 @@ module Chapter1
         return all_points, shortest
       end
 
-      def range_intersect_e122(ranges)
+      def e122_range_intersect(ranges)
         # It is similar to the points intersection, but for ranges.
         intersected_pairs = []
         # loop ranges from 0 to n-1
@@ -92,7 +92,7 @@ module Chapter1
       # one inside the other. The method should return all generated ranges, intersecting ranges and ranges contained
       # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
       # Assume N > 1 and min < max and min >= 0
-      def include_intersect_e123 (n, min, max)
+      def e123_include_intersect (n, min, max)
         ranges = []
         # loop i=1 a N
         (1..n).each { |i|

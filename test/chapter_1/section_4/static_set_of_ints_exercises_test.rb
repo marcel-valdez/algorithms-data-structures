@@ -14,8 +14,8 @@ module Chapter1
       # 1.4.11 Add an instance method howMany() to StaticSETofInts (page 99)
       # that finds the number of occurrences of a given key
       # in time proportional to log N in the worst case.
-      def test_how_many_e1411
-        verify_method :how_many_e1411,
+      def test_e1411_how_many
+        verify_method :e1411_how_many,
                       :with => [{param: 3, expect: 3},
                                 {param: 5, expect: 1},
                                 {param: 4, expect: 2},

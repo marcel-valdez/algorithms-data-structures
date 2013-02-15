@@ -12,18 +12,17 @@ module Chapter1
 
       end
 
-      # Write a method delete() that takes an int argument k and deletes the kth
+      # Write a method e31_delete() that takes an int argument k and deletes the kth
       # element in a linked list, if it exists.
       # Assume input is always a string
       # Examples:
-      def delete_e31(nodo, input)
-
-        while nodo.next != nil
-          if nodo.value == input
-            nodo.value = nodo.next.value
-            nodo.next = nodo.next.next
+      def e31_delete(node, input)
+        while node.next != nil
+          if node.value == input
+            node.value = node.next.value
+            node.next = node.next.next
           else
-            nodo = nodo.next
+            node = node.next
           end
         end #while ends
       end
@@ -31,21 +30,21 @@ module Chapter1
       # Write a method find() that takes a linked list and a string key as
       # arguments and returns true if some node in the list has key as its item field, false otherwise.
       # Assume input is always a string
-      def find_e32(nodo, input)
-        while nodo.next != nil
-          if nodo.value == input
+      def e32_find(node, input)
+        while node.next != nil
+          if node.value == input
             return true
           end
-          nodo = nodo.next
+          node = node.next
         end
         return false
       end
 
-      # Write a function reverse_iter_e33 that takes the first Node
+      # Write a function e33_reverse_iter that takes the first Node
       # in a linked list as argument and (destructively) reverses the
       # list, returning the first Node in the result.
       # Use iteration.
-      def reverse_iter_e33(root)
+      def e33_reverse_iter(root)
         previous_node = nil
         current = root
         while current != nil
@@ -54,14 +53,15 @@ module Chapter1
           previous_node = current
           current = next_node
         end
+
         return previous_node
       end
 
-      # Write a function reverse_recur_e33 that takes the first Node
+      # Write a function e33_reverse_recur that takes the first Node
       # in a linked list as argument and (destructively) reverses the
       # list, returning the first Node in the result.
       # Use recursion.
-      def reverse_recur_e33(node)
+      def e33_reverse_recur(node)
         # guard clause to validate input
         return nil if node.nil?
         # the node is the new root if its the end of the list
@@ -71,7 +71,7 @@ module Chapter1
         next_node = node.next
 
         # reverse the rest of the nodes
-        rest = reverse_recur_e33(next_node)
+        rest = e33_reverse_recur(next_node)
         # reverse the current pair of nodes
         next_node.next = node
         # set node as the new tail

@@ -3,7 +3,7 @@
 module Chapter2
   module Section1
     class ShellSortExercises
-      def shell_sort_increment_e2111(size)
+      def e2111_shell_sort_increment(size)
         result = [1]
         h = 1
         while h < size/3

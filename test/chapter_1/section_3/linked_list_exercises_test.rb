@@ -12,12 +12,15 @@ module Chapter1
 
       def initialize(*args)
         super(*args)
+      end
+
+      def setup
         @target = LinkedListExercises.new
       end
 
-      # Write a method delete_e31 that takes an int argument k and deletes
+      # Write a method e31_delete that takes an int argument k and deletes
       # the kth element in a linked list, if it exists.
-      def test_delete_e31
+      def test_e31_delete
         root = Utils::ListNode.new("1")
         list = Utils::LinkedList.new(root)
         create_list(list, "2", "3", "4", "5", "6")
@@ -30,7 +33,7 @@ module Chapter1
         list3 = Utils::LinkedList.new(root3)
         create_list(list3, "2", "3", "4", "5", "6")
 
-        verify_method :delete_e31,
+        verify_method :e31_delete,
                       :with =>
                           [
                               {params: [root, "5"], predicate: Proc.new { check_delete("5", root) }},
@@ -40,16 +43,16 @@ module Chapter1
 
       end
 
-      # Write a method find_e32 that takes a linked list and a string key as arguments
+      # Write a method e32_find that takes a linked list and a string key as arguments
       # and returns true if some node in the list has key as its item field, false otherwise.
-      def test_find_e32
+      def test_e32_find
 
         root = Utils::ListNode.new("1")
         list = Utils::LinkedList.new(root)
         create_list(list, "2", "3", "4", "5", "6")
 
         #end
-        verify_method :find_e32,
+        verify_method :e32_find,
                       :with =>
                           [
                               {params: [root, "5"], expect: true},
@@ -58,30 +61,28 @@ module Chapter1
                               {params: [root, "2"], expect: true},
                               {params: [root, "9"], expect: false},
                               {params: [root, "-1"], expect: false},
-                              {params: [root, "100"], expect: false},
-
+                              {params: [root, "100"], expect: false}
                           ]
       end
 
-      # Write a function reverse_recur_e33 that takes the first Node in a linked list as
+      # Write a function e33_reverse_recur that takes the first Node in a linked list as
       # argument and (destructively) reverses the list, returning the first Node in the result.
       # Use recursion.
-      def test_reverse_recur_e33
-        test_reverse_linked_list :reverse_recur_e33
+      def test_e33_reverse_recur
+        check_reverse_linked_list :e33_reverse_recur
       end
 
-      # Write a function reverse_iter_e33 that takes the first Node in a linked list as
+      # Write a function e33_reverse_iter that takes the first Node in a linked list as
       # argument and (destructively) reverses the list, returning the first Node in the result.
       # Use iteration without recursion.
-      def test_reverse_iter_e33
-        test_reverse_linked_list :reverse_iter_e33
+      def test_e33_reverse_iter
+        check_reverse_linked_list :e33_reverse_iter
       end
-
 
       private
 
       # Helps test the linked list reversal algorithm behavior
-      def test_reverse_linked_list(method_name)
+      def check_reverse_linked_list(method_sym)
         root = Utils::ListNode.new("1")
         root2 = Utils::ListNode.new("1")
         list = Utils::LinkedList.new(root)
@@ -91,17 +92,20 @@ module Chapter1
         create_list(list2, "2", "3", "5")
         reversed_list2 = Array["5", "3", "2", "1"]
 
-        verify_method method_name,
+        verify_method method_sym,
                       :with =>
-                          [
-                              {
-                                  param: root,
-                                  predicate: Proc.new { |new_root| check_list(new_root, reversed_list) }
-                              },
-                              {
-                                  params: root2,
-                                  predicate: Proc.new { |new_root| check_list(new_root, reversed_list2) }
-                              },
+                          [{
+                               param: root,
+                               predicate: Proc.new { |new_root|
+                                 check_list(new_root, reversed_list)
+                               }
+                           },
+                           {
+                               params: root2,
+                               predicate: Proc.new { |new_root|
+                                 check_list(new_root, reversed_list2)
+                               }
+                           },
                           ]
       end
 

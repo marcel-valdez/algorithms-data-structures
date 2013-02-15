@@ -18,8 +18,8 @@ module Chapter2
       #         The method will receive a value n, and be expected to return an array with
       #       the decrement sequence for such n
       # Assumptions: n > 3
-      def test_shell_sort_increment_e2111
-        verify_method :shell_sort_increment_e2111,
+      def test_e2111_shell_sort_increment
+        verify_method :e2111_shell_sort_increment,
                       :with => [
                           {
                               param: 3,

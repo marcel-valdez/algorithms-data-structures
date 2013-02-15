@@ -22,9 +22,9 @@ module Chapter2
       #        Note: The test will only check that it sorts correctly and is faster
       #              than merge sort. We trust you will really implement the technique.
       # Assumptions: Assume the input array is shuffled
-      def test_median3_quicksort_e2318
+      def test_e2318_median3_quicksort
 
-        check_sort_correctness :median3_quicksort_e2318
+        check_sort_correctness :e2318_median3_quicksort
 
         thousand_items = (0..1000).to_a
         @aux = Array.new(thousand_items.length)
@@ -32,7 +32,7 @@ module Chapter2
           standard_merge_sort(thousand_items.shuffle, 0, thousand_items.length - 1)
         }
 
-        median3_sort_proc = create_proc :median3_quicksort_e2318, thousand_items.shuffle
+        median3_sort_proc = create_proc :e2318_median3_quicksort, thousand_items.shuffle
         # Check that its faster than the standard merge sort
         assert_faster_proc(median3_sort_proc, merge_sort_proc)
       end

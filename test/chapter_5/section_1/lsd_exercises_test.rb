@@ -21,10 +21,10 @@ module Chapter1
       # Note: The test will check that numbers get correctly ordered
       #       and that it outperforms a quicksort algorithm.
       # Good luck ;)
-      def test_sublinear_sort_e5115
+      def test_e5115_sublinear_sort
         numbers = (0...(2**3)+1).to_a.shuffle
 
-        verify_method :sublinear_sort_e5115,
+        verify_method :e5115_sublinear_sort,
                       :with =>
                           [
                               {param: numbers, expect: numbers.sort}
@@ -33,7 +33,7 @@ module Chapter1
         numbers = (0...65535).to_a.shuffle
         my_numbers = (0...65535).to_a.shuffle
         slower_method = lambda { quick_sort numbers }
-        faster_method = lambda { @target.sublinear_sort_e5115(my_numbers) }
+        faster_method = lambda { @target.e5115_sublinear_sort(my_numbers) }
 
         assert_faster_proc faster_method, slower_method
       end
