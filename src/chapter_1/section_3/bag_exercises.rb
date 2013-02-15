@@ -9,7 +9,7 @@ module Chapter1
 
       # Exercise 1.3.34
       # Write a method that returns the items of a bag in a random order
-      def random_bag_e1334 (values)
+      def e1334_random_bag (values)
         length = values.length
 
         for i in 0...length

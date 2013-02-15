@@ -8,7 +8,8 @@ group :development do
   gem 'guard-test'
   gem 'listen'
   gem 'rb-inotify', '~> 0.8.8'
-  gem 'libnotify'
+  gem 'libnotify' unless ENV['OS'] == 'Windows_NT'
+  gem 'wdm' if ENV['OS'] == 'Windows_NT'
 end
 
 gem 'test-unit', :group => [:development, :test]
