@@ -21,6 +21,8 @@ module Tools
         # Do nothing
       end
 
+      # TODO: Ignore attr_reader, attr_writer and attr_accesor
+
       # Test a single method extraction
       def test_method_extraction
         # arrange
