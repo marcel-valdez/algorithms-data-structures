@@ -62,9 +62,9 @@ module Chapter1
       # list, returning the first Node in the result.
       # Use recursion.
       def e33_reverse_recur(node)
-        # guard clause to validate input
+        # if the list is null, return null
         return nil if node.nil?
-        # the node is the new root if its the end of the list
+        # if reached the end of the list, return the node
         return node if node.next.nil?
 
         # get the next node
