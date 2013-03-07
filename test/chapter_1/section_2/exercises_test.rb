@@ -18,9 +18,9 @@ module Chapter1
       # and generates random N points, computes the distance separating the closest pair of points, and
       # returns an array of points of Point2D with the generated points, and the distance between the
       # two closest points
-      def test_point_distance_e121
+      def test_e121_point_distance
         (1..30).each {#Idempotence verification
-          verify_method :point_distance_e121,
+          verify_method :e121_point_distance,
                         :with => [{
                                       param: 2,
                                       predicate: Proc.new { |points_pairs, shortest|
@@ -49,11 +49,11 @@ module Chapter1
         }
       end
 
-      # 1.2.2 Write a method range_intersect_e122 that receives N Ranges (a..b), and returns all
+      # 1.e122_2.2 Write a method range_intersect that receives N Ranges (a..b), and returns all
       # pairs of ranges that intersect.
       # For example: 0..1, 1..2, 1..3 should return pairs: {0..1, 1..2}, {1..2, 1..3}, {0..1, 1..3}
-      def test_range_intersect_e122
-        verify_method :range_intersect_e122,
+      def test_e122_range_intersect
+        verify_method :e122_range_intersect,
                       :with =>
                           [
                               {param: [0..1, 0..1], expect: [[0..1, 0..1]]},
@@ -83,8 +83,8 @@ module Chapter1
       # should return all generated ranges, intersecting ranges and ranges contained.
       # For example: 3, 1, 4 *could* return [ [1..2, 1..3, 3..4], [[1..2, 1..3],[1..3, 3..4]], [[1..2, 1..3]]]
       # Assume N > 1 and min < max and min >= 0
-      def test_include_intersect_e123
-        verify_method :include_intersect_e123,
+      def test_e123_include_intersect
+        verify_method :e123_include_intersect,
                       :with =>
                           [
                               {
@@ -134,7 +134,7 @@ module Chapter1
 
       def check_points(n = 0, generated_points = [], actual_shortest = 0)
         shortest = nil
-        generated_points.each_with_index { |point, index|
+        generated_points.each { |point|
           generated_points.each { |other_point|
             unless other_point.eql? point
               distance = point.distance_to other_point

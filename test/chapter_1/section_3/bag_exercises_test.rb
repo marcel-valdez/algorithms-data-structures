@@ -12,17 +12,17 @@ module Chapter1
         @target = BagExercises.new
       end
 
-      #Exercise 1.3.34
+      # Exercise 1.3.34
       # Write a method random_bag_e1334 that returns the items 
       # of a bag in a random order
-      def test_random_bag_e1334
+      def test_e1334_random_bag
         failure_count = 0
         previous_random = (0...100).to_a
         repetition_error = nil
         (0...100).each {
           begin
             values = (0...100).to_a
-            verify_method :random_bag_e1334,
+            verify_method  :e1334_random_bag,
                           :with => [{
                                         param: values,
                                         predicate: Proc.new { |result|
@@ -46,7 +46,7 @@ module Chapter1
         end
       end
 
-      # Called for check result of test_random_bag_e1334
+      # Called for check result of test_e1334_random_bag
       def check_random_result (values, result)
         #values.each { |item| puts(item)}
         #result.each { |item| puts(item)}

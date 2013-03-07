@@ -22,10 +22,10 @@ module Chapter2
       # Warning: The resulting sort is not stable.
       # Note: This test will check that the method produces correct sorts, and will
       #       also compare the execution time against the standard mergesort.
-      def test_faster_merge_e2210
-        check_sort_correctness(:faster_merge_e2210)
+      def test_e2210_faster_merge
+        check_sort_correctness(:e2210_faster_merge)
 
-        check_faster_than_standard(:faster_merge_e2210)
+        check_faster_than_standard(:e2210_faster_merge)
       end
 
       # 2.2.11 Improvements. Implement the three improvements to mergesort described
@@ -43,20 +43,20 @@ module Chapter2
       #       3) That it runs faster than the standard merge sort
       #       4) That it runs faster than the implementation of exercise 2.2.10.
       #          So you need to solve exercise 2.2.10 first. ;)
-      def test_merge_improvements_e2211
+      def test_e2211_merge_improvements
         #       1) That the sorted result is correct
-        check_sort_correctness :merge_improvements_e2211
+        check_sort_correctness :e2211_merge_improvements
 
         #       2) That it executes at least twice as fast for a sorted array
         #          than the standard merge sort.
         check_faster_for_sorted_array()
 
         #       3) That it runs faster than the standard merge sort
-        check_faster_than_standard(:merge_improvements_e2211)
+        check_faster_than_standard(:e2211_merge_improvements)
 
         #       4) That it runs faster than the implementation of exercise 2.2.10.
         #          So you need to solve exercise 2.2.10 first. ;)
-        assert_faster_method :merge_improvements_e2211, :faster_merge_e2210
+        assert_faster_method :e2211_merge_improvements, :e2210_faster_merge
       end
 
       def check_faster_for_sorted_array
@@ -67,7 +67,7 @@ module Chapter2
         }
 
         faster_proc = lambda {
-          @target.merge_improvements_e2211 input
+          @target.e2211_merge_improvements input
         }
 
         assert_faster_proc faster_proc, standard_proc

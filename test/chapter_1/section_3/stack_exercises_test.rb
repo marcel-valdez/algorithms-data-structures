@@ -27,8 +27,8 @@ module Chapter1
       # For example, your program should return true for [()]{}{[()()]()}
       # and false for [(]).
       # This exercise is exercise 4 of: http://algs4.cs.princeton.edu/13stacks/
-      def test_stack_checker_e134
-        verify_method :stack_checker_e134,
+      def test_e134_stack_checker
+        verify_method :e134_stack_checker,
                       :with =>
                           [
                               {param: "()", expect: true},
@@ -67,8 +67,8 @@ module Chapter1
       # input: 5 3 4 - * output: -5
       # input 3 4 5 - * output: -3
       # input: 3 4 + 5 6 * * 2 + output: 212
-      def test_postfix_evaluator_e1311
-        verify_method :postfix_evaluator_e1311,
+      def test_e1311_postfix_evaluator
+        verify_method :e1311_postfix_evaluator,
                       :with =>
                           [
                               {param: '1 2 +', expect: 3},
@@ -81,7 +81,7 @@ module Chapter1
                           ]
       end
 
-      # Depends on: postfix_evaluator_e1311
+      # Depends on:e1311_ postfix_evaluator
       # Write a method that converts an arithmetic expression from infix to postfix.
       # Using stacks to process the infix and postfix expressions
       # Assume input is always in correct infix format
@@ -91,8 +91,8 @@ module Chapter1
       #   input: '3-4+5' output:  '3 4 - 5 +'
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
       # Postfix documentation: http://en.wikipedia.org/wiki/Reverse_Polish_notation
-      def test_infix_to_postfix_e1310
-        verify_method :infix_to_postfix_e1310,
+      def test_e1310_infix_to_postfix
+        verify_method :e1310_infix_to_postfix,
                       :with =>
                           [
                               {
@@ -145,12 +145,12 @@ module Chapter1
       # Uses the postfix evaluator you wrote for exercise e1311 to
       # test your infix to postfix implementation.
       def evaluate_postfix_expression(postfix_input)
-        unless @target.respond_to? :postfix_evaluator_e1311
-          fail "You must solve test_postfix_evaluator_e1311 first"
+        unless @target.respond_to? :e1311_postfix_evaluator
+          fail "You must solve test_e1311_postfix_evaluator first"
         end
 
         begin
-          return @target.postfix_evaluator_e1311(postfix_input)
+          return @target.e1311_postfix_evaluator(postfix_input)
         rescue Exception => error
           msg = "Bad postfix format: #{postfix_input}, #{error.message}"
           raise Test::Unit::AssertionFailedError.new(msg)

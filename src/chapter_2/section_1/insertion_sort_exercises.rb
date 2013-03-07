@@ -3,7 +3,7 @@
 module Chapter2
   module Section1
     class InsertionSortExercises
-      def insertion_sort_no_swap_e2125(values)
+      def e2125_insertion_sort_no_swap(values)
         i = 1
         while i < values.length
           # store the values[i] value

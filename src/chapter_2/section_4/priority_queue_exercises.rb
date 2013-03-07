@@ -18,7 +18,7 @@ module Chapter2
       # if j < N, insert the item (i³ + (j+1)³, i, j+1)
       # @param [Fixnum] size
       # @return [Enumerable]
-      def number_theory_e2425(size)
+      def e2425_number_theory(size)
         NumberHolder.new size
       end
 
@@ -28,7 +28,7 @@ module Chapter2
       # a³ + b³ = c³ + d³
       # The test expects your method distinct_numbers_e2425b to return an array
       # of arrays with 4 elements: [a, b, c, d]
-      def distinct_numbers_e2425b
+      def e2425_distinct_numbersb
         holder = DistinctNumberHolder.new 100
         pair_groups = { }
         result = []

@@ -3,7 +3,7 @@
 module Chapter2
   module Section1
     class SelectionSortExercises
-      def get_maximized_array_e213(n)
+      def e213_get_maximized_array(n)
         (1..n).to_a.reverse
       end
     end

@@ -3,18 +3,18 @@
 module Chapter2
   module Section3
     class QuickSortExercises
-      def median3_quicksort_e2318(input)
-        quicksort_e2318(input, 0, input.length - 1)
+      def e2318_median3_quicksort(input)
+        e2318_quicksort(input, 0, input.length - 1)
         input
       end
 
-      def quicksort_e2318(input, lo, hi)
+      def e2318_quicksort(input, lo, hi)
         return if hi <= lo
 
         pivot = partition(input, lo, hi)
 
-        quicksort_e2318(input, lo, pivot-1)
-        quicksort_e2318(input, pivot+1, hi)
+        e2318_quicksort(input, lo, pivot-1)
+        e2318_quicksort(input, pivot+1, hi)
       end
 
       def partition(input, lo, hi)

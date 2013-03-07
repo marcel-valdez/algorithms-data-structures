@@ -80,7 +80,7 @@ module Chapter1
         @integer_set = Utils::StaticSetOfIntegers.new values
       end
 
-      def how_many_e1411(value)
+      def e1411_how_many(value)
         @integer_set.how_many value
       end
     end

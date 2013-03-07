@@ -19,7 +19,7 @@ module Chapter1
       # For example, your program should print true for [()]{}{[()()]()}
       # and false for [(]).
       # This exercise is exercise 4 of: http://algs4.cs.princeton.edu/13stacks/
-      def stack_checker_e134(input)
+      def e134_stack_checker(input)
         # All left parens
         is_left = /[\(\{\[]/
 
@@ -57,7 +57,7 @@ module Chapter1
       #   input: '2+2+2' output:  '2 2 2 +'
       #   input: '3-4+5' output:  '3 4 - 5 +'
       #   input: '(2+((3+4)*(5*6)))' output:  '3 4 + 5 6 * * 2 +'
-      def infix_to_postfix_e1310(infix)
+      def e1310_infix_to_postfix(infix)
         # puts "Evaluating: #{infix}"
         tokens = infix.split('')
         result = ''
@@ -144,7 +144,7 @@ module Chapter1
       # input: 3 4 + 5 6 * * 2 + output: 212
       # Passes: All
       # Strategy: Build operands until an operator is found, then append the result, and repeat.
-      def postfix_evaluator_e1311(postfix_input)
+      def e1311_postfix_evaluator(postfix_input)
         #puts "Starting new postfix evaluation: #{postfix_input}"
         stack = Utils::Stack.new
         # Iterate every token

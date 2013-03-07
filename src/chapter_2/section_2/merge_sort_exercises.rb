@@ -8,7 +8,7 @@ module Chapter2
       # order- and then does the merge back to the input array. This change
       # allows you to remove the code to test that each of the halves has
       # been exhausted from the inner loop.
-      def faster_merge_e2210(input)
+      def e2210_faster_merge(input)
         @aux = Array.new(input.length)
         faster_merge_sort(input, 0, input.length - 1)
 
@@ -68,7 +68,7 @@ module Chapter2
       #    Two invocations to sort:
       #       1) input array as its parameter, put the output in aux array
       #       2) aux array as its parameter, put sorted output in input array
-      def merge_improvements_e2211(values)
+      def e2211_merge_improvements(values)
         @aux = Array.new(values.length)
         if improved_merge_sort(values, 0, values.length - 1)
           @aux.each_index { |i| values[i] = @aux[i] }

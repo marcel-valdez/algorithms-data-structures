@@ -40,14 +40,14 @@ module Chapter2
       #
       # Valid array size: 9 (N+1)²
       # This test will check that the object returned by
-      # PriorityQueueExercises.number_theory_e2425 is smaller memory-wise than
+      # PriorityQueueExercises.e2425_number_theory is smaller memory-wise than
       # an array with the results for N=10.
-      def test_number_theory_e2425
+      def test_e2425_number_theory
         # Arrange
         @target = PriorityQueueExercises.new
 
         # Act/Assert
-        verify_method :number_theory_e2425,
+        verify_method :e2425_number_theory,
                       with: [
                         {
                           param: 1,
@@ -79,12 +79,12 @@ module Chapter2
       # a³ + b³ = c³ + d³
       # The test expects your method distinct_numbers_e2425b to return an array
       # of arrays with 4 elements: [a, b, c, d]
-      def test_distinct_numbers_e2425b
+      def test_e2425_distinct_numbersb
         # Arrange
         @target = PriorityQueueExercises.new
 
         # Act
-        verify_method :distinct_numbers_e2425b,
+        verify_method :e2425_distinct_numbersb,
                       with: [{
                                predicate: lambda { |r|
                                  check_distinct_numbers_e2425b(r)
