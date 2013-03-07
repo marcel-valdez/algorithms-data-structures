@@ -7,7 +7,7 @@ require_relative '../../test/test_helper'
 module Tools
   module Tests
     class FolderExtractorTest < TestHelper
-
+      # test case
 
     end
   end
