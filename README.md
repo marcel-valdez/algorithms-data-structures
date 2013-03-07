@@ -3,7 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)  
   
 **Code Metrics Results:** 
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)  
+[![Code Climate](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)
   
 **Ohloh Statistics:**
 <a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
