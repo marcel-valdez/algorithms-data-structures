@@ -3,7 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/marcel-valdez/algorithms-data-structures.png?branch=master)](https://travis-ci.org/marcel-valdez/algorithms-data-structures)  
   
 **Code Metrics Results:** 
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)  
+[![Code Climate](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)
   
 **Ohloh Statistics:**
 <a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
@@ -17,6 +17,8 @@ must pass tests that specify the behavior of many fundamental algorithms and dat
 
 This project will contain the topics of algorithms and data structures found in the book:
 Algorithms 4th Ed by Robert Sedgewick and Kevin Wayne, focusing on the book and the exercises at http://algs4.cs.princeton.edu/home/
+
+You can get a quick introduction to the project's details with this [Google Doc presentation](http://bit.ly/UbsG8O).
   
 <h2>Code Structure</h2>
   
