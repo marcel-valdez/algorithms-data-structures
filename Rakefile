@@ -51,20 +51,20 @@ end
 
 desc 'Check coding style with cane'
 Cane::RakeTask.new(:style) do |cane|
-  cane.abc_glob = '{test}/**/*.rb'
+  cane.abc_glob = '{test,tools}/**/*.rb'
   cane.abc_max = 15
   cane.style_measure = 100
-  cane.doc_glob = 'test/**/*.rb'
-  cane.style_glob = '{src,test}/**/*.rb'
+  cane.doc_glob = '{test,tools}/**/*.rb'
+  cane.style_glob = '{src,test,tools}/**/*.rb'
   cane.no_style = false
   # TODO: Reduce cane style violations
-  cane.max_violations = 157
+  cane.max_violations = 108
   ENV['TASK'] = ENV['TASK'].to_s + ':STYLE'
 end
 
 desc 'Use flay to check code similarity'
 FlayTask.new(:flay) do |flay|
-  flay.dirs = %w(src test)
+  flay.dirs = %w(src test tools)
   flay.verbose = true
   # TODO: Reduce flay values
   # TODO: Reduce flay found IDENTICAL code

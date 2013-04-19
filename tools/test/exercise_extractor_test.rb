@@ -5,7 +5,10 @@ require_relative '../lib/exercise_extractor'
 
 module Tools
   module Tests
+    # This class is in charge of stripping exercise ruby files
+    # of implementation, leaving only class and public method definitions.
     class ExerciseExtractorTest < TestHelper
+      # Initializes this test class.
       def initialize (arg)
         super(arg)
       end
@@ -19,8 +22,8 @@ module Tools
       # Tests that the extractor ignores attr_reader, attr_writer and attr_accessor
       test 'if it ignores attributes' do
         # arrange
-
-        content = '# This is the test for the single method extraction test
+        content = '
+        # This is the test for the single method extraction test
         class SingleMethod
           attr_reader :reader
           attr_accessor :accessor
@@ -32,7 +35,8 @@ module Tools
           end
         end'
 
-        expected = '# This is the test for the single method extraction test
+        expected = '
+        # This is the test for the single method extraction test
         class SingleMethod
 
           # The exercise\s description
@@ -47,7 +51,8 @@ module Tools
       # Test a single method extraction
       test 'single method extraction' do
         # arrange
-        content = '# This is the test for the single method extraction test
+        content = '
+        # This is the test for the single method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -55,7 +60,8 @@ module Tools
           end
         end'
 
-        expected = '# This is the test for the single method extraction test
+        expected = '
+        # This is the test for the single method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -70,7 +76,8 @@ module Tools
       # Test a single method extraction
       def test_ignore_private_method
         # arrange
-        content = '# This is the test for the private method extraction test
+        content = '
+        # This is the test for the private method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -83,7 +90,8 @@ module Tools
           end
         end'
 
-        expected = '# This is the test for the private method extraction test
+        expected = '
+        # This is the test for the private method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -96,10 +104,11 @@ module Tools
         assert_equal expected, result
       end
 
+      # Tests extraction of a class with several methods
       def test_several_method_extraction
         # arrange
-        content =
-            '# This is the test file for the several method extraction test
+        content = '
+        # This is the test file for the several method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -113,8 +122,8 @@ module Tools
           end
         end'
 
-        expected =
-            '# This is the test file for the several method extraction test
+        expected = '
+        # This is the test file for the several method extraction test
         class SingleMethod
           # The exercise\s description
           def single_method
@@ -137,6 +146,7 @@ module Tools
         assert_equal expected, result
       end
 
+      # Tests the detection of an attribute declaration line
       def test_attribute_detection
         verify_method :is_attribute?, with: [
             {param: '  attr_reader :a', expect: true},
@@ -149,6 +159,7 @@ module Tools
         ]
       end
 
+      # Tests the detection of an method declaration line
       def test_method_detection
         verify_method :is_method?, with: [
             {param: '  def method_def', expect: true},
@@ -158,6 +169,7 @@ module Tools
         ]
       end
 
+      # Tests that it can get the indentation of a method def line
       def test_get_method_end
         verify_method :get_method_end, with: [
             {param: '  def method', expect: "  end\n"},
@@ -165,6 +177,7 @@ module Tools
         ]
       end
 
+      # Test that it can correctly detect a private keyword
       def test_is_private_keyword
         verify_method :is_private_keyword?, with: [
             {param: 'private', expect: true},

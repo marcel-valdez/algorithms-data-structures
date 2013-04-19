@@ -98,6 +98,8 @@ module Tools
     # NOTE: I created the implementation first because it was
     # somewhat complicated and needed to code it first.
 
+    # This is a mock class for the FileSys class, in order to
+    # isolate from the filesystem.
     class MockFileSys
       def dir_struct=(structure)
         @structure=structure
