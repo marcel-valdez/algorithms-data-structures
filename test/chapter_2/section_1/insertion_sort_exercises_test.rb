@@ -1,10 +1,10 @@
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_2/section_1/insertion_sort_exercises"
-require_relative "../test_sort_helper"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_2/section_1/insertion_sort_exercises'
+require_relative '../test_sort_helper'
 
 module Chapter2
   module Section1
-    class InsertionSortExercises_test < TestHelper
+    class InsertionSortExercisesTest < TestHelper
 
       include Chapter2::TestSortHelper
 

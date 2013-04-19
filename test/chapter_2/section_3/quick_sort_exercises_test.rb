@@ -1,12 +1,12 @@
 #encoding: utf-8
 
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_2/section_3/quick_sort_exercises"
-require_relative "../test_sort_helper"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_2/section_3/quick_sort_exercises'
+require_relative '../test_sort_helper'
 
 module Chapter2
   module Section3
-    class QuickSortExercises_test < TestHelper
+    class QuickSortExercisesTest < TestHelper
 
       include Chapter2::TestSortHelper
 

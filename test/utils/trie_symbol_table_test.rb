@@ -1,19 +1,19 @@
 # encoding: utf-8
 
-require_relative "../test_helper"
-require_relative "../../src/utils/trie_symbol_table"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/trie_symbol_table'
+require_relative 'utils_test_helper'
 
 module Utils
   class TrieSymbolTableTest < TestHelper
-    include UtilsTestHelper    
+    include UtilsTestHelper
 
     def initialize(*arg)
       super(*arg)
       @target= nil
     end
 
-    test "if it has correct API definition" do
+    test 'if it has correct API definition' do
       # Arrange
       api = [
         :size, :contains?, :get, :put, :longest_prefix_of,
@@ -29,7 +29,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "test if it is initialized correctly" do
+    test 'test if it is initialized correctly' do
       # Arrange
       @target = nil
 
@@ -43,14 +43,14 @@ module Utils
       @target = nil
     end
 
-    test "test if it can put a new key-value (put/size/contains?)" do
+    test 'test if it can put a new key-value (put/size/contains?)' do
       # Arrange
       @target = TrieSymbolTable.new
 
       # Act
-      @target.put("key", 1)
-      value = @target.get("key")
-      contained = @target.contains? "key"
+      @target.put('key', 1)
+      value = @target.get('key')
+      contained = @target.contains? 'key'
 
       # Assert
       assert_equal 1, @target.size
@@ -61,11 +61,11 @@ module Utils
       @target = nil
     end
 
-    test "test if it it can put several values and retrieve all" do
-      omit "TODO"
+    test 'test if it it can put several values and retrieve all' do
+      omit 'TODO'
       # Arrange
       @target = TrieSymbolTable.new
-      
+
       # Act
 
 

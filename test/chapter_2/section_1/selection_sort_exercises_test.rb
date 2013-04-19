@@ -1,10 +1,10 @@
 # encoding: utf-8
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_2/section_1/selection_sort_exercises"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_2/section_1/selection_sort_exercises'
 
 module Chapter2
   module Section1
-    class SelectionSortExercises_test < TestHelper
+    class SelectionSortExercisesTest < TestHelper
 
       def initialize(*args)
         super(*args)

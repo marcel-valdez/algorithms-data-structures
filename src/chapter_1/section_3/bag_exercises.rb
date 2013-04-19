@@ -1,4 +1,4 @@
-require_relative "../../utils/bag"
+require_relative '../../utils/bag'
 
 module Chapter1
   module Section3
@@ -12,12 +12,12 @@ module Chapter1
       def e1334_random_bag (values)
         length = values.length
 
-        for i in 0...length
+        (0...length).each { |i|
           random_index = Random.rand(length)
           value_at_random_index = values[random_index]
           values[random_index] = values[i]
           values[i] = value_at_random_index
-        end
+        }
 
         values
       end

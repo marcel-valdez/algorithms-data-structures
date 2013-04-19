@@ -1,6 +1,6 @@
-require_relative "../test_helper"
-require_relative "../../src/utils/stack"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/stack'
+require_relative 'utils_test_helper'
 
 module Utils
   class StackTest < TestHelper
@@ -11,7 +11,7 @@ module Utils
       @target= Stack.new
     end
 
-    test "if it has API definition" do
+    test 'if it has API definition' do
       # Arrange
       api = [:is_empty?, :size, :push, :pop, :peek]
       non_api = [:size=, :first=, :last=, :first, :last]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it starts empty" do
+    test 'if it starts empty' do
       # Arrange
       # Act
       target = Stack.new
@@ -32,7 +32,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test "if it can use each to find nodes" do
+    test 'if it can use each to find nodes' do
       # Arrange
       target = Stack.new
       i=2
@@ -48,7 +48,7 @@ module Utils
       }
     end
 
-    test "if it can add first node" do
+    test 'if it can add first node' do
       # Arrange
       target = Stack.new
 
@@ -60,7 +60,7 @@ module Utils
       assert_equal 1, target.size
       assert_equal 1, target.peek
 
-      sub_case "Test if it can add a second node" do
+      sub_case 'Test if it can add a second node' do
         # Act (2nd)
         target.push 2
 
@@ -69,7 +69,7 @@ module Utils
         assert_false target.is_empty?
         assert_equal 2, target.peek
 
-        sub_case "Test if it can pop a node" do
+        sub_case 'Test if it can pop a node' do
           # Act (3rd)
           actual = target.pop
 
@@ -78,7 +78,7 @@ module Utils
           assert_equal 2, actual
           assert_equal 1, target.peek
 
-          sub_case "Test if can pop the last node" do
+          sub_case 'Test if can pop the last node' do
             # Act (4th)
             actual = target.pop
 

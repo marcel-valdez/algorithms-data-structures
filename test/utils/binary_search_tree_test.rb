@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative "../test_helper"
-require_relative "../../src/utils/binary_search_tree"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/binary_search_tree'
+require_relative 'utils_test_helper'
 
 module Utils
   class BinarySearchTreeTest < TestHelper
@@ -13,7 +13,7 @@ module Utils
       @target= nil
     end
 
-    test "if it has correct API definition" do
+    test 'if it has correct API definition' do
       # Arrange
       api = [
           :put,
@@ -40,7 +40,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it starts empty" do
+    test 'if it starts empty' do
       # Arrange
 
       # Act
@@ -51,14 +51,14 @@ module Utils
     end
 
 
-    test "if it can enumerate nodes" do
+    test 'if it can enumerate nodes' do
       # Arrange
       target = BinarySearchTree.new
       i=1
 
       # Act
-      target.put 1, "1"
-      target.put 2, "2"
+      target.put 1, '1'
+      target.put 2, '2'
 
       # Assert
       target.keys.each { |node_key|
@@ -67,7 +67,7 @@ module Utils
       }
     end
 
-    test "if it can get min" do
+    test 'if it can get min' do
       # Arrange
       target = BinarySearchTree.new
       insert_values(target, 1..5)
@@ -80,7 +80,7 @@ module Utils
       assert_equal(expected_min, min)
     end
 
-    test "if it can get max" do
+    test 'if it can get max' do
       # Arrange
       target = BinarySearchTree.new
       insert_values(target, 1..5)
@@ -93,7 +93,7 @@ module Utils
       assert_equal(expected_max, max)
     end
 
-    test "if it can get floor" do
+    test 'if it can get floor' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -105,7 +105,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can get ceiling" do
+    test 'if it can get ceiling' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -117,7 +117,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can select keys" do
+    test 'if it can select keys' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -130,7 +130,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can get the rank" do
+    test 'if it can get the rank' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -142,7 +142,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can delete the largest key" do
+    test 'if it can delete the largest key' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
       expect_deleted = [8, 7, 5]
@@ -154,7 +154,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can delete the smallest key" do
+    test 'if it can delete the smallest key' do
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
       expect_deleted = [1, 2, 3]
@@ -166,7 +166,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can delete a key" do
+    test 'if it can delete a key' do
 
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
@@ -182,7 +182,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can get a range of keys" do
+    test 'if it can get a range of keys' do
       # Arrange
       keys = [3, 2, 1, 8, 7, 5]
       set_target_values(*keys)
@@ -193,7 +193,7 @@ module Utils
       @target = nil
     end
 
-    test "if it can get the size of a range of keys" do
+    test 'if it can get the size of a range of keys' do
       set_target_values(3, 2, 1, 8, 7, 5)
 
       # Act
@@ -211,36 +211,36 @@ module Utils
     end
 
     # This is a story test for the basic functionality of the BST
-    test "if it can add first node" do
+    test 'if it can add first node' do
       # Arrange
       target = BinarySearchTree.new
 
       # Act
-      target.put 1, "1"
+      target.put 1, '1'
 
       # Assert
       assert_false target.is_empty?
       assert_equal 1, target.size
       assert_true target.contains?(1)
 
-      sub_case " then test if it can add a second node" do
+      sub_case ' then test if it can add a second node' do
         # Act (2nd)
-        target.put 2, "2"
+        target.put 2, '2'
 
         # Assert
         assert_equal 2, target.size
         assert_false target.is_empty?
 
-        sub_case " then test if it can get a node" do
+        sub_case ' then test if it can get a node' do
           # Act (3rd)
           actual = target.get 2
 
           # Assert
           assert_equal 2, target.size
-          assert_equal "2", actual
+          assert_equal '2', actual
           assert_true target.contains?(2)
 
-          sub_case " then test if can delete a node" do
+          sub_case ' then test if can delete a node' do
             # Act (4th)
             target.delete 2
 

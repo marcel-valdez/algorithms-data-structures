@@ -1,6 +1,6 @@
-require_relative "../test_helper"
-require_relative "../../src/utils/bag"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/bag'
+require_relative 'utils_test_helper'
 
 module Utils
   class BagTest < TestHelper
@@ -11,7 +11,7 @@ module Utils
       @target= Bag.new
     end
 
-    test "if it has API definition" do
+    test 'if it has API definition' do
       # Arrange
       api = [:is_empty?, :size, :insert]
       non_api = [:size=, :first=, :first]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it starts empty" do
+    test 'if it starts empty' do
       # Arrange
 
       # Act
@@ -33,7 +33,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test "if it can add first node" do
+    test 'if it can add first node' do
       # Arrange
       target = Bag.new
 
@@ -44,7 +44,7 @@ module Utils
       assert_false target.is_empty?
       assert_equal 1, target.size
 
-      sub_case "test if it can add a second node" do
+      sub_case 'test if it can add a second node' do
         # Act (2nd)
         target.insert 2
 
@@ -53,7 +53,7 @@ module Utils
         assert_false target.is_empty?
       end
 
-      sub_case "test if it can traverse the nodes" do
+      sub_case 'test if it can traverse the nodes' do
         # Arrange
         i = 2
 

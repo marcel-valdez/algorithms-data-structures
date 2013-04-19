@@ -1,9 +1,9 @@
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_1/section_1/exercises"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_1/section_1/exercises'
 
 module Chapter1
   module Section1
-    class Exercises_test < TestHelper
+    class ExercisesTest < TestHelper
 
       attr_accessor :rec_calls
 
@@ -18,8 +18,8 @@ module Chapter1
       # returns true if all are equal, and false otherwise
       def test_exercise_113
         verify_method :exercise_113,
-                      :with => [{param: "1 2 3", expect: false},
-                                {param: "1 1 1", expect: true}]
+                      :with => [{param: '1 2 3', expect: false},
+                                {param: '1 1 1', expect: true}]
       end
 
       # 1.1.5 Write a function exercise_115 that returns true if the
@@ -38,11 +38,11 @@ module Chapter1
       # Suppose that the input number is always 0 or greater.
       def test_exercise_119
         verify_method :exercise_119,
-                      :with => [{param: 1, expect: "1"},
-                                {param: 2, expect: "10"},
-                                {param: 3, expect: "11"},
-                                {param: 8, expect: "1000"},
-                                {param: 11, expect: "1011"}]
+                      :with => [{param: 1, expect: '1'},
+                                {param: 2, expect: '10'},
+                                {param: 3, expect: '11'},
+                                {param: 8, expect: '1000'},
+                                {param: 11, expect: '1011'}]
       end
 
       # 1.1.11 Write a method exercise_1111 that prints a Matrix with a header with the index of the columns

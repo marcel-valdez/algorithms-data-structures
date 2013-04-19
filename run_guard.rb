@@ -8,4 +8,4 @@ BASH
 
 system kill_spork_manually
 system kill_all_guard
-exec "guard --no-bundler-warning -c"
+exec 'guard --no-bundler-warning -c'

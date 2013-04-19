@@ -1,13 +1,13 @@
 # encoding: utf-8
 
-require "test/unit"
-require_relative "../../../src/chapter_1/section_2/exercises"
-require_relative "../../test_helper"
-require_relative "../../../src/utils/number_utils"
+require 'test/unit'
+require_relative '../../../src/chapter_1/section_2/exercises'
+require_relative '../../test_helper'
+require_relative '../../../src/utils/number_utils'
 
 module Chapter1
   module Section2
-    class Exercises_test < TestHelper
+    class ExercisesTest < TestHelper
 
       def initialize(args)
         super(args)

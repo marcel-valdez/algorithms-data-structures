@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require "test/unit"
+require 'test/unit'
 
 class Hash
   # @param [Array] keys to look for
@@ -64,7 +64,7 @@ class TestHelper < Test::Unit::TestCase
     finish - start
   end
 
-  def sub_case (test_name = "")
+  def sub_case (test_name = '')
     begin
       yield
     rescue Test::Unit::AssertionFailedError => error

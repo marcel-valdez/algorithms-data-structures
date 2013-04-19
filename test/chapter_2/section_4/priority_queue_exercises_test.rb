@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_2/section_4/priority_queue_exercises"
-require_relative "../test_sort_helper"
-require_relative "../../utils/memory_analyzer"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_2/section_4/priority_queue_exercises'
+require_relative '../test_sort_helper'
+require_relative '../../utils/memory_analyzer'
 
 module Chapter2
   module Section3
@@ -13,7 +13,7 @@ module Chapter2
     # implements the min_priority_queue and base_priority_queue from scratch,
     # using the utils/min_priority_queue_test and utils/max_priority_queue_test
     # tests for guiding his/her TDD coding of their implementation.
-    class PriorityQueueExercises_test < TestHelper
+    class PriorityQueueExercisesTest < TestHelper
 
       # @param [Object] args
       def initialize(*args)
@@ -115,7 +115,7 @@ module Chapter2
       # @param [Enumerable] result
       # @return [boolean] true if valid, false otherwise.
       def check_number_theory_e2425(param, result)
-        assert_not_nil result, "Result should not be null"
+        assert_not_nil result, 'Result should not be null'
 
         expected_size = (param+1)**2
         previous = 0
@@ -129,7 +129,7 @@ module Chapter2
 
           assert_equal sum, i**3 + j**3
           assert_operator sum, :>=, previous,
-                          "Result should be given in ascending order."
+                          'Result should be given in ascending order.'
           resulting_array << tuple
         }
 
@@ -141,12 +141,12 @@ module Chapter2
 
         if param >= 10
           assert_operator result_mem[:bytes], :<, result_arr_mem[:bytes],
-                          "After execution, the Enumerable object should use "+
-                            "less memory than the actual results array."
+                          'After execution, the Enumerable object should use '+
+                              'less memory than the actual results array.'
 
           assert_operator result_mem_prev[:bytes], :<, result_arr_mem[:bytes]
-          "Prior to execution, the Enumerable object should use "+
-            "less memory than the actual results array."
+          'Prior to execution, the Enumerable object should use '+
+              'less memory than the actual results array.'
         end
 
         true

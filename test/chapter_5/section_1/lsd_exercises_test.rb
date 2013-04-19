@@ -1,13 +1,13 @@
 # encoding: utf-8
 
-require "test/unit"
-require_relative "../../../src/chapter_5/section_1/lsd_exercises"
-require_relative "../../test_helper"
-require_relative "../../chapter_2/test_sort_helper"
+require 'test/unit'
+require_relative '../../../src/chapter_5/section_1/lsd_exercises'
+require_relative '../../test_helper'
+require_relative '../../chapter_2/test_sort_helper'
 
 module Chapter1
   module Section5
-    class LSDExercises_test < TestHelper
+    class LSDExercisesTest < TestHelper
       include ::Chapter2::TestSortHelper
 
       def initialize(args)

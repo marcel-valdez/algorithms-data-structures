@@ -1,11 +1,11 @@
-require_relative "test_helper"
-require_relative "../src/interview_exercises"
+require_relative 'test_helper'
+require_relative '../src/interview_exercises'
 require 'time'
 
-class InterviewExercises_test < TestHelper
-  def initialize (arg)
-    super(arg)
+class InterviewExercisesTest < TestHelper
 
+  def initialize(arg)
+    super(arg)
     @target = InterviewExercises.new
   end
 
@@ -13,8 +13,8 @@ class InterviewExercises_test < TestHelper
   # Write a method for reversing a string without using Ruby's built-in reverse.
   def test_reverse
     # Arrange
-    even_input = "reverse this" # Check pair amount of chars
-    odd_input = "reverse thisz" # Check odd amount of chars
+    even_input = 'reverse this' # Check pair amount of chars
+    odd_input = 'reverse thisz' # Check odd amount of chars
 
     # Verify
     verify_reverse_behavior(even_input)
@@ -124,36 +124,36 @@ class InterviewExercises_test < TestHelper
     verify_method :find_path,
                   with: [
                       # Assert
-                      {params: [map[:five], map[:seven]], expect: "5,7"},
-                      {params: [map[:seven], map[:five]], expect: "7,5"},
-                      {params: [map[:five], map[:one]], expect: "5,1"},
-                      {params: [map[:one], map[:five]], expect: "1,5"},
-                      {params: [map[:minus_one], map[:five]], expect: "-1,1,5"},
-                      {params: [map[:eight], map[:five]], expect: "8,7,5"},
-                      {params: [map[:five], map[:eight]], expect: "5,7,8"},
-                      {params: [map[:three], map[:one]], expect: "3,1"},
-                      {params: [map[:one], map[:three]], expect: "1,3"},
-                      {params: [map[:minus_one], map[:one]], expect: "-1,1"},
-                      {params: [map[:minus_one], map[:three]], expect: "-1,1,3"},
-                      {params: [map[:three], map[:minus_one]], expect: "3,1,-1"},
-                      {params: [map[:one], map[:seven]], expect: "1,5,7"},
-                      {params: [map[:seven], map[:one]], expect: "7,5,1"},
-                      {params: [map[:three], map[:five]], expect: "3,1,5"},
-                      {params: [map[:five], map[:three]], expect: "5,1,3"},
-                      {params: [map[:six], map[:three]], expect: "6,7,5,1,3"},
-                      {params: [map[:three], map[:six]], expect: "3,1,5,7,6"},
-                      {params: [map[:two], map[:eight]], expect: "2,3,1,5,7,8"},
-                      {params: [map[:eight], map[:two]], expect: "8,7,5,1,3,2"},
-                      {params: [map[:four], map[:eight]], expect: "4,3,1,5,7,8"},
-                      {params: [map[:eight], map[:four]], expect: "8,7,5,1,3,4"},
-                      {params: [map[:minus_two], map[:eight]], expect: "-2,-1,1,5,7,8"},
+                      {params: [map[:five], map[:seven]], expect: '5,7'},
+                      {params: [map[:seven], map[:five]], expect: '7,5'},
+                      {params: [map[:five], map[:one]], expect: '5,1'},
+                      {params: [map[:one], map[:five]], expect: '1,5'},
+                      {params: [map[:minus_one], map[:five]], expect: '-1,1,5'},
+                      {params: [map[:eight], map[:five]], expect: '8,7,5'},
+                      {params: [map[:five], map[:eight]], expect: '5,7,8'},
+                      {params: [map[:three], map[:one]], expect: '3,1'},
+                      {params: [map[:one], map[:three]], expect: '1,3'},
+                      {params: [map[:minus_one], map[:one]], expect: '-1,1'},
+                      {params: [map[:minus_one], map[:three]], expect: '-1,1,3'},
+                      {params: [map[:three], map[:minus_one]], expect: '3,1,-1'},
+                      {params: [map[:one], map[:seven]], expect: '1,5,7'},
+                      {params: [map[:seven], map[:one]], expect: '7,5,1'},
+                      {params: [map[:three], map[:five]], expect: '3,1,5'},
+                      {params: [map[:five], map[:three]], expect: '5,1,3'},
+                      {params: [map[:six], map[:three]], expect: '6,7,5,1,3'},
+                      {params: [map[:three], map[:six]], expect: '3,1,5,7,6'},
+                      {params: [map[:two], map[:eight]], expect: '2,3,1,5,7,8'},
+                      {params: [map[:eight], map[:two]], expect: '8,7,5,1,3,2'},
+                      {params: [map[:four], map[:eight]], expect: '4,3,1,5,7,8'},
+                      {params: [map[:eight], map[:four]], expect: '8,7,5,1,3,4'},
+                      {params: [map[:minus_two], map[:eight]], expect: '-2,-1,1,5,7,8'},
                       {
                           params: [map[:minus_two], Node.new(9)],
-                          predicate: Proc.new { |result| result.end_with? "n" }
+                          predicate: Proc.new { |result| result.end_with? 'n' }
                       },
                       {
                           params: [Node.new(-3), map[:eight]],
-                          predicate: Proc.new { |result| result.end_with? "n" }
+                          predicate: Proc.new { |result| result.end_with? 'n' }
                       }
                   ]
   end
@@ -162,7 +162,7 @@ class InterviewExercises_test < TestHelper
     lines = Array.new(line_count)
     alphabet = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     (0..line_count).each { |i|
-      lines[i] = "" + (0...(rand(50)+1)).map { alphabet[rand(alphabet.length)] }.join
+      lines[i] = '' + (0...(rand(50)+1)).map { alphabet[rand(alphabet.length)] }.join
     }
 
     lines

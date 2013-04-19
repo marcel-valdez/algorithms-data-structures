@@ -1,13 +1,13 @@
 # encoding: utf-8
 
-require "test/unit"
-require_relative "../../../src/chapter_1/section_3/stack_exercises"
-require_relative "../../test_helper"
-require_relative "../../../src/utils/number_utils"
+require 'test/unit'
+require_relative '../../../src/chapter_1/section_3/stack_exercises'
+require_relative '../../test_helper'
+require_relative '../../../src/utils/number_utils'
 
 module Chapter1
   module Section3
-    class StackExercises_test < TestHelper
+    class StackExercisesTest < TestHelper
 
       def initialize(args)
         super(args)
@@ -31,25 +31,25 @@ module Chapter1
         verify_method :e134_stack_checker,
                       :with =>
                           [
-                              {param: "()", expect: true},
-                              {param: "[]", expect: true},
-                              {param: "{}", expect: true},
-                              {param: "[()]", expect: true},
-                              {param: "[", expect: false},
-                              {param: "]", expect: false},
-                              {param: "{", expect: false},
-                              {param: "}", expect: false},
-                              {param: "(", expect: false},
-                              {param: ")", expect: false},
-                              {param: "(]", expect: false},
-                              {param: "{)", expect: false},
-                              {param: "[(])", expect: false},
-                              {param: "({)}", expect: false},
-                              {param: "[()]{", expect: false},
-                              {param: "[()]}", expect: false},
-                              {param: "[()]]", expect: false},
+                              {param: '()', expect: true},
+                              {param: '[]', expect: true},
+                              {param: '{}', expect: true},
+                              {param: '[()]', expect: true},
+                              {param: '[', expect: false},
+                              {param: ']', expect: false},
+                              {param: '{', expect: false},
+                              {param: '}', expect: false},
+                              {param: '(', expect: false},
+                              {param: ')', expect: false},
+                              {param: '(]', expect: false},
+                              {param: '{)', expect: false},
+                              {param: '[(])', expect: false},
+                              {param: '({)}', expect: false},
+                              {param: '[()]{', expect: false},
+                              {param: '[()]}', expect: false},
+                              {param: '[()]]', expect: false},
                               {
-                                  param: "[()]{}{[()()]()}",
+                                  param: '[()]{}{[()()]()}',
                                   expect: true
                               }
                           ]
@@ -146,7 +146,7 @@ module Chapter1
       # test your infix to postfix implementation.
       def evaluate_postfix_expression(postfix_input)
         unless @target.respond_to? :e1311_postfix_evaluator
-          fail "You must solve test_e1311_postfix_evaluator first"
+          fail 'You must solve test_e1311_postfix_evaluator first'
         end
 
         begin

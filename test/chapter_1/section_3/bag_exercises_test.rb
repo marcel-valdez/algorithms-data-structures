@@ -1,9 +1,9 @@
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_1/section_3/bag_exercises"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_1/section_3/bag_exercises'
 
 module Chapter1
   module Section3
-    class Bag_exercises_test < TestHelper
+    class BagExercisesTest < TestHelper
 
       # Called before every test method runs. Can be used
       # to set up fixture information.
@@ -13,7 +13,7 @@ module Chapter1
       end
 
       # Exercise 1.3.34
-      # Write a method random_bag_e1334 that returns the items 
+      # Write a method random_bag_e1334 that returns the items
       # of a bag in a random order
       def test_e1334_random_bag
         failure_count = 0
@@ -53,13 +53,13 @@ module Chapter1
         #puts result.inspect
 
         if values.length != result.length
-          puts "The number of result values is different than the number of param values"
+          puts 'The number of result values is different than the number of param values'
           return false
         end
 
         for i in 0 .. result.length-1
           if result[i].nil?
-            puts "The number of result values is different than the number of param values"
+            puts 'The number of result values is different than the number of param values'
             return false
           end
         end
@@ -70,7 +70,7 @@ module Chapter1
           end
         end
 
-        puts "The result and values are in exactly the same order"
+        puts 'The result and values are in exactly the same order'
 
         puts "Offending result: #{result.inspect}"
         false

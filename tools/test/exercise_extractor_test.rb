@@ -1,12 +1,14 @@
 # encoding: utf-8
 
-require 'test/unit'
-require_relative '../lib/exercise_extractor'
 require_relative '../../test/test_helper'
+require_relative '../lib/exercise_extractor'
 
 module Tools
   module Tests
     class ExerciseExtractorTest < TestHelper
+      def initialize (arg)
+        super(arg)
+      end
 
       # Called before every test method runs. Can be used
       # to set up fixture information.
@@ -14,17 +16,36 @@ module Tools
         @target = ExerciseExtractor.new
       end
 
-      # Called after every test method runs. Can be used to tear
-      # down fixture information.
+      # Tests that the extractor ignores attr_reader, attr_writer and attr_accessor
+      test 'if it ignores attributes' do
+        # arrange
 
-      def teardown
-        # Do nothing
+        content = '# This is the test for the single method extraction test
+        class SingleMethod
+          attr_reader :reader
+          attr_accessor :accessor
+
+          attr_writer :writer, :other_writer
+          # The exercise\s description
+          def attr_reader
+            puts "single_method"
+          end
+        end'
+
+        expected = '# This is the test for the single method extraction test
+        class SingleMethod
+
+          # The exercise\s description
+          def attr_reader
+          end
+        end'
+
+        # act
+        check_strip_methods content, expected
       end
 
-      # TODO: Ignore attr_reader, attr_writer and attr_accesor
-
       # Test a single method extraction
-      def test_method_extraction
+      test 'single method extraction' do
         # arrange
         content = '# This is the test for the single method extraction test
         class SingleMethod
@@ -108,10 +129,24 @@ module Tools
         check_strip_methods(content, expected)
       end
 
+      # @param [String] content is the code to strip
+      # @param [String] expected resulting code
       def check_strip_methods(content, expected)
         result = @target.strip_methods content
         # assert
         assert_equal expected, result
+      end
+
+      def test_attribute_detection
+        verify_method :is_attribute?, with: [
+            {param: '  attr_reader :a', expect: true},
+            {param: '  attr_accessor :a1', expect: true},
+            {param: '  attr_writer :a_a', expect: true},
+            {param: '  attr_reader :a?', expect: true},
+            {param: '  attr_accessor :a-', expect: true},
+            {param: '  def attr_accessor :a', expect: false},
+            {param: '  attr_accessor = :a', expect: false}
+        ]
       end
 
       def test_method_detection

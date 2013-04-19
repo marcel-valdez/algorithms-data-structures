@@ -1,15 +1,14 @@
 # encoding: utf-8
 
-require_relative "../../utils/point2d"
-require_relative "../../utils/number_utils"
-require_relative "../../utils/linked_list"
+require_relative '../../utils/point2d'
+require_relative '../../utils/number_utils'
+require_relative '../../utils/linked_list'
 
 module Chapter1
   module Section3
     class LinkedListExercises
 
       def initialize
-
       end
 
       # Write a method e31_delete() that takes an int argument k and deletes the kth

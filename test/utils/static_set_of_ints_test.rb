@@ -1,6 +1,6 @@
-require_relative "../test_helper"
-require_relative "../../src/utils/static_set_of_ints"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/static_set_of_ints'
+require_relative 'utils_test_helper'
 
 module Utils
   class StaticSetOfIntsTest < TestHelper
@@ -11,7 +11,7 @@ module Utils
       @target= StaticSetOfIntegers.new [2, 4, 5, 7, 12]
     end
 
-    test "if it has API definition" do
+    test 'if it has API definition' do
       # Arrange
       api = [:contains?]
       non_api = [:array=]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it has a working contains? method" do
+    test 'if it has a working contains? method' do
       # Arrange
 
       # Act

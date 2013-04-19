@@ -2,6 +2,7 @@ require 'simplecov'
 
 SimpleCov.start do
   add_filter('/test/')
+  add_filter('/tools/test/')
 
   add_group('interview exercises', 'src/interview_exercises.rb')
   add_group('utilities', 'src/utils')
@@ -11,6 +12,7 @@ SimpleCov.start do
   add_group('chapter 4', 'src/chapter_4')
   add_group('chapter 5', 'src/chapter_5')
   add_group('chapter 6', 'src/chapter_6')
+  add_group('project tools', 'tools/lib')
 end
 
-require_relative "run_test"
+require_relative 'run_test'

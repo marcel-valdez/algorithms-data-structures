@@ -6,7 +6,7 @@ module Tools
   class ExerciseExtractor
 
     def initialize
-      @copy_line = lambda { |line| line }
+      @copy_line = lambda { |line| is_attribute?(line) ? '' : line}
       @ignore_body = lambda { |line| '' }
       @line_processor = nil
     end
@@ -14,26 +14,26 @@ module Tools
     # Strips the body from methods of an exercise
     def strip_methods(content)
       lines = ''
-      expected_end = nil
+      exit_token = nil
       @line_processor= @copy_line
 
       content.each_line { |line|
-        puts line
+
         if is_private_keyword? line
           @line_processor = @ignore_body
-          expected_end = get_private_end line
+          exit_token = get_private_end line
         end
 
-        if found_state_end?(expected_end, line)
-          set_normal_state()
-          expected_end = nil
+        if line.eql? exit_token
+          enter_normal_state
+          exit_token = nil
         end
 
         lines += process_line(line)
 
         if not in_ignored_state? and is_method? line
-          expected_end = get_method_end line
-          set_ignore_state()
+          exit_token = get_method_end line
+          enter_ignore_state
         end
       }
 
@@ -44,11 +44,11 @@ module Tools
       @line_processor.call(line)
     end
 
-    def set_ignore_state
+    def enter_ignore_state
       @line_processor= @ignore_body
     end
 
-    def set_normal_state
+    def enter_normal_state
       @line_processor= @copy_line
     end
 
@@ -56,8 +56,14 @@ module Tools
       @line_processor.eql? @ignore_body
     end
 
-    def found_state_end?(expected_end, line)
-      line == expected_end
+    # Determines if the line code is an attribute line
+    # attr_reader :reader (true)
+    # attr_writer :writer, :other (true)
+    # attr_accessor :accessor (true)
+    # @return [Boolean]
+    # @param [String] line to check
+    def is_attribute?(line)
+      (line =~ /(\s+)attr_(writer|reader|accessor)\s+:[a-zA-Z_0-9]+/) == 0
     end
 
     def is_method?(line)
@@ -73,7 +79,7 @@ module Tools
     end
 
     def get_private_end(line, indent = '  ')
-      /(#{indent}+)#{indent}private\s+/.match(line) { |m| m[1] + "end" }
+      /(#{indent}+)#{indent}private\s+/.match(line) { |m| m[1] + 'end' }
     end
   end
 end

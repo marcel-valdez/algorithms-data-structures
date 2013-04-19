@@ -1,5 +1,5 @@
-require_relative "../../test_helper"
-require_relative "../../../src/chapter_1/section_4/static_set_of_ints_exercises"
+require_relative '../../test_helper'
+require_relative '../../../src/chapter_1/section_4/static_set_of_ints_exercises'
 
 module Chapter1
   module Section4

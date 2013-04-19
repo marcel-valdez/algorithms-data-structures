@@ -1,6 +1,6 @@
-require_relative "../test_helper"
-require_relative "../../src/utils/queue"
-require_relative "utils_test_helper"
+require_relative '../test_helper'
+require_relative '../../src/utils/queue'
+require_relative 'utils_test_helper'
 
 module Utils
   class QueueTest < TestHelper
@@ -11,7 +11,7 @@ module Utils
       @target= Queue.new
     end
 
-    test "if it has API definition" do
+    test 'if it has API definition' do
       # Arrange
       api = [:is_empty?, :size, :queue, :dequeue]
       non_api = [:size=, :first=, :last=, :first, :last]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it starts empty" do
+    test 'if it starts empty' do
       # Arrange
       # Act
       target = Queue.new
@@ -44,7 +44,7 @@ module Utils
       }
     end
 
-    test "if it can add first node" do
+    test 'if it can add first node' do
       # Arrange
       target = Queue.new
 
@@ -55,14 +55,14 @@ module Utils
       assert_false target.is_empty?
       assert_equal 1, target.size
 
-      sub_case "test if it can add a second node" do
+      sub_case 'test if it can add a second node' do
         # Act (2nd)
         target.queue 2
 
         # Assert
         assert_equal 2, target.size
 
-        sub_case "test if it can pop a node" do
+        sub_case 'test if it can pop a node' do
           # Act (3rd)
           actual = target.dequeue
 
@@ -72,7 +72,7 @@ module Utils
           assert_not_nil actual
           assert_equal 1, actual
 
-          sub_case "test if can pop the last node" do
+          sub_case 'test if can pop the last node' do
             # Act (4th)
             actual = target.dequeue
 
