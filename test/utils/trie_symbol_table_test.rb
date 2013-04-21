@@ -13,12 +13,12 @@ module Utils
       @target= nil
     end
 
-    test 'if it has correct API definition' do
+    def test_api_definition
       # Arrange
       api = [
-        :size, :contains?, :get, :put, :longest_prefix_of,
-        :each, :collect, :wildcard_match, :prefix_match, :keys,
-        :delete
+          :size, :contains?, :get, :put, :longest_prefix_of,
+          :each, :collect, :wildcard_match, :prefix_match, :keys,
+          :delete
       ]
       non_api = [:size= ]
 
@@ -29,7 +29,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test 'test if it is initialized correctly' do
+    def test_correctly_initialized
       # Arrange
       @target = nil
 
@@ -43,7 +43,7 @@ module Utils
       @target = nil
     end
 
-    test 'test if it can put a new key-value (put/size/contains?)' do
+    def test_put_new_keyvalue
       # Arrange
       @target = TrieSymbolTable.new
 
@@ -61,7 +61,7 @@ module Utils
       @target = nil
     end
 
-    test 'test if it it can put several values and retrieve all' do
+    def test_put_values_and_retrieve_all
       omit 'TODO'
       # Arrange
       @target = TrieSymbolTable.new

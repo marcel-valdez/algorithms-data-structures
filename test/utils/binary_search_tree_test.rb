@@ -13,7 +13,7 @@ module Utils
       @target= nil
     end
 
-    test 'if it has correct API definition' do
+    def test_api_definition
       # Arrange
       api = [
           :put,
@@ -40,9 +40,8 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test 'if it starts empty' do
+    def test_it_starts_empty
       # Arrange
-
       # Act
       target = BinarySearchTree.new
 
@@ -51,7 +50,7 @@ module Utils
     end
 
 
-    test 'if it can enumerate nodes' do
+    def test_it_enumerate_nodes
       # Arrange
       target = BinarySearchTree.new
       i=1
@@ -67,7 +66,7 @@ module Utils
       }
     end
 
-    test 'if it can get min' do
+    def test_it_gets_min
       # Arrange
       target = BinarySearchTree.new
       insert_values(target, 1..5)
@@ -80,7 +79,7 @@ module Utils
       assert_equal(expected_min, min)
     end
 
-    test 'if it can get max' do
+    def test_it_gets_max
       # Arrange
       target = BinarySearchTree.new
       insert_values(target, 1..5)
@@ -93,19 +92,19 @@ module Utils
       assert_equal(expected_max, max)
     end
 
-    test 'if it can get floor' do
+    def test_it_gets_floor
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
       # Act/Assert
       verify_method :floor,
-                    with: [[6, 5],[5, 5],
+                    with: [[6, 5], [5, 5],
                            [0, nil], [9, 8]]
       # Clean
       @target = nil
     end
 
-    test 'if it can get ceiling' do
+    def test_it_gets_ceiling
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -117,7 +116,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can select keys' do
+    def test_it_selects_keys
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -130,7 +129,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can get the rank' do
+    def test_it_gets_rank
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
 
@@ -142,7 +141,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can delete the largest key' do
+    def test_it_deletes_largest_key
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
       expect_deleted = [8, 7, 5]
@@ -154,7 +153,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can delete the smallest key' do
+    def test_it_deletes_smallest_key
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
       expect_deleted = [1, 2, 3]
@@ -166,7 +165,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can delete a key' do
+    def test_it_deletes_key
 
       # Arrange
       set_target_values(3, 2, 1, 8, 7, 5)
@@ -182,7 +181,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can get a range of keys' do
+    def test_it_gets_key_range
       # Arrange
       keys = [3, 2, 1, 8, 7, 5]
       set_target_values(*keys)
@@ -193,7 +192,7 @@ module Utils
       @target = nil
     end
 
-    test 'if it can get the size of a range of keys' do
+    def test_it_gets_size_of_key_range
       set_target_values(3, 2, 1, 8, 7, 5)
 
       # Act
@@ -210,8 +209,8 @@ module Utils
                     ]
     end
 
-    # This is a story test for the basic functionality of the BST
-    test 'if it can add first node' do
+    # This is a story def test_or the basic functionality of the BST
+    def test_it_adds_first_node
       # Arrange
       target = BinarySearchTree.new
 

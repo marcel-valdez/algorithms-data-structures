@@ -11,7 +11,7 @@ module Utils
       @target= StaticSetOfIntegers.new [2, 4, 5, 7, 12]
     end
 
-    test 'if it has API definition' do
+    def test_api_definition
       # Arrange
       api = [:contains?]
       non_api = [:array=]
@@ -23,9 +23,8 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test 'if it has a working contains? method' do
+    def test_contains_method
       # Arrange
-
       # Act
       target = StaticSetOfIntegers.new [2, 4, 5, 7, 12]
 

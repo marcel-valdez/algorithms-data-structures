@@ -1,11 +1,5 @@
 module Tools
-# FileSys is a wrapper over the file system
-# TODO: Needs tests for:
-# - mkdir
-# - get_subdirs
-# - get_files
-# - read_file
-# - write_file
+  # FileSys is a wrapper over the file system
   class FileSys
 
     # Determines whether the path exists.

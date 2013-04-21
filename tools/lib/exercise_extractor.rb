@@ -6,34 +6,37 @@ module Tools
   class ExerciseExtractor
 
     def initialize
-      @copy_line = lambda { |line| is_attribute?(line) ? '' : line}
+      @copy_line = lambda { |line| is_attribute?(line) ? '' : line }
       @ignore_body = lambda { |line| '' }
       @line_processor = nil
     end
 
     # Strips the body from methods of an exercise
-    def strip_methods(content)
+    def strip_content(content)
       lines = ''
-      exit_token = nil
-      @line_processor= @copy_line
+      exit_ignore_token = nil
+      enter_normal_state
 
       content.each_line { |line|
-
-        if is_private_keyword? line
-          @line_processor = @ignore_body
-          exit_token = get_private_end line
+        unless exit_ignore_token.nil?
+          puts "<#{line}> ? <#{exit_ignore_token}> = #{line.eql? exit_ignore_token}"
         end
 
-        if line.eql? exit_token
+        if is_private_keyword? line
+          enter_ignore_state
+          exit_ignore_token = get_private_end line
+        end
+
+        if line.eql? exit_ignore_token
           enter_normal_state
-          exit_token = nil
+          exit_ignore_token = nil
         end
 
         lines += process_line(line)
 
-        if not in_ignored_state? and is_method? line
-          exit_token = get_method_end line
+        if not in_ignore_state? and is_method? line
           enter_ignore_state
+          exit_ignore_token = get_method_end line
         end
       }
 
@@ -52,7 +55,7 @@ module Tools
       @line_processor= @copy_line
     end
 
-    def in_ignored_state?
+    def in_ignore_state?
       @line_processor.eql? @ignore_body
     end
 

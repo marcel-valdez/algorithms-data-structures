@@ -11,7 +11,7 @@ module Utils
       @target= Bag.new
     end
 
-    test 'if it has API definition' do
+    def test_api_definition
       # Arrange
       api = [:is_empty?, :size, :insert]
       non_api = [:size=, :first=, :first]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test 'if it starts empty' do
+    def test_it_starts_empty
       # Arrange
 
       # Act
@@ -33,7 +33,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test 'if it can add first node' do
+    def test_it_adds_first_node
       # Arrange
       target = Bag.new
 

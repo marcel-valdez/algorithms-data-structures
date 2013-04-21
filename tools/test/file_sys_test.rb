@@ -7,7 +7,7 @@ module Tools
   module Tests
     # Contains the unit tests for the FolderExtractor class
     class FileSysTest < TestHelper
-
+      # initializes this test instance
       def initialize (arg)
         super(arg)
       end
@@ -18,26 +18,27 @@ module Tools
         # arrange
         target = FileSys.new
         # act
-        dirs = target.get_subdirs File.dirname Dir.getwd
+        dirs = target.get_subdirs 'data'
         # assert
         assert_not_nil dirs
         assert_not_include dirs, '.'
         assert_not_include dirs, '..'
-        assert_include dirs, 'lib'
-        assert_include dirs, 'test'
+        assert_include dirs, 'inner'
       end
 
       test 'it should get files, not directories' do
         # arrange
         target = FileSys.new
         # act
-        files = target.get_files '.'
+        files = target.get_files 'data'
         # assert
         assert_not_nil files
         assert_not_include files, '.'
         assert_not_include files, '..'
         assert_equal files.length, 3
-        files.each { |file| assert_match /.*\.rb$/, file }
+        assert_include files, 'my_class.rb'
+        assert_include files, 'my_other_class.rb'
+        assert_include files, 'some_not.rb.txt'
       end
 
       test 'write file should overwrite and read file contents' do

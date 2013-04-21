@@ -16,7 +16,7 @@ module Utils
       @target= nil
     end
 
-    test 'if it has the correct API' do
+    def test_correct_api
       # Arrange
       api = [
           :delete_max,
@@ -34,11 +34,11 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it can insert an element and tell it's size" do
+    def test_inserts_element_and_size
       check_insert_increases_size
     end
 
-    test 'if it can get the max element' do
+    def test_gets_max_element
       # Arrange
       keys = [5, 1, 0, 6, 3, 9, 4, 8, 7]
 
@@ -46,7 +46,7 @@ module Utils
       check_get_key(9, :max, keys)
     end
 
-    test 'if it can delete the largest key' do
+    def test_deletes_largest_key
       # Arrange
       keys = (0..9).to_a
 
@@ -54,7 +54,7 @@ module Utils
       check_can_delete(:delete_max, 9, keys)
     end
 
-    test 'if it can delete the largest key until empty' do
+    def test_delete_largest_key_until_empty
       # Arrange
       keys = (0..9).to_a
 
@@ -62,7 +62,7 @@ module Utils
       check_delete_until_empty(:delete_max, :max, keys)
     end
 
-    test 'if it can enumerate all keys in descending order' do
+    def test_enumerate_keys_descending
       # Arrange
       keys = (0...9).to_a.reverse
 

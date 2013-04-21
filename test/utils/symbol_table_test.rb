@@ -11,7 +11,7 @@ module Utils
       @target= SymbolTable.new
     end
 
-    test 'if it has API definition' do
+    def test_api_definition
       # Arrange
       api = [:put, :get, :delete, :contains?, :is_empty?, :size, :min, :max, :floor, :ceiling,
              :rank, :select, :delete_min, :delete_max, :keys]
@@ -30,7 +30,7 @@ module Utils
       }
     end
 
-    test 'if it starts empty' do
+    def test_starts_empty
       # Arrange
       # Act
       target = SymbolTable.new
@@ -39,7 +39,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test 'if it knows when: contains?, is_empty?, size and repeated key' do
+    def test_contains_is_empty_size_with_repeated_key
       # Arrange
       target = SymbolTable.new
       set_pairs(target, 1 => 'A', 6 => 'A', 4 => 'C')
@@ -62,7 +62,7 @@ module Utils
       assert_true target.contains? 4
     end
 
-    test 'if it can overwrite a key' do
+    def test_overwrite_key
       # Arrange
       target = SymbolTable.new
       set_pairs(target, 1 => 'A')
@@ -78,7 +78,7 @@ module Utils
       assert_equal 1, target.size
     end
 
-    test 'if setting a key to nil value, deletes it' do
+    def test_nil_value_deletes_key
       # Arrange
       target = SymbolTable.new
       set_pairs(target, 1 => 'A')
@@ -95,7 +95,7 @@ module Utils
       assert_equal 0, target.size
     end
 
-    test 'if it can add paired keys and retrieve them' do
+    def test_add_paired_keys_and_retrieve
       # Arrange
       target = SymbolTable.new
 
@@ -137,7 +137,7 @@ module Utils
       assert_equal 0, target.size(7, 10)
     end
 
-    test 'if it can delete values' do
+    def test_delete_values
       # Arrange
       target = SymbolTable.new
       set_pairs(target, 1 => 'A', 6 => 'A', 4 => 'C', 2 => 'DB', 12 => 'R', 8 => 'T', 7 => 'P')
@@ -164,7 +164,7 @@ module Utils
       assert_nil target.get(12)
     end
 
-    test 'if it can get a range of keys' do
+    def test_get_key_range
       # Arrange
       keys = [3, 2, 1, 8, 7, 5]
       @target = SymbolTable.new

@@ -16,7 +16,7 @@ module Utils
       @target= nil
     end
 
-    test 'if it has the correct API' do
+    def test_correct_api
       # Arrange
       api = [
           :delete_min,
@@ -38,7 +38,7 @@ module Utils
       check_insert_increases_size
     end
 
-    test 'if it can get the min element' do
+    def test_gets_min_element
       # Arrange
       keys = [5, 1, 0, 6, 3, 9, 4, 8, 7]
 
@@ -46,7 +46,7 @@ module Utils
       check_get_key(0, :min, keys)
     end
 
-    test 'if it can delete the smallest key' do
+    def test_deletes_smallest_key
       # Arrange
       keys = (0..9).to_a
 
@@ -54,7 +54,7 @@ module Utils
       check_can_delete(:delete_min, 0, keys)
     end
 
-    test 'if it can delete the smallest key until empty' do
+    def test_deletes_smallest_key_until_empty
       # Arrange
       keys = (0..9).to_a
 
@@ -62,7 +62,7 @@ module Utils
       check_delete_until_empty(:delete_min, :min, keys)
     end
 
-    test 'if it can enumerate all keys in ascending order' do
+    def test_enumerates_keys_ascending
       # Arrange
       keys = (0..9).to_a
 

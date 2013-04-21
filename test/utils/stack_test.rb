@@ -11,7 +11,7 @@ module Utils
       @target= Stack.new
     end
 
-    test 'if it has API definition' do
+    def test_api_definition
       # Arrange
       api = [:is_empty?, :size, :push, :pop, :peek]
       non_api = [:size=, :first=, :last=, :first, :last]
@@ -23,7 +23,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test 'if it starts empty' do
+    def test_starts_empty
       # Arrange
       # Act
       target = Stack.new
@@ -32,7 +32,7 @@ module Utils
       assert_true target.is_empty?
     end
 
-    test 'if it can use each to find nodes' do
+    def test_use_each_to_find
       # Arrange
       target = Stack.new
       i=2
@@ -48,7 +48,7 @@ module Utils
       }
     end
 
-    test 'if it can add first node' do
+    def test_add_first_node
       # Arrange
       target = Stack.new
 

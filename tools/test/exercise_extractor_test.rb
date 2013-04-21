@@ -20,7 +20,7 @@ module Tools
       end
 
       # Tests that the extractor ignores attr_reader, attr_writer and attr_accessor
-      test 'if it ignores attributes' do
+      def test_ignores_attributes
         # arrange
         content = '
         # This is the test for the single method extraction test
@@ -49,7 +49,7 @@ module Tools
       end
 
       # Test a single method extraction
-      test 'single method extraction' do
+      def test_single_method_extraction
         # arrange
         content = '
         # This is the test for the single method extraction test
@@ -68,9 +68,8 @@ module Tools
           end
         end'
         # act
-        result = @target.strip_methods content
         # assert
-        assert_equal expected, result
+        check_strip_methods content, expected
       end
 
       # Test a single method extraction
@@ -99,9 +98,33 @@ module Tools
 
         end'
         # act
-        result = @target.strip_methods content
         # assert
-        assert_equal expected, result
+        check_strip_methods content, expected
+      end
+
+      def test_copy_ends_after_private
+        # arrange
+        content = '
+class Stack
+  def initialize
+    @accessor= 0
+    @writer= nil
+  end
+
+  private
+end
+'
+        expected = '
+class Stack
+  def initialize
+  end
+
+
+end
+'
+        # act
+        # assert
+        check_strip_methods content, expected
       end
 
       # Tests extraction of a class with several methods
@@ -141,7 +164,7 @@ module Tools
       # @param [String] content is the code to strip
       # @param [String] expected resulting code
       def check_strip_methods(content, expected)
-        result = @target.strip_methods content
+        result = @target.strip_content content
         # assert
         assert_equal expected, result
       end
