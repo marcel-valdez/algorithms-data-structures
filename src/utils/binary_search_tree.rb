@@ -141,30 +141,18 @@ module Utils
     private
 
     def node_to_s(node)
-      return "empty" if node.nil?
+      return 'empty' if node.nil?
       queue = Utils::Queue.new
       queue.queue node
-      res = ""
+      res = ''
       depth = 0
       count = []
       count[depth] = 1
       until queue.size == 0
         current = queue.dequeue
         res += current.to_s
-
-        unless current.left.nil?
-          queue.queue current.left
-          count[depth + 1] = 0 if count[depth + 1].nil?
-          count[depth + 1] += 1
-          res += "l"
-        end
-
-        unless current.right.nil?
-          queue.queue current.right
-          count[depth + 1] = 0 if count[depth + 1].nil?
-          count[depth + 1] += 1
-          res+="r"
-        end
+        res += process_node(count, current.left, depth, queue, 'l')
+        res += process_node(count, current.right, depth, queue, 'r')
 
         count[depth] -= 1
         if count[depth] == 0
@@ -174,6 +162,17 @@ module Utils
       end
 
       res
+    end
+
+    def process_node(count, node, depth, queue, result)
+      unless node.nil?
+        queue.queue node
+        count[depth + 1] = 0 if count[depth + 1].nil?
+        count[depth + 1] += 1
+        return result
+      end
+
+      ''
     end
 
     def node_rank(node, key)

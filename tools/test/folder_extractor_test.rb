@@ -11,29 +11,30 @@ module Tools
 
     # Contains the unit tests for the FolderExtractor class
     class FolderExtractorTest < TestHelper
+
       # initializes this test instance
       def initialize (arg)
         super(arg)
+        @curr_dir = File.dirname(__FILE__)
       end
-
 
       test 'integration of FolderExtractor and ExerciseExtractor' do
         # arrange
         begin
-          dst_dir = 'temp'
+          dst_dir = "#{@curr_dir}/temp"
           target = FolderExtractor.new(ExerciseExtractor.new)
-          src_dir = 'data'
+          src_dir = "#{@curr_dir}/data"
           # act
           target.extract(src_dir, dst_dir)
           # assert
-          assert_path_exist 'temp/my_class.rb'
-          assert_path_exist 'temp/my_other_class.rb'
-          assert_path_not_exist 'temp/some_not.rb.txt'
-          assert_path_exist 'temp/inner'
-          assert_path_exist 'temp/inner/my_inner_class.rb'
+          assert_path_exist "#{dst_dir}/my_class.rb"
+          assert_path_exist "#{dst_dir}/my_other_class.rb"
+          assert_path_not_exist "#{dst_dir}/some_not.rb.txt"
+          assert_path_exist "#{dst_dir}/inner"
+          assert_path_exist "#{dst_dir}/inner/my_inner_class.rb"
 
           check_file_content(
-              'temp/my_class.rb',
+              "#{dst_dir}/my_class.rb",
               '# This is my class
 class MyClass
   # Test that multiple methods get stripped
@@ -45,13 +46,13 @@ class MyClass
   end
 end')
           check_file_content(
-              'temp/my_other_class.rb',
+              "#{dst_dir}/my_other_class.rb",
               '# Multiple classes in single directory
 # class without any methods (just to check it does not break)
 def MyOtherClass
 end')
           check_file_content(
-              'temp/inner/my_inner_class.rb',
+              "#{dst_dir}/inner/my_inner_class.rb",
               'module Inner
   # Class inside a directory (recursion necessary)
   class MyInnerClass
@@ -61,7 +62,7 @@ end')
   end
 end')
         ensure
-          FileUtils.rmtree 'temp' if File.exists? 'temp'
+          FileUtils.rmtree "#{dst_dir}" if File.exists? "#{dst_dir}"
         end
       end
 

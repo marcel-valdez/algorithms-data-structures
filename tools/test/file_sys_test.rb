@@ -10,6 +10,7 @@ module Tools
       # initializes this test instance
       def initialize (arg)
         super(arg)
+        @curr_dir = File.dirname(__FILE__)
       end
 
       # Tests that the extractor fails when sent a file path
@@ -18,7 +19,7 @@ module Tools
         # arrange
         target = FileSys.new
         # act
-        dirs = target.get_subdirs 'data'
+        dirs = target.get_subdirs "#{@curr_dir}/data"
         # assert
         assert_not_nil dirs
         assert_not_include dirs, '.'
@@ -30,7 +31,7 @@ module Tools
         # arrange
         target = FileSys.new
         # act
-        files = target.get_files 'data'
+        files = target.get_files "#{@curr_dir}/data"
         # assert
         assert_not_nil files
         assert_not_include files, '.'
@@ -45,7 +46,7 @@ module Tools
         # arrange
         file_contents = nil
         expected_contents = 'yyy'
-        file_name = 'test_file'
+        file_name = "#{@curr_dir}/test_file"
         begin
           file = File.new file_name, File::CREAT
           file.close

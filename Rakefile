@@ -58,7 +58,7 @@ Cane::RakeTask.new(:style) do |cane|
   cane.style_glob = '{src,test,tools}/**/*.rb'
   cane.no_style = false
   # TODO: Reduce cane style violations
-  cane.max_violations = 108
+  cane.max_violations = 82
   ENV['TASK'] = ENV['TASK'].to_s + ':STYLE'
 end
 
@@ -68,7 +68,7 @@ FlayTask.new(:flay) do |flay|
   flay.verbose = true
   # TODO: Reduce flay values
   # TODO: Reduce flay found IDENTICAL code
-  flay.threshold = 916
+  flay.threshold = 858
   ENV['TASK'] = ENV['TASK'].to_s + ':FLAY'
 end
 
