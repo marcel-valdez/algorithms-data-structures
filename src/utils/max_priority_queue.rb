@@ -1,6 +1,7 @@
 # encoding: utf-8
-require_relative "number_utils"
-require_relative "base_priority_queue"
+
+require_relative 'number_utils'
+require_relative 'base_priority_queue'
 
 module Utils
   # The MaxPriorityQueue class represents a priority queue of generic keys.
@@ -33,7 +34,7 @@ module Utils
     #  Delete and return the largest key on the priority queue.
     # @return [Object] the largest key
     def delete_max
-      raise "Priority queue underflow" if is_empty?
+      raise 'Priority queue underflow' if is_empty?
       max_key = @keys[1]
       @keys.swap(1, @keys.length - 1)
       @keys.delete_at(@keys.length - 1)

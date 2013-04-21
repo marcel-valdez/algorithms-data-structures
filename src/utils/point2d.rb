@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Point2D
   attr_accessor :x, :y
 

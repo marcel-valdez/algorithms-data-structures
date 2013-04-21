@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Chapter1
   module Section1
     class Exercises

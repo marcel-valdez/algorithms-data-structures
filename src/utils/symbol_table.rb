@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require_relative "queue"
+require_relative 'queue'
 
 module Utils
   class SymbolTable

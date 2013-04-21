@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative '../../utils/bag'
 
 module Chapter1

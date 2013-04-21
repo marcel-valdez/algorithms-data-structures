@@ -1,4 +1,6 @@
-require_relative "list_node"
+# encoding: utf-8
+
+require_relative 'list_node'
 
 module Utils
   class Stack

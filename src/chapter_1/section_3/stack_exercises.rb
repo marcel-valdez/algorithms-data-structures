@@ -1,8 +1,8 @@
 # encoding: utf-8
 
-require_relative "../../utils/point2d"
-require_relative "../../utils/number_utils"
-require_relative "../../utils/stack"
+require_relative '../../utils/point2d'
+require_relative '../../utils/number_utils'
+require_relative '../../utils/stack'
 
 module Chapter1
   module Section3
@@ -96,7 +96,7 @@ module Chapter1
       # pass: 1+2, 1+2+3, 1+2+3+4, 3-4+5
       # Can extract all simple operations (no parens)
       def convert_infix_to_postfix(infix_tokens)
-        postfix_result = ""
+        postfix_result = ''
 
         postfix_tokens = Utils::Stack.new
         until infix_tokens.is_empty?

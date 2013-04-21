@@ -1,4 +1,5 @@
 #!/bin/env ruby
+# encoding: utf-8
 
 # lazy hack from Robert Klemme
 

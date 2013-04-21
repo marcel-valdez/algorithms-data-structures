@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Array
   # swaps element at index i for the element at index j
   def swap(i, j)

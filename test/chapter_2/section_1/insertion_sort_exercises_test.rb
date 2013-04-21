@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative '../../test_helper'
 require_relative '../../../src/chapter_2/section_1/insertion_sort_exercises'
 require_relative '../test_sort_helper'

@@ -72,6 +72,52 @@ module Tools
         check_strip_methods content, expected
       end
 
+      def test_works_on_tabs
+        # arrange
+        content = "
+        # This is the test for the single method extraction test
+        class SingleMethod
+          # The exercise description
+        \tdef single_method
+            puts 'single_method'
+          end
+        end"
+
+        expected = '
+        # This is the test for the single method extraction test
+        class SingleMethod
+          # The exercise description
+          def single_method
+          end
+        end'
+        # act
+        # assert
+        check_strip_methods content, expected
+      end
+
+      def test_include_commented_end
+        # arrange
+        content = '
+        # This is the test for the single method extraction test
+        class SingleMethod
+          # The exercise\s description
+          def single_method
+            puts "single_method"
+          end # comment
+        end'
+
+        expected = '
+        # This is the test for the single method extraction test
+        class SingleMethod
+          # The exercise\s description
+          def single_method
+          end # comment
+        end'
+        # act
+        # assert
+        check_strip_methods content, expected
+      end
+
       # Test a single method extraction
       def test_ignore_private_method
         # arrange
@@ -118,7 +164,6 @@ end
 class Stack
   def initialize
   end
-
 
 end
 '
@@ -195,8 +240,8 @@ end
       # Tests that it can get the indentation of a method def line
       def test_get_method_end
         verify_method :get_method_end, with: [
-            {param: '  def method', expect: "  end\n"},
-            {param: ' def method', expect: " end\n"},
+            {param: '  def method', expect: /^  end(\s*#.*|\s*)$/},
+            {param: ' def method', expect: /^ end(\s*#.*|\s*)$/},
         ]
       end
 

@@ -1,11 +1,13 @@
+# encoding: utf-8
+
 module Utils
-	class StaticSetOfIntegers
-		def initialize(values)
+  class StaticSetOfIntegers
+    def initialize(values)
       @array = values
       @array = @array.sort
     end
 
-		def contains?(value)
+    def contains?(value)
       #binary search
       lo = 0
       hi = @array.length - 1
@@ -25,5 +27,5 @@ module Utils
       false
     end
 
-	end
+  end
 end

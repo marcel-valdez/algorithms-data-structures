@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative '../../test_helper'
 require_relative '../../../src/chapter_1/section_1/exercises'
 

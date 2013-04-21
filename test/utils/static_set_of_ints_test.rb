@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require_relative '../test_helper'
 require_relative '../../src/utils/static_set_of_ints'
 require_relative 'utils_test_helper'

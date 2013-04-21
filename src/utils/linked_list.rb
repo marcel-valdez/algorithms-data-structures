@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Utils
   class LinkedList
     include Enumerable
@@ -39,9 +41,9 @@ module Utils
     # TODO: add test for this
     def to_s
       if @last.nil?
-        puts("Empty list")
+        puts('Empty list')
       else
-        puts "Found #@count items..."
+        puts "Found #{@count} items..."
         slider = @last
 
         while slider.next != nil

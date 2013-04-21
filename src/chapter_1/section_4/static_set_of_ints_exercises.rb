@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative "../../utils/static_set_of_ints"
+require_relative '../../utils/static_set_of_ints'
 module Utils
   class StaticSetOfIntegers
 

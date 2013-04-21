@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Utils
   class ListNode
     attr_accessor :value, :next

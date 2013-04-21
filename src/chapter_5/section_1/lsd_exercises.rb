@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Chapter1
   module Section5
     class LSDExercises

@@ -34,7 +34,7 @@ module Utils
       assert_api(api, non_api)
     end
 
-    test "if it can insert an element and tell it's size" do
+    def test_insert_element_and_tell_size
       check_insert_increases_size
     end
 
