@@ -5,6 +5,9 @@ require_relative '../../../src/chapter_1/section_4/static_set_of_ints_exercises'
 
 module Chapter1
   module Section4
+  # This class contains the tests for the StaticSetOfIntsExercises class.
+  # The static set of ints is a simple data structure that does not ensure
+  # ordering of a set of elements.
     class StaticSetOfIntsExercisesTest < TestHelper
       # Called before every test method runs. Can be used
       # to set up fixture information.

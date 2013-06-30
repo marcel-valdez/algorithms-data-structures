@@ -6,6 +6,8 @@ require_relative '../test_sort_helper'
 
 module Chapter2
   module Section2
+  # This class contains the tests for the MergeSortExercises class.
+  # These tests help you understand the Merge Sort algorithm.
     class MergeSortExercisesTest < TestHelper
 
       include Chapter2::TestSortHelper

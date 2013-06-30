@@ -7,6 +7,9 @@ require_relative '../../../src/utils/number_utils'
 
 module Chapter1
   module Section2
+  # Test class for all exercises of Chapter 1/Section 2
+  # These tests help you understand the Ruby Language at an intermediate level, 
+  # if you already know ruby you may ignore these tests or implement them for fun ;)
     class ExercisesTest < TestHelper
 
       def initialize(args)

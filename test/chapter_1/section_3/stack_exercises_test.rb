@@ -7,6 +7,9 @@ require_relative '../../../src/utils/number_utils'
 
 module Chapter1
   module Section3
+  # This class contains the unit tests for the StackExercises class in the
+  # src/chapter_1/section_3/stack_exercises.rb
+  # These tests help you cement your knowledge of the stack data structure.
     class StackExercisesTest < TestHelper
 
       def initialize(args)

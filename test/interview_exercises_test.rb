@@ -4,6 +4,9 @@ require_relative 'test_helper'
 require_relative '../src/interview_exercises'
 require 'time'
 
+# This class contains the tests for the InterviewExercises class.
+# These are tests found in real-world interviews they are a good example of
+# how you will be tested during technical interviews.
 class InterviewExercisesTest < TestHelper
 
   def initialize(arg)
@@ -93,7 +96,7 @@ class InterviewExercisesTest < TestHelper
       puts "actual time: #{actual_time}"
     end
 
-    assert_operator(actual_time * 2, :<, naive_time)
+    assert_operator(actual_time, :<, naive_time)
   end
 
   # Given a binary search tree in which each node has access to its parent node
@@ -214,10 +217,12 @@ class InterviewExercisesTest < TestHelper
     minus_one.right = zero
     three.left = two
     three.right = four
-
-    map
+    
+    return map
   end
 
+  # This class represents a node (and sub-tree) of a binary tree.
+  # It can be transversed to a parent and children.
   class Node
     attr_accessor :value, :left, :right, :parent
 

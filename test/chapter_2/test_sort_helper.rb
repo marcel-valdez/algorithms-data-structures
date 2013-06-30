@@ -1,5 +1,7 @@
 # encoding: utf-8
 module Chapter2
+  # This module contains methods that all classes for testing sorting
+  # algorithms can use.
   module TestSortHelper
     def check_sort_correctness(method_sym)
       numbers = (0..20).to_a
@@ -31,8 +33,9 @@ module Chapter2
     # @param [Proc] faster Proc that should be faster
     # @param [Proc] slower Proc that should be slower
     def assert_faster_proc(faster, slower)
+      # pre-run methods so their measured execution is faster.
+      greater_time = time_block { slower.() }      
       lesser_time = time_block { faster.() }
-      greater_time = time_block { slower.() }
 
       # When coverage is being calculated, the calculation times
       # get screwed up due to instrumentation.

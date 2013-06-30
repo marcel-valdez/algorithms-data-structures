@@ -8,6 +8,9 @@ require_relative '../../../src/utils/list_node'
 
 module Chapter1
   module Section3
+  # This class contains the tests for the LinkedListExercises class.
+  # These tests help you cement your understanding on the linked list data
+  # structure.
     class LinkedListExercisesTest < TestHelper
 
       def initialize(*args)

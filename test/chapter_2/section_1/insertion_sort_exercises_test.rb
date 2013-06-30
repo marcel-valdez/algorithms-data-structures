@@ -24,14 +24,12 @@ module Chapter2
       	# puts "*** Executing insertion_sort_without_exchanges_e2125_test ***"
         check_sort_correctness :e2125_insertion_sort_no_swap
 
-        hundred_elements = (0..100).to_a
-        faster = Proc.new {
-            @target.e2125_insertion_sort_no_swap(hundred_elements.shuffle)
-        }
-
-        slower = Proc.new {
-          standard_insertion_sort(hundred_elements.shuffle)
-        }
+        elements = (0..200).to_a
+        shuffled_b = elements.shuffle
+        shuffled_a = elements.shuffle
+        
+        faster = lambda { @target.e2125_insertion_sort_no_swap shuffled_a }
+        slower = lambda { standard_insertion_sort shuffled_b }                
 
         assert_faster_proc faster, slower
       end
@@ -66,7 +64,9 @@ module Chapter2
       end
 
       def swap(values, a, b)
-        values[a], values[b] = values[b], values[a]
+        temp = values[a]
+        values[a] = values[b]
+        values[b] = temp        
       end
     end
   end

@@ -5,6 +5,9 @@ require_relative '../../../src/chapter_1/section_1/exercises'
 
 module Chapter1
   module Section1
+    # Test class for all exercises of Chapter 1/Section 1
+  # These tests help you understand the basics of Ruby Language, if you already 
+  # know ruby you may ignore these tests or implement them for fun ;)
     class ExercisesTest < TestHelper
 
       attr_accessor :rec_calls

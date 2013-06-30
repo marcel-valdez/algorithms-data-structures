@@ -6,6 +6,9 @@ require_relative '../test_sort_helper'
 
 module Chapter2
   module Section3
+  # This class contains tests for the QuickSortExercises class.
+  # These tests help you understand how the Quick Sort algorithm works and
+  # how you can improve the default implementation.
     class QuickSortExercisesTest < TestHelper
 
       include Chapter2::TestSortHelper

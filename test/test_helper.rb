@@ -1,7 +1,9 @@
 # encoding: utf-8
-
+require 'benchmark'
 require 'test/unit'
 
+# We open up the Hash class to add an utility method for finding any key
+# within an array of keys.
 class Hash
   # @param [Array] keys to look for
   # @return [Object, Object] The found object and the key found, nil otherwise
@@ -56,12 +58,8 @@ class TestHelper < Test::Unit::TestCase
   end
 
   # @return [Object]
-  def time_block
-    start = Time.now
-    yield
-    finish = Time.now
-
-    finish - start
+  def time_block    
+    Benchmark.realtime { yield }
   end
 
   def sub_case (test_name = '')

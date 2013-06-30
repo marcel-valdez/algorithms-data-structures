@@ -5,6 +5,9 @@ require_relative '../../../src/chapter_1/section_3/bag_exercises'
 
 module Chapter1
   module Section3
+  # This class contains the unit tests for the BagExercises class, which you can
+  # find in the src/chapter_1/section_3/bag_exercises.rb file.
+  # These exercises help you understand the Bag data structure.
     class BagExercisesTest < TestHelper
 
       # Called before every test method runs. Can be used
