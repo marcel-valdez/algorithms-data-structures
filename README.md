@@ -48,7 +48,81 @@ src/
         |-- xxx.rb
 ````
 
+
 ## Usage
+
+How to start using the project on the Jedi Box:
+
+### Easy Way
+
+1. Go into our Cloud9 IDE Workspace: https://c9.io/marcel_valdez/algorithms-user-project
+2. Clone the workspace into your Cloud9 IDE account (create an acccount if you don't have one)
+3. Start coding right away!
+4. In the terminal type: `bundle exec guard`
+5. Go into one of the tests and comment one of the `omit(Yet to see the light)` methods to work on that test.
+6. Implement the method corresponding to that test.
+
+For more details on implementing tests read the [Google Doc presentation](http://bit.ly/UbsG8O).
+
+### Using the Jedi Box
+
+Jedi Box a Virtualbox machine with minimal Ubuntu 12.04 installed and the Jedi Factory project setup in it.
+
+You can find a self-extracting zip archive that contains a VirtualBox machine that has this project
+setup along with an editor here:
+[Download the Jedi Box SFX Archive](http://bit.ly/11bDCb5) (574 mb)
+[Download the Jedi Box ZIP Archive](http://bit.ly/115RR11) (813 mb)
+
+The credentials to login into the Ubuntu Linux OS inside the VirtualBox machine are:
+
+username: padawan
+password: matr1234
+
+Boot up your virtual machine and do the following.
+
+````bash
+ubuntuminial login: padawan
+Password: matr1234
+
+padawan@ubuntuminimal:~$ startx
+# In the LXDE Window Environment: Start -> Accessories -> LXTerminal
+# Inside the LXTerminal
+padawan@ubuntuminimal:~$ enlightment.sh
+# This will open Sublime Text 2 and run Guard the continous test runner
+````
+
+### Old-School Way
+
+How to setup the project on your own Linux Box:
+
+````bash
+cd $HOME
+# initialize the git repository
+mkdir jedi_factory
+cd jedi_factory
+git init .
+git remote add origin git://github.com/marcel-valdez/algorithms-user-project.git
+git pull origin master
+# initialize dependencies
+bundle install
+# run Guard the automatic test runner.
+bundle exec guard
+# Go and shed the light! (Solve exercises)
+````
+
+### Updating your Jedi Box with the most recent changes
+
+Small Note: This works in your own box, the virtual machine or your Cloud9 IDE workspace.
+
+````bash
+# Inside a terminal
+padawan@ubuntuminimal:~$ cd $HOME/learn
+padawan@ubuntuminimal:~$ git pull origin master
+# Easy as that!
+````
+
+
+## Contributing
   
 How to setup the project on Linux:
 
@@ -67,7 +141,6 @@ You can run continuous testing using Guard, by running:
 ```` bash
 bundle exec guard
 ````
-## Contributing
 
 **All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
 Book: Algorithms 4th Ed by Robert Sedgewick  
