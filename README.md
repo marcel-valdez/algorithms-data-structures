@@ -6,11 +6,10 @@
   
 **Code Metrics Results:** 
 [![Code Climate](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures.png)](https://codeclimate.com/github/marcel-valdez/algorithms-data-structures)
-  
-**Ohloh Statistics:**
-<a href="https://www.ohloh.net/p/algorithms-data-structures?ref=sample" target="_top">
-<img alt="Ohloh project report for algorithms-data-structures" border="0" src="https://www.ohloh.net/p/algorithms-data-structures/widgets/project_thin_badge.gif">
-</a>
+
+**Code Coverage:**
+[![Coverage Status](https://coveralls.io/repos/marcel-valdez/algorithms-data-structures/badge.png?branch=master)](https://coveralls.io/r/marcel-valdez/algorithms-data-structures?branch=master)
+
 
 ## Description
   
