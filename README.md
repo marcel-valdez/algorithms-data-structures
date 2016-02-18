@@ -96,12 +96,8 @@ How to setup the project on your own Linux Box:
 
 ````bash
 cd $HOME
-# initialize the git repository
-mkdir jedi_factory
-cd jedi_factory
-git init .
-git remote add origin git://github.com/marcel-valdez/algorithms-user-project.git
-git pull origin master
+git clone git://github.com/marcel-valdez/algorithms-data-structures.git
+cd algorithms-data-structures
 # initialize dependencies
 bundle install
 # run Guard the automatic test runner.
@@ -122,25 +118,9 @@ padawan@ubuntuminimal:~$ git pull origin master
 
 
 ## Contributing
+
+Simply create a fork and branch and then make a pull request against this branch.
   
-How to setup the project on Linux:
-
-````bash
-cd $HOME
-mkdir algorithms_data_structures
-cd algorithms_data_structures
-git init .
-# Or you can fork the repository and send a pull request through github to contribute.
-git remote add origin git://github.com/marcel-valdez/algorithms-data-structures.git
-git pull origin master
-bundle install
-````
-
-You can run continuous testing using Guard, by running:
-```` bash
-bundle exec guard
-````
-
 **All exercises inside a chapter/section must be either in the 'Algorithms' webpage, or the book.**  
 Book: Algorithms 4th Ed by Robert Sedgewick  
 Webpage: http://algs4.cs.princeton.edu/home/
